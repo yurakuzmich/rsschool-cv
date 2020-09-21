@@ -44,4 +44,7 @@ BSEU | 2008 | 2013 | spesialist
 Hope It is near to intermediate level.
 Anyway finished _Streamline_ english cources
 
+## Other 
+Interested in learning chineese
+
 
