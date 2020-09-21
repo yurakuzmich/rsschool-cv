@@ -16,6 +16,7 @@ Clever, open-minded, going bald, but still full of desire to code.
 ## Skills
 Have basic web development skills.
 For a long time was engaged as a part-time job and a hobby.
+Hope to use thiss skills for my work.
 **Front:**
  _html, css, js + jquery, bootstrap_.
 **Back:**
