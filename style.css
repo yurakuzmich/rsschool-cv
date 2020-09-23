@@ -1,0 +1,29 @@
+img {
+   width: 320px;
+}
+
+#container {
+    margin: 0 auto;
+    max-width: 1024px;
+    border: 1px solid #000;
+}
+
+.col-1 {
+    float: left;
+    width: 20%;
+}
+
+.col-2 {
+    float: left;
+    width: 75%;
+}
+
+.col-1, .col-2 {
+    padding: 20px 10px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}  
