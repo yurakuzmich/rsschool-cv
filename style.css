@@ -25,14 +25,6 @@ main {
 main div {
 }
 
-main div p {
-    padding: 10px;
-}
-
-    main div p:hover {
-        border-left: 3px solid green;
-    }
-
 /*Maybe it would be better to use speciall class for my photo, but I have only one img in my CV, so I decided to leave img-selector*/
 img {
     height: 200px;
@@ -106,7 +98,17 @@ a:hover {
 }
 
 .contact_list p {
+    margin: 5px;
+    padding: 5px;
 }
+
+.pagetext {
+    padding: 10px;
+}
+
+    .pagetext:hover {
+        border-left: 3px solid green;
+    }
 
 .skills_list {
     margin: 0 0 15px 0;
