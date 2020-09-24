@@ -1,0 +1,182 @@
+/*I dont use many custom colors, so I decided to use this color by default for all elements*/
+* {
+    color: #555555;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+/*I think, it would be better to use classes as much as possible but in this progect I decided to use tag-selectors because of */
+main div {
+}
+
+/*Maybe it would be better to use speciall class for my photo, but I have only one img in my CV, so I decided to leave img-selector*/
+img {
+    height: 200px;
+    margin: 5px;
+}
+
+code {
+    background-color: silver;
+}
+
+h2, h4 {
+    margin: 7px;
+    padding: 7px;
+}
+
+h2 {
+    color: #fff;
+    background-color: green;
+}
+
+h4 {
+    border-radius: 5px;
+    color: #fff;
+    background-color: #e667af; 
+}
+
+a:link,
+a:visited {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    color: gray;
+}
+
+a:hover {
+    padding-left: 2px;
+}
+
+/*Block with style-selectors*/
+.container {
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 5px;
+    max-width: 1024px;
+    background-color: rgba(255,180,115,.5);
+    box-shadow: 2px -1px 1px 3px rgba(100,100,100,.5);
+}
+
+.oldman_greeting {
+    display: none;
+}
+
+.div_img {
+    display: flex;
+    align-self: stretch;
+}
+
+.div_left {
+    flex: 1 8 300px;
+}
+
+.div_right {
+    flex: 8 1 400px;
+}
+
+.contact_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.contact_list p {
+    margin: 5px;
+    padding: 5px;
+}
+
+.pagetext {
+    padding: 10px;
+}
+
+    .pagetext:hover {
+        border-left: 3px solid green;
+    }
+
+.skills_list {
+    margin: 0 0 15px 0;
+    padding: 0;
+    max-width: 400px;
+}
+
+    .skills_list li {
+        display: inline-block;
+        margin: 5px;
+        padding: 3px;
+        border-radius: 5px;
+        background-color: #e667af;
+        color: #fff;
+    }
+
+    .skills_list li:hover {
+        background-color: #fff;
+        color: #e667af;
+    }
+
+.education_list {
+    padding: 0 30px 30px 30px;
+}
+
+    .education_list li {
+        font-size: smaller;
+    }
+/*End of block with style-selectors*/
+
+
+/*Media querys block*/
+
+
+@media (max-width: 576px) {
+    
+    main {
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+    }
+
+    .oldman_greeting {
+        display: block;
+        padding: 15px;
+        animation: oldman_animation 2s infinite;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        font-size: larger;
+    }
+
+    /*old mobile animation*/
+    @keyframes oldman_animation {
+        from {
+            background-color: #47F406;
+            color: #666666;
+        }
+
+        50% {
+            background-color: #E206F4;
+            color: #ECFF00;
+        }
+
+        to {
+            background-color: #47F406;
+            color: #666666;
+        }
+    }
+}
+/*End of Media querys block*/
