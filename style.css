@@ -1,3 +1,4 @@
+/*I dont use many custom colors, so I decided to use this color by default for all elements*/
 * {
     color: #555555;
 }
@@ -19,6 +20,8 @@ main {
     flex-wrap: wrap;
 }
 
+
+/*I think, it would be better to use classes as much as possible but in this progect I decided to use tag-selectors because of */
 main div {
 }
 
@@ -30,6 +33,7 @@ main div p {
         border-left: 3px solid green;
     }
 
+/*Maybe it would be better to use speciall class for my photo, but I have only one img in my CV, so I decided to leave img-selector*/
 img {
     height: 200px;
     margin: 5px;
@@ -67,6 +71,7 @@ a:hover {
     padding-left: 2px;
 }
 
+/*Block with style-selectors*/
 .container {
     margin: 0 auto;
     padding: 30px;
@@ -76,17 +81,21 @@ a:hover {
     box-shadow: 2px -1px 1px 3px rgba(100,100,100,.5);
 }
 
+.oldman_greeting {
+    display: none;
+}
+
 .div_img {
     display: flex;
     align-self: stretch;
 }
 
 .div_left {
-    flex: 1 8 200px;
+    flex: 1 8 300px;
 }
 
 .div_right {
-    flex: 8 1 300px;
+    flex: 8 1 400px;
 }
 
 .contact_list {
@@ -126,3 +135,46 @@ a:hover {
     .education_list li {
         font-size: smaller;
     }
+/*End of block with style-selectors*/
+
+
+/*Media querys block*/
+
+
+@media (max-width: 576px) {
+    
+    main {
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+    }
+
+    .oldman_greeting {
+        display: block;
+        padding: 15px;
+        animation: oldman_animation 2s infinite;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        font-size: larger;
+    }
+
+    /*old mobile animation*/
+    @keyframes oldman_animation {
+        from {
+            background-color: #47F406;
+            color: #666666;
+        }
+
+        50% {
+            background-color: #E206F4;
+            color: #ECFF00;
+        }
+
+        to {
+            background-color: #47F406;
+            color: #666666;
+        }
+    }
+}
+/*End of Media querys block*/
