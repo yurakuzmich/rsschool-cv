@@ -54,6 +54,20 @@ body {
     font-weight: bold;
 }
 
+.instalink,
+.instalink:visited {
+    color: #C13584;
+    text-decoration: none;
+}
+
+.instalink:hover {
+    color: #833AB4;
+
+}
+
+.fa {
+    color: #C13584;
+}
 
 @media (max-width: 1024px) {
     
