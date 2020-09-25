@@ -103,6 +103,17 @@ footer {
     background-color: green;
 }
 
+.tributepagelink,
+.tributepagelink:visited {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+    font-weight: normal;
+    color: #555555;
+}
+
+.tributepagelink:hover {
+    padding: 0;
+}
+
 .skills_list {
     margin: 0 0 15px 0;
     padding: 0;
