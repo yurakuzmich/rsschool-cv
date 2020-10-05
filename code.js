@@ -8,8 +8,13 @@ window.onload = function() {
         event.preventDefault();
         let clickedElement = event.target;
         slideToClickedElement(clickedElement);
+        // let toTopButton = document.getElementById('to-top-button');
+        // toTopButton.classList.toggle('to-top-button_hidden');
     });
 
+    //addListener toTopButton 
+    // const toTopButton = document.getElementById('to-top-button');
+    // toTopButton.addEventListener('click', goToTopOfPage);
 }
 
 function toggleSliderClass() {
@@ -28,3 +33,13 @@ function slideToClickedElement(sliderTarget) {
         block: 'start'
     });
 }
+
+// function goToTopOfPage(event) {
+//     let target = document.getElementById('header');
+//     let toTopButton = event.target;
+//     target.scrollIntoView({
+//         behavior: 'smooth',
+//         block: 'start'
+//     });
+//     toTopButton.classList.toggle('to-top-button_hidden');
+// }
