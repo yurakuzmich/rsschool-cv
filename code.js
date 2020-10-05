@@ -6,10 +6,26 @@ window.onload = function() {
     const mainMenu = document.querySelector(".main-navigation");
     mainMenu.addEventListener('click', (event) => {
         event.preventDefault();
+        // console.log(event.target.tagName);
         let clickedElement = event.target;
-        slideToClickedElement(clickedElement);
+        if(clickedElement.tagName === 'A') {
+            slideToClickedElement(clickedElement);
+        }
         // let toTopButton = document.getElementById('to-top-button');
         // toTopButton.classList.toggle('to-top-button_hidden');
+    });
+
+    //add Listeners to burger menu
+    const burgerMenu = document.querySelector('.burger-menu_box');
+    burgerMenu.addEventListener('click', function(event) {
+        event.preventDefault();
+        let clickedElement = event.target;
+        if(clickedElement.tagName === 'A') {
+            slideToClickedElement(clickedElement);
+            let burgerMenuCheckbox = document.getElementById('burger-menu__toggle');
+            burgerMenuCheckbox.checked = false;
+        }
+        // console.log(event.target.tagName);
     });
 
     //addListener toTopButton 
