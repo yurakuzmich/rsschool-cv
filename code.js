@@ -87,7 +87,7 @@ function shufflePortfolio() {
         portfolioImagesArray[i] = portfolioImagesArray[j];
         portfolioImagesArray[j] = t;
         // [portfolioImages[i], portfolioImages[j]] = [portfolioImages[j], portfolioImages[i]];
-        console.log(portfolioImagesArray[i]);
+        // console.log(portfolioImagesArray[i]);
     }
     
     let portfolioImagesList = document.querySelector('.portfolio-images-list');
