@@ -36,6 +36,7 @@ window.onload = function() {
         if(clickedElement.tagName === 'A') {
             // shufflePortfolio();
             shufflePortfolioByOrder();
+            setActiveTag(clickedElement);
         }
     });
     
@@ -97,5 +98,13 @@ function shufflePortfolioByOrder() {
     let portfolioImages = document.querySelectorAll('.portfolio-images-list__item');
     for(let i = 0; i < portfolioImages.length; i++) {
         portfolioImages[i].style.order = Math.floor(100 * Math.random());
+        portfolioImages[i].style.margin = '0 20px 20px 0';
     }
+}
+
+function setActiveTag(targetElement){
+   let currentSelectedElement = document.querySelector('.portfolio-head-tags__item_selected');
+//    console.log(currentSelectedElement);
+   currentSelectedElement.classList.remove('portfolio-head-tags__item_selected');
+    targetElement.classList.add('portfolio-head-tags__item_selected');
 }

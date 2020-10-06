@@ -307,6 +307,10 @@ main {
                 color: #767E9E;
             }
 
+            .portfolio-head-tags__item_selected {
+                color: #ffffff !important; 
+            }
+
    .portfolio-images {
        margin: 21px auto 0 auto;
    }
