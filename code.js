@@ -6,13 +6,11 @@ window.onload = function() {
     const mainMenu = document.querySelector(".main-navigation");
     mainMenu.addEventListener('click', (event) => {
         event.preventDefault();
-        // console.log(event.target.tagName);
         let clickedElement = event.target;
         if(clickedElement.tagName === 'A') {
             slideToClickedElement(clickedElement);
+            setActiveMenuItem(clickedElement);
         }
-        // let toTopButton = document.getElementById('to-top-button');
-        // toTopButton.classList.toggle('to-top-button_hidden');
     });
 
     //add Listeners to burger menu
@@ -108,3 +106,10 @@ function setActiveTag(targetElement){
    currentSelectedElement.classList.remove('portfolio-head-tags__item_selected');
     targetElement.classList.add('portfolio-head-tags__item_selected');
 }
+
+function setActiveMenuItem(targetElement) {
+    let currentSelectedElement = document.querySelector('.main-navigation-menu__item_active');
+ //    console.log(currentSelectedElement);
+    currentSelectedElement.classList.remove('main-navigation-menu__item_active');
+     targetElement.classList.add('main-navigation-menu__item_active');
+ }
