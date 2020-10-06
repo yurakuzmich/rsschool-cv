@@ -55,7 +55,7 @@ function slideToClickedElement(sliderTarget) {
     let targetHref = sliderTarget.getAttribute('href').substr(1);
     target = document.getElementById(targetHref);
     if(target === null) {
-        target = document.getElementById('header');
+        target = document.getElementById('wrapper');
     }
     target.scrollIntoView({
         behavior: 'smooth',

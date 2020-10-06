@@ -456,6 +456,10 @@ main {
         background: #2D303A;
         color: #ffffff;
         border-bottom: 6px solid #323746;
+
+        position: fixed;
+        top: 0;
+        left: 0
     }
     
     .header {
@@ -564,6 +568,7 @@ main {
         height: 452px;
         background: url('images/slider/Slider.jpg');
         background-size: 768px;
+        margin-top: 95px;
     }
     
         .slider_alternate {
