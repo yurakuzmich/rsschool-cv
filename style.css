@@ -872,7 +872,7 @@ main {
     .header {
         padding: 0;
         width: 375px;
-        height: 71px;
+        height: 65px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -929,9 +929,9 @@ main {
 
         .burger-menu_head {
             margin: 3px 0 0 0;
-            padding: 0 0 0 80px;
+            padding: 0 0 0 71px;
             font-family: 'Lato', sans-serif;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
             text-transform: uppercase;
         }
@@ -949,19 +949,19 @@ main {
             width: 90%;
             height: 100%;
             margin: 0;
-            padding: 80px 0;
+            padding: 171px 0;
             list-style: none;
-            text-align: center;
+            text-align: left;
             background: #2D303A;
             color: #ffffff;
         }
 
             .burger-menu_item {
                 display: block;
-                padding: 12px 24px;
+                padding: 12px 71px;
                 color: #ffffff;
                 font-family: 'Lato', sans-serif;
-                font-size: 12px;
+                font-size: 24px;
                 font-weight: bold;
                 text-transform: uppercase; 
                 text-decoration: none;
@@ -972,7 +972,7 @@ main {
             }
     
         .main-logo {
-            margin: 15px 0 0 0;
+            margin: -20px 0 0 0;
             padding: 0;
             font-family: 'Lato', sans-serif;
             font-size: 25px;
@@ -1069,7 +1069,7 @@ main {
     
     /* Our Services */
     .our-services-wrapper {
-        height: 1000px;
+        /* height: 1000px; */
         background: #F2F2F2;
         border-bottom: 6px solid #ffffff;
         display: flex;
@@ -1081,7 +1081,7 @@ main {
         margin: 0 auto;
         padding: 0;
         width: 375px;
-        height: 1000px;
+        height: 1026px;
         background: #F2F2F2;
         /* border-bottom: 6px solid #ffffff; */
         display: flex;
@@ -1091,12 +1091,12 @@ main {
     }
     
         .our-services-head {
-            width: 314px;
+            width: 308px;
             margin-bottom: 30px;
         }
     
             .our-services-head__header {
-                margin: 59px 0 0 0;
+                margin: 24px 0 17px 0;
                 font-family: 'Lato', sans-serif;
                 font-size: 30px;
                 font-weight: bold;
@@ -1130,8 +1130,8 @@ main {
                 flex-direction: row;
                 justify-content: space-around;
                 width: 300px;
-                margin-left: 20px;
                 overflow: hidden;
+                margin-bottom: 15px;
             }
     
 
@@ -1154,6 +1154,7 @@ main {
                     line-height: 18px;
                     font-weight: bold;
                     color: #666D89;
+                    margin-bottom: 10px;
                 }
     
                 .our-services-list__item-text {
@@ -1169,7 +1170,6 @@ main {
     .portfolio-wrapper {
         height: 845px;
         background: #2D303A;
-        border-bottom: 6px solid #323746;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -1192,7 +1192,7 @@ main {
         }
     
             .portfolio-head__header {
-                margin: 31px 0 0 0;
+                margin: 41px 0 0 0;
                 font-family: 'Lato', sans-serif;
                 font-size: 30px;
                 font-weight: bold;
@@ -1200,7 +1200,7 @@ main {
             }
     
             .portfolio-head__text {
-                margin: 0;
+                margin: 21px 0 0 0;
                 font-family: 'Lato', sans-serif;
                 font-size: 18px;
                 line-height: 30px;
@@ -1213,7 +1213,7 @@ main {
                 list-style-type: none;
                 display: flex;
                 flex-direction: row;
-                margin-top: 20px;
+                margin-top: 14px;
             }
     
                 .portfolio-head-tags__item,
@@ -1221,7 +1221,7 @@ main {
                     border: 1px solid #BBBBBB;
                     border-radius: 5px;
                     margin-right: 10px;
-                    padding: 4px;
+                    padding: 2px;
                     font-family: 'Lato', sans-serif;
                     font-size: 12px;
                     line-height: 12px;
@@ -1310,14 +1310,14 @@ main {
             list-style-type: none;
             display: flex;
             flex-direction: row;
-            margin: 22px 42px 0 0;
+            margin: 22px 0 0 0;
         }
     
             .sociallinks__item {
                 display: block;
                 width: 32px;
                 height: 32px;
-                margin-left: 10px;
+                margin-left: 8px;
             }
     
                 .sociallinks__item-facebook {
@@ -1376,7 +1376,7 @@ main {
     .header {
         padding: 0;
         width: 320px;
-        height: 71px;
+        height: 65px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1433,9 +1433,9 @@ main {
 
         .burger-menu_head {
             margin: 3px 0 0 0;
-            padding: 0 0 0 80px;
+            padding: 0 0 0 71px;
             font-family: 'Lato', sans-serif;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
             text-transform: uppercase;
         }
@@ -1453,19 +1453,19 @@ main {
             width: 90%;
             height: 100%;
             margin: 0;
-            padding: 80px 0;
+            padding: 171px 0;
             list-style: none;
-            text-align: center;
+            text-align: left;
             background: #2D303A;
             color: #ffffff;
         }
 
             .burger-menu_item {
                 display: block;
-                padding: 12px 24px;
+                padding: 12px 71px;
                 color: #ffffff;
                 font-family: 'Lato', sans-serif;
-                font-size: 12px;
+                font-size: 24px;
                 font-weight: bold;
                 text-transform: uppercase; 
                 text-decoration: none;
@@ -1474,10 +1474,9 @@ main {
             .burger-menu_item:hover {
                 color: #F06C64;
             }
-
     
         .main-logo {
-            margin: 15px 0 0 0;
+            margin: -20px 0 0 0;
             padding: 0;
             font-family: 'Lato', sans-serif;
             font-size: 25px;
@@ -1574,7 +1573,7 @@ main {
     
     /* Our Services */
     .our-services-wrapper {
-        height: 1000px;
+        /* height: 1000px; */
         background: #F2F2F2;
         border-bottom: 6px solid #ffffff;
         display: flex;
@@ -1586,7 +1585,7 @@ main {
         margin: 0 auto;
         padding: 0;
         width: 320px;
-        height: 1000px;
+        height: 1026px;
         background: #F2F2F2;
         /* border-bottom: 6px solid #ffffff; */
         display: flex;
@@ -1596,12 +1595,12 @@ main {
     }
     
         .our-services-head {
-            width: 300px;
+            width: 308px;
             margin-bottom: 30px;
         }
     
             .our-services-head__header {
-                margin: 59px 0 0 0;
+                margin: 24px 0 17px 0;
                 font-family: 'Lato', sans-serif;
                 font-size: 30px;
                 font-weight: bold;
@@ -1618,7 +1617,7 @@ main {
     
             /* Service list. Our services */
     .our-services-list {
-        width: 300px;
+        width: 314px;
         display: flex;
         justify-content: center;
     }
@@ -1635,8 +1634,8 @@ main {
                 flex-direction: row;
                 justify-content: space-around;
                 width: 300px;
-                margin-left: 20px;
                 overflow: hidden;
+                margin-bottom: 15px;
             }
     
 
@@ -1659,6 +1658,7 @@ main {
                     line-height: 18px;
                     font-weight: bold;
                     color: #666D89;
+                    margin-bottom: 10px;
                 }
     
                 .our-services-list__item-text {
@@ -1674,7 +1674,6 @@ main {
     .portfolio-wrapper {
         height: 845px;
         background: #2D303A;
-        border-bottom: 6px solid #323746;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -1693,11 +1692,11 @@ main {
     }
     
         .portfolio-head {
-            width: 300px;
+            width: 315px;
         }
     
             .portfolio-head__header {
-                margin: 31px 0 0 0;
+                margin: 41px 0 0 0;
                 font-family: 'Lato', sans-serif;
                 font-size: 30px;
                 font-weight: bold;
@@ -1705,7 +1704,7 @@ main {
             }
     
             .portfolio-head__text {
-                margin: 0;
+                margin: 21px 0 0 0;
                 font-family: 'Lato', sans-serif;
                 font-size: 18px;
                 line-height: 30px;
@@ -1718,7 +1717,7 @@ main {
                 list-style-type: none;
                 display: flex;
                 flex-direction: row;
-                margin-top: 20px;
+                margin-top: 14px;
             }
     
                 .portfolio-head-tags__item,
@@ -1726,7 +1725,7 @@ main {
                     border: 1px solid #BBBBBB;
                     border-radius: 5px;
                     margin-right: 10px;
-                    padding: 4px;
+                    padding: 2px;
                     font-family: 'Lato', sans-serif;
                     font-size: 12px;
                     line-height: 12px;
@@ -1815,14 +1814,14 @@ main {
             list-style-type: none;
             display: flex;
             flex-direction: row;
-            margin: 22px 42px 0 0;
+            margin: 22px 0 0 0;
         }
     
             .sociallinks__item {
                 display: block;
                 width: 32px;
                 height: 32px;
-                margin-left: 10px;
+                margin-left: 8px;
             }
     
                 .sociallinks__item-facebook {
