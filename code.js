@@ -1,6 +1,14 @@
+$(document).ready(function(){
+    $('.slider-window').bxSlider({
+        pager: 'false',
+        controls: 'true',
+        nextText: 'Uprava'
+    });
+  });
+
 window.onload = function() {
-    const slider = document.querySelector('.slider');
-    slider.addEventListener('click', toggleSliderClass);
+    // const slider = document.querySelector('.slider');
+    // slider.addEventListener('click', toggleSliderClass);
 
     // window.addEventListener('click', function() {
     //     console.log('Portfolio offset is ' + window.scrollTop);
