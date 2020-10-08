@@ -170,37 +170,7 @@ main {
     /* background: url('images/slider/Slider.jpg'); */
 }
 
-    .slider_alternate {
-        /* background: url('images/slider/Slide-1.jpg'); */
-    }
-
-    .slider__arrow {
-        width: 17px;
-        height: 30px;
-        cursor: pointer;
-        z-index: 4;
-    }
-
-    .slider__leftarrow {
-        background: url('images/icons/arrow-left.png') no-repeat center center;
-        margin-left: 30px;
-    }
-
-        .slider__leftarrow:hover {
-            background: url('images/icons/arrow-left-hover.png') no-repeat center center;
-        }
-
-    .slider__rightarrow {
-        background: url('images/icons/arrow-right.png') no-repeat center center;
-        margin-right: 30px;
-    }
-
-        .slider__rightarrow:hover {
-            background: url('images/icons/arrow-right-hover.png') no-repeat center center;
-        }
-
-
-/* Our Services */
+ /* Our Services */
 .our-services-wrapper {
     /* height: 500px; */
     background: #F2F2F2;
@@ -614,7 +584,6 @@ main {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        /* z-index: -1000; */
     }
 
     .slider {
@@ -626,43 +595,7 @@ main {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        /* background: url('images/slider/Slider.jpg'); */
-        /* background-size: 768px;
-        margin-top: 95px; */
     }
-
-
-        .slider_alternate {
-            /* background: url('images/slider/Slide-1.jpg');
-            background-size: 768px; */
-        }
-        
-        .slider__arrow {
-            width: 17px;
-            height: 30px;
-            cursor: pointer;
-            z-index: 4;
-        }
-
-        .slider__leftarrow {
-            background: url('images/icons/arrow-left.png') no-repeat center center;
-            margin-left: 30px;
-        }
-
-            .slider__leftarrow:hover {
-                background: url('images/icons/arrow-left-hover.png') no-repeat center center;
-            }
-
-        .slider__rightarrow {
-            background: url('images/icons/arrow-right.png') no-repeat center center;
-            margin-right: 30px;
-        }
-
-            .slider__rightarrow:hover {
-                background: url('images/icons/arrow-right-hover.png') no-repeat center center;
-            }
-
-
     
     /* Our Services */
     .our-services-wrapper {
@@ -978,6 +911,7 @@ main {
         background: #2D303A;
         color: #ffffff;
         border-bottom: 6px solid #323746;
+        z-index: 3;
     }
     
     .header {
@@ -1020,7 +954,7 @@ main {
             height: 35px;
             top: 2px;
             left: -7px;
-            z-index: 2;
+            /* z-index: 2; */
             background: #2D303A  url('images/icons/Burger-menu-icon.png') 0 0 no-repeat;
             transform: rotate(90deg);
         }
@@ -1153,6 +1087,7 @@ main {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        z-index: 1;
     }
     
     
@@ -1494,7 +1429,8 @@ main {
         background: #2D303A;
         color: #ffffff;
         border-bottom: 6px solid #323746;
-    }
+        z-index: 3;
+       }
     
     .header {
         padding: 0;
@@ -1517,6 +1453,7 @@ main {
 
         .burger-menu__toggle {
             opacity: 0;
+            /* z-index: 4; */
         }
 
         .burger-menu__toggle:checked ~.burger-menu_box {
@@ -1536,7 +1473,7 @@ main {
             height: 35px;
             top: 2px;
             left: -7px;
-            z-index: 2;
+            /* z-index: 2; */
             background: #2D303A  url('images/icons/Burger-menu-icon.png') 0 0 no-repeat;
             transform: rotate(90deg);
         }
@@ -1550,7 +1487,7 @@ main {
             position: fixed;
             top: 20px;
             left: 20px;
-            z-index: 1;
+            z-index: 7;
             overflow: hidden;
         }
 
@@ -1561,6 +1498,7 @@ main {
             font-size: 24px;
             font-weight: bold;
             text-transform: uppercase;
+            /* z-index: 8; */
         }
 
             .burger-menu_head span {
@@ -1669,6 +1607,7 @@ main {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        z-index: 1;
     }
     
     
@@ -1678,6 +1617,7 @@ main {
         display: flex;
         flex-direction: row;
         justify-content: center;
+        /* z-index: 1; */
     }
 
     .slider {
@@ -1695,7 +1635,7 @@ main {
     
         .slider_alternate {
             /* background: url('images/slider/Slide-1.jpg'); */
-            background-size: 320px;
+            /* background-size: 320px; */
         }
     
     /* Our Services */
