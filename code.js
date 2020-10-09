@@ -14,7 +14,6 @@ window.onload = function() {
         let clickedElement = event.target;
         if(clickedElement.tagName === 'A') {
             slideToClickedElement(clickedElement);
-            setActiveMenuItem(clickedElement);
         }
     });
 
@@ -48,14 +47,17 @@ function slideToClickedElement(sliderTarget) {
     if(target === null) {
         target = document.getElementById('wrapper');
     }
-    target.scrollIntoView({
+
+    let targetPosition = target.offsetTop;
+    let offset = 95;
+    window.scrollTo({
+        top: targetPosition - offset,
+        left: 0,
         behavior: 'smooth',
-        block: 'start'
     });
+    console.log(`Moved to ${targetPosition - offset} pixels`);
 }
 
-
-//SHUFFLE PORTFOLIO IMAGES
 function shufflePortfolio() {
     let portfolioImages = document.querySelectorAll('.portfolio-images-list__item');
     let portfolioImagesArray = Array.prototype.slice.call(portfolioImages);
@@ -79,19 +81,12 @@ function setActiveTag(targetElement){
     targetElement.classList.add('portfolio-head-tags__item_selected');
 }
 
-function setActiveMenuItem(targetElement) {
-    let currentSelectedElement = document.querySelector('.main-navigation-menu__item_active');
-    currentSelectedElement.classList.remove('main-navigation-menu__item_active');
-     targetElement.classList.add('main-navigation-menu__item_active');
- }
-
  function onScroll() {
     const currentPosition = window.scrollY + 96;
     const divs = document.querySelectorAll('#main > div > div');
     const links = document.querySelectorAll('.main-navigation-menu__item');
     
     divs.forEach((el) => {
-
         if(el.offsetTop <= currentPosition && (el.offsetTop + el.offsetHeight) > currentPosition) {
             links.forEach((a) => {
                 a.classList.remove('main-navigation-menu__item_active');
@@ -100,6 +95,9 @@ function setActiveMenuItem(targetElement) {
                 }
             });
         }
-
     });
+    if(currentPosition <= 100) {
+        let homeLink = document.querySelector('#main-navigation-menu__homelink');
+        homeLink.classList.add('main-navigation-menu__item_active');
+    }
  }

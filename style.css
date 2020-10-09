@@ -56,10 +56,10 @@ body {
     color: #ffffff;
     border-bottom: 6px solid #323746;
 
-    position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 3;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 3;
 }
 
 .header {
@@ -165,7 +165,6 @@ main {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-top: 94px;
 }
 
  /* Our Services */
@@ -480,7 +479,7 @@ main {
         background: #2D303A;
         color: #ffffff;
         border-bottom: 6px solid #323746;
-        position: fixed;
+        position: sticky;
         top: 0;
         left: 0;
         z-index: 3;
@@ -594,7 +593,6 @@ main {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        margin-top: 89px;
     }
     
     /* Our Services */
