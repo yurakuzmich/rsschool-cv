@@ -1,4 +1,4 @@
-const offset = 95; // window offset because of header position
+const offset = 95 //document offset because of header height and position
 
 $(document).ready(function () {
     $('.slider-window').bxSlider();
@@ -41,6 +41,8 @@ function clickOnMainMenuItem(event) {
 }
 
 function slideToClickedElement(sliderTarget) {
+    console.log(document.documentElement.clientWidth);
+    
     let targetHref = sliderTarget.getAttribute('href').substr(1);
     target = document.getElementById(targetHref);
     if (target === null) {
@@ -90,7 +92,7 @@ function setActiveTag(targetElement) {
 }
 
 function onScroll() {
-    const currentPosition = window.scrollY + 96;
+    const currentPosition = window.scrollY + offset;
     const divs = document.querySelectorAll('#main > div > div');
     const links = document.querySelectorAll('.main-navigation-menu__item');
     divs.forEach((el) => {
