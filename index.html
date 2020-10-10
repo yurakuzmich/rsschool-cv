@@ -1,194 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
     <title>Simple SINGOLO by Yury Kuzmich</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="wrapper" id="wrapper">
-        <div class="header-wrapper">
-            <header class="header" id="header">
-                <div class="burger-menu" id="burger-menu">
-                    <input type="checkbox" class="burger-menu__toggle" id="burger-menu__toggle">
-                    <label class="burger-menu_btn" for="burger-menu__toggle">
-                        <span class="burger-menu_head">SINGOLO<span>*</span></span>
-                    </label>
-                    <ul class="burger-menu_box">
-                        <li><a class="burger-menu_item" href="#wrapper">Home</a></li>
-                        <li><a class="burger-menu_item" href="#our-services">Services</a></li>
-                        <li><a class="burger-menu_item" href="#portfolio">Portfolio</a></li>
-                        <li><a class="burger-menu_item" href="#about">About</a></li>
-                        <li><a class="burger-menu_item" href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <h1 class="main-logo">
-                    singolo
-                    <span>*</span>
-                </h1>
-                <nav class="main-navigation">
-                    <ul class="main-navigation-menu">
-                        <li ><a href="#wrapper" class="main-navigation-menu__item main-navigation-menu__item_active" id = "main-navigation-menu__homelink">Home</a></li>
-                        <li><a href="#our-services" class="main-navigation-menu__item">Services</a></li>
-                        <li><a href="#portfolio" class="main-navigation-menu__item">Portfolio</a></li>
-                        <li><a href="#about" class="main-navigation-menu__item">About</a></li>
-                        <li><a href="#contact" class="main-navigation-menu__item">Contact</a></li>
-                    </ul>
-                </nav>
-            </header>
-        </div>
-        <main id="main">
-            <div class="slider-wrapper">
-                <div class="slider" id="slider">
-                   <div class="slider-window">
-                       <div><img src="images/slider/Slider.jpg" alt=""></div>
-                       <div><img src="images/slider/Slide-1.jpg" alt=""></div>
-                   </div>            
-                </div>
+      <div class="header-wrapper">
+        <header class="header" id="header">
+          <div class="burger-menu" id="burger-menu">
+            <input
+              type="checkbox"
+              class="burger-menu__toggle"
+              id="burger-menu__toggle"
+            />
+            <label class="burger-menu_btn" for="burger-menu__toggle">
+              <span class="burger-menu_head">SINGOLO<span>*</span></span>
+            </label>
+            <ul class="burger-menu_box">
+              <li><a class="burger-menu_item" href="#wrapper">Home</a></li>
+              <li>
+                <a class="burger-menu_item" href="#our-services">Services</a>
+              </li>
+              <li>
+                <a class="burger-menu_item" href="#portfolio">Portfolio</a>
+              </li>
+              <li><a class="burger-menu_item" href="#about">About</a></li>
+              <li><a class="burger-menu_item" href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <h1 class="main-logo">
+            singolo
+            <span>*</span>
+          </h1>
+          <nav class="main-navigation">
+            <ul class="main-navigation-menu">
+              <li>
+                <a
+                  href="#wrapper"
+                  class="main-navigation-menu__item main-navigation-menu__item_active"
+                  id="main-navigation-menu__homelink"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a href="#our-services" class="main-navigation-menu__item"
+                  >Services</a
+                >
+              </li>
+              <li>
+                <a href="#portfolio" class="main-navigation-menu__item"
+                  >Portfolio</a
+                >
+              </li>
+              <li>
+                <a href="#about" class="main-navigation-menu__item">About</a>
+              </li>
+              <li>
+                <a href="#contact" class="main-navigation-menu__item"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </header>
+      </div>
+      <main id="main">
+        <div class="slider-wrapper">
+          <div class="slider" id="slider">
+            <div class="slider-window">
+              <div><img src="images/slider/Slider.jpg" alt="" /></div>
+              <div><img src="images/slider/Slide-1.jpg" alt="" /></div>
             </div>
-            <div class="our-services-wrapper">
-                <div class="our-services" id="our-services">
-                    <article class="our-services-head">
-                        <h2 class="our-services-head__header">
-                            Our Services
-                        </h2>
-                        <p class="our-services-head__text">
-                            Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
-                        </p>
-                    </article>
-                    <div class="our-services-list">
-                        <ul class="our-services-list-ul">
-                            <li class="our-services-list__item">
-                                <div class="our-services-list__item-img">
-                                    <img src="images/icons/1.png" alt="">
-                                </div>
-                                <div class="our-services-list__item-desc">
-                                    <h3 class="our-services-list__item-head">Custom Design</h3>
-                                    <p class="our-services-list__item-text">
-                                        Curabitur vestibulum eget mauris quis laoreet. Phasellus in quam laoreet, viverra lacus ut, ultrices velit. Phasellus in quam laoreet, viverra lacus ut, ultrices velit.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="our-services-list__item">
-                                <div class="our-services-list__item-img">
-                                    <img src="images/icons/2.png" alt="">
-                                </div>
-                                <div class="our-services-list__item-desc">
-                                    <h3 class="our-services-list__item-head">Innovative Ideas</h3>
-                                    <p class="our-services-list__item-text">
-                                        Curabitur vestibulum eget mauris quis laoreet. Phasellus in quam laoreet, viverra lacus ut, ultrices velit.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="our-services-list__item">
-                                <div class="our-services-list__item-img">
-                                    <img src="images/icons/3.png" alt="">
-                                </div>
-                                <div class="our-services-list__item-desc">
-                                    <h3 class="our-services-list__item-head">Love Is The Answer</h3>
-                                    <p class="our-services-list__item-text">
-                                        Curabitur vestibulum eget mauris quis laoreet. Phasellus in quam laoreet, viverra lacus ut, ultrices velit.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="our-services-list__item">
-                                <div class="our-services-list__item-img">
-                                    <img src="images/icons/4.png" alt="">
-                                </div>
-                                <div class="our-services-list__item-desc">
-                                    <h3 class="our-services-list__item-head">Responsive Layout</h3>
-                                    <p class="our-services-list__item-text">
-                                        Curabitur vestibulum eget mauris quis laoreet. Phasellus in quam laoreet, viverra lacus ut, ultrices velit.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="our-services-list__item">
-                                <div class="our-services-list__item-img">
-                                    <img src="images/icons/5.png" alt="">
-                                </div>
-                                <div class="our-services-list__item-desc">
-                                    <h3 class="our-services-list__item-head">24 / 7 Support</h3>
-                                    <p class="our-services-list__item-text">
-                                        Curabitur vestibulum eget mauris quis laoreet. Phasellus in quam laoreet, viverra lacus ut, ultrices velit. Curabitur vestibulum eget mauris quis laoreet. Phasellus in quam laoreet, viverra lacus ut, ultrices velit. urabitur vestibulum eget mauris quis laoreet. Phasellus in quam laoreet, viverra lacus ut, ultrices velit.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="our-services-list__item">
-                                <div class="our-services-list__item-img">
-                                    <img src="images/icons/6.png" alt="">
-                                </div>
-                                <div class="our-services-list__item-desc">
-                                    <h3 class="our-services-list__item-head">FeelLike A Star</h3>
-                                    <p class="our-services-list__item-text">
-                                        Curabitur vestibulum eget mauris quis laoreet. Phasellus in quam laoreet, viverra lacus ut, ultrices velit.
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-wrapper">
-                <div class="portfolio" id="portfolio">
-                    <article class="portfolio-head">
-                        <h2 class="portfolio-head__header">Portfolio</h2>
-                        <p class="portfolio-head__text">
-                            Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                        </p>
-                        <ul class="portfolio-head-tags">
-                            <li>
-                                <a href="" class="portfolio-head-tags__item portfolio-head-tags__item_selected">All</a>
-                                <a href="" class="portfolio-head-tags__item">Web Design</a>
-                                <a href="" class="portfolio-head-tags__item">Graphic Design</a>
-                                <a href="" class="portfolio-head-tags__item">Artwork</a>
-                            </li>
-                        </ul>
-                    </article>
-                    <div class="portfolio-images">
-                        <ul class="portfolio-images-list">
-                            <li class="portfolio-images-list__item "><a href=""><img src="images/portfolio/portfolio-1.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-2.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-3.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-4.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-5.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-6.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-7.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-8.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-9.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-10.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-11.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-12.jpg" alt=""></a></li>
-
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-8.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-9.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-10.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-11.jpg" alt=""></a></li>
-                            <li class="portfolio-images-list__item"><a href=""><img src="images/portfolio/portfolio-12.jpg" alt=""></a></li>
-                        </ul>
-                    </div>
-                </div>
-             </div>
-        </main>
-        <div class="footer-wrapper">
-            <footer class="footer">
-                <h3 class="copyright">
-                    <a href="mailto:yurakuzmich@gmail.com">&copy; Copyright 2020</a> 
-                </h3>
-                <ul class="sociallinks">
-                    <li><a href="" class="sociallinks__item sociallinks__item-facebook"></a></li>
-                    <li><a href="" class="sociallinks__item sociallinks__item-google"></a></li>
-                    <li><a href="" class="sociallinks__item sociallinks__item-twitter"></a></li>
-                    <li><a href="" class="sociallinks__item sociallinks__item-linkedin"></a></li>
-                </ul>
-            </footer>
+          </div>
         </div>
-</div>
-    <!-- <div: class="to-top-button to-top-button_hidden" id="to-top-button">Наверх</div:> -->
+        <div class="our-services-wrapper">
+          <div class="our-services" id="our-services">
+            <article class="our-services-head">
+              <h2 class="our-services-head__header">Our Services</h2>
+              <p class="our-services-head__text">
+                Fusce dapibus, tellus ac cursus commodo, tortor mauris
+                condimentum. Duis mollis, non commodo luctus, nisi erat
+                porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus,
+                tellus ac cursus commodo, tortor mauris condimentum nibh.
+              </p>
+            </article>
+            <div class="our-services-list">
+              <ul class="our-services-list-ul">
+                <li class="our-services-list__item">
+                  <div class="our-services-list__item-img">
+                    <img src="images/icons/1.png" alt="" />
+                  </div>
+                  <div class="our-services-list__item-desc">
+                    <h3 class="our-services-list__item-head">Custom Design</h3>
+                    <p class="our-services-list__item-text">
+                      Curabitur vestibulum eget mauris quis laoreet. Phasellus
+                      in quam laoreet, viverra lacus ut, ultrices velit.
+                      Phasellus in quam laoreet, viverra lacus ut, ultrices
+                      velit.
+                    </p>
+                  </div>
+                </li>
+                <li class="our-services-list__item">
+                  <div class="our-services-list__item-img">
+                    <img src="images/icons/2.png" alt="" />
+                  </div>
+                  <div class="our-services-list__item-desc">
+                    <h3 class="our-services-list__item-head">
+                      Innovative Ideas
+                    </h3>
+                    <p class="our-services-list__item-text">
+                      Curabitur vestibulum eget mauris quis laoreet. Phasellus
+                      in quam laoreet, viverra lacus ut, ultrices velit.
+                    </p>
+                  </div>
+                </li>
+                <li class="our-services-list__item">
+                  <div class="our-services-list__item-img">
+                    <img src="images/icons/3.png" alt="" />
+                  </div>
+                  <div class="our-services-list__item-desc">
+                    <h3 class="our-services-list__item-head">
+                      Love Is The Answer
+                    </h3>
+                    <p class="our-services-list__item-text">
+                      Curabitur vestibulum eget mauris quis laoreet. Phasellus
+                      in quam laoreet, viverra lacus ut, ultrices velit.
+                    </p>
+                  </div>
+                </li>
+                <li class="our-services-list__item">
+                  <div class="our-services-list__item-img">
+                    <img src="images/icons/4.png" alt="" />
+                  </div>
+                  <div class="our-services-list__item-desc">
+                    <h3 class="our-services-list__item-head">
+                      Responsive Layout
+                    </h3>
+                    <p class="our-services-list__item-text">
+                      Curabitur vestibulum eget mauris quis laoreet. Phasellus
+                      in quam laoreet, viverra lacus ut, ultrices velit.
+                    </p>
+                  </div>
+                </li>
+                <li class="our-services-list__item">
+                  <div class="our-services-list__item-img">
+                    <img src="images/icons/5.png" alt="" />
+                  </div>
+                  <div class="our-services-list__item-desc">
+                    <h3 class="our-services-list__item-head">24 / 7 Support</h3>
+                    <p class="our-services-list__item-text">
+                      Curabitur vestibulum eget mauris quis laoreet. Phasellus
+                      in quam laoreet, viverra lacus ut, ultrices velit.
+                      Curabitur vestibulum eget mauris quis laoreet. Phasellus
+                      in quam laoreet, viverra lacus ut, ultrices velit.
+                      urabitur vestibulum eget mauris quis laoreet. Phasellus in
+                      quam laoreet, viverra lacus ut, ultrices velit.
+                    </p>
+                  </div>
+                </li>
+                <li class="our-services-list__item">
+                  <div class="our-services-list__item-img">
+                    <img src="images/icons/6.png" alt="" />
+                  </div>
+                  <div class="our-services-list__item-desc">
+                    <h3 class="our-services-list__item-head">
+                      FeelLike A Star
+                    </h3>
+                    <p class="our-services-list__item-text">
+                      Curabitur vestibulum eget mauris quis laoreet. Phasellus
+                      in quam laoreet, viverra lacus ut, ultrices velit.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-wrapper">
+          <div class="portfolio" id="portfolio">
+            <article class="portfolio-head">
+              <h2 class="portfolio-head__header">Portfolio</h2>
+              <p class="portfolio-head__text">
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
+                eget lacinia odio sem nec elit.
+              </p>
+              <ul class="portfolio-head-tags">
+                <li>
+                  <a
+                    href=""
+                    class="portfolio-head-tags__item portfolio-head-tags__item_selected"
+                    >All</a
+                  >
+                  <a href="" class="portfolio-head-tags__item">Web Design</a>
+                  <a href="" class="portfolio-head-tags__item"
+                    >Graphic Design</a
+                  >
+                  <a href="" class="portfolio-head-tags__item">Artwork</a>
+                </li>
+              </ul>
+            </article>
+            <div class="portfolio-images">
+              <ul class="portfolio-images-list">
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-1.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-2.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-3.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-4.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-5.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-6.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-7.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-8.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-9.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-10.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-11.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-12.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-8.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-9.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-10.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-11.jpg" alt=""
+                  /></a>
+                </li>
+                <li class="portfolio-images-list__item">
+                  <a href=""
+                    ><img src="images/portfolio/portfolio-12.jpg" alt=""
+                  /></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div class="footer-wrapper">
+        <footer class="footer">
+          <h3 class="copyright">
+            <a href="mailto:yurakuzmich@gmail.com">&copy; Copyright 2020</a>
+          </h3>
+          <ul class="sociallinks">
+            <li>
+              <a
+                href=""
+                class="sociallinks__item sociallinks__item-facebook"
+              ></a>
+            </li>
+            <li>
+              <a href="" class="sociallinks__item sociallinks__item-google"></a>
+            </li>
+            <li>
+              <a
+                href=""
+                class="sociallinks__item sociallinks__item-twitter"
+              ></a>
+            </li>
+            <li>
+              <a
+                href=""
+                class="sociallinks__item sociallinks__item-linkedin"
+              ></a>
+            </li>
+          </ul>
+        </footer>
+      </div>
+    </div>
     <script src="code.js"></script>
-</body>
+  </body>
 </html>

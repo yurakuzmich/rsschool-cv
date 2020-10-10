@@ -31,15 +31,10 @@ window.onload = function() {
 
     //add listener to portfolio tags
     const portfolioTags = document.querySelector('.portfolio-head-tags');
-    portfolioTags.addEventListener('click', function(event) {
-        event.preventDefault();
-        let clickedElement = event.target;
-        if(clickedElement.tagName === 'A') {
-            shufflePortfolio();
-            setActiveTag(clickedElement);
-        }
-    });
+    portfolioTags.addEventListener('click', clickOnPortfolioTag);
 }
+
+
 
 function slideToClickedElement(sliderTarget) {
     let targetHref = sliderTarget.getAttribute('href').substr(1);
@@ -56,6 +51,16 @@ function slideToClickedElement(sliderTarget) {
         behavior: 'smooth',
     });
     console.log(`Moved to ${targetPosition - offset} pixels`);
+}
+
+
+function clickOnPortfolioTag(event) {
+    event.preventDefault();
+    let clickedElement = event.target;
+        if(clickedElement.tagName === 'A') {
+            shufflePortfolio();
+            setActiveTag(clickedElement);
+        }
 }
 
 function shufflePortfolio() {
@@ -85,7 +90,6 @@ function setActiveTag(targetElement){
     const currentPosition = window.scrollY + 96;
     const divs = document.querySelectorAll('#main > div > div');
     const links = document.querySelectorAll('.main-navigation-menu__item');
-    
     divs.forEach((el) => {
         if(el.offsetTop <= currentPosition && (el.offsetTop + el.offsetHeight) > currentPosition) {
             links.forEach((a) => {
