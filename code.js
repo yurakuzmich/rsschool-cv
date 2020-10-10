@@ -1,4 +1,4 @@
-const offset = 95 //document offset because of header height and position
+const offset = 95 //document offset because of header height and sticky position
 
 $(document).ready(function () {
     $('.slider-window').bxSlider();
