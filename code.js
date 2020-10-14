@@ -109,4 +109,4 @@ function onScroll() {
         let homeLink = document.querySelector('#main-navigation-menu__homelink');
         homeLink.classList.add('main-navigation-menu__item_active');
     }
-} 
+}
