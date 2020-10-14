@@ -166,4 +166,4 @@ function logAllVars() {
     console.log(`Comma clicked is ${commaClicked}`);
     console.log(`Result pressed is ${resultPressed}`);
     console.log('-------------');
-}
+}  
