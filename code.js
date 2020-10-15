@@ -9,6 +9,8 @@ const switchNegativeButton = document.getElementById('switch-negative');
 const resultButton = document.getElementById('result_button');
 const howToButton = document.getElementById('howitwork-button');
 const aboutButton = document.getElementById('about-button');
+const myModal = document.getElementById('modal__wrapper');
+const myModalClose = document.getElementById('modal_close');
 const displayDigits = 9;
 
 let operationMemory = 0;
@@ -37,6 +39,7 @@ window.onload = function () {
     resultButton.addEventListener('click', clickResultButton);
     howToButton.addEventListener('click', clickHowToButton);
     aboutButton.addEventListener('click', clickAboutButton);
+    myModalClose.addEventListener('click', switсhModal);
 
     display.value = 0;
 }
@@ -62,6 +65,9 @@ function clickC() {
 function clickComma() {
     if (commaClicked === false) {
         display.value = display.value + '.';
+        commaClicked = true;
+    } else if (resultPressed === true) {
+        display.value =  '0.';
         commaClicked = true;
     }
     logAllVars();
@@ -90,10 +96,15 @@ function clickNumberButton(event) {
             }
             break;
         case false:
-            if (display.value === 0 || resultPressed === true) {
-                display.value = event.target.textContent;
-                resultPressed = false;
-                commaClicked = false;
+            if (display.value === 0) {
+                if(resultPressed == true) {
+                    display.value += event.target.textContent;
+                    resultPressed = false;
+                    commaClicked = false;
+                } else {
+                    display.value += event.target.textContent;
+                    commaClicked = false;
+                }
             } else if (display.value.length <= displayDigits) {
                 display.value = Number(display.value += event.target.textContent);
             }
@@ -148,12 +159,18 @@ function clickResultButton() {
 
 }
 
+function switсhModal() {
+    myModal.classList.toggle('modal_hidden');
+}
+
 function clickHowToButton() {
     console.log('Howto button clicked');
+    switсhModal();
 }
 
 function clickAboutButton() {
     console.log('About button clicked');
+    switсhModal();
 }
 
 function logAllVars() {
