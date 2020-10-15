@@ -1,0 +1,96 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+    color: #333333;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+#main, #img-div, #tribute-info, .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#main {
+    margin: 0 auto;
+    width: 95%;
+    background-color: #D0D9CE;
+}
+
+#title {
+    margin: 50px 0 0 0;
+    font-weight: bolder;
+    font-size: 50px;
+    line-height: 30px;
+}
+
+#img-div {
+    background-color: white;
+    width: 90%;
+    padding: 20px;
+
+}
+
+#img {
+    max-width: 710px;
+}
+
+#img-caption {
+    font-weight: 400;
+    font-style: italic;
+}
+
+.timeline span {
+    font-weight: bold;
+} 
+
+.timeline span::after {
+    content: ' - ';
+}
+
+.readmore {
+    font-size: 1.17em;
+    font-weight: bold;
+}
+
+.instalink,
+.instalink:visited {
+    color: #C13584;
+    text-decoration: none;
+}
+
+.instalink:hover {
+    color: #833AB4;
+
+}
+
+.fa {
+    color: #C13584;
+}
+
+@media (max-width: 1024px) {
+    
+   
+    #img {
+        width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    #main {
+        padding: 0 15px 0 15px;
+    }
+    
+    #title {
+        margin: 20px 0 0 0;
+        font-weight: bolder;
+        font-size: 20px;
+        line-height: 15px;
+    }
+    
+    #tribute-info h2{
+        font-weight: bolder;
+        font-size: 15px;
+    }
+}
