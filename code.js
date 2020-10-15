@@ -13,6 +13,17 @@ const myModal = document.getElementById('modal__wrapper');
 const myModalClose = document.getElementById('modal_close');
 const displayDigits = 9;
 
+const myModalHeader = document.getElementById('modal__header');
+const myModalText = document.getElementById('modal__text');
+
+const howToHeader = 'Руководство пользователя';
+const howToManual = '<p>C - полный сброс</p>' + 
+                    '<p>CE - очистка дисплея. Число в памяти сохраняется</p>';
+
+const aboutHeader = 'О программе';
+const aboutText = '<p>Мощный, быстрый, продвинутый калькулятор.</p>' +
+                    '<p>Надежные, сверхсовременные алгоритмы позволяют складывать, отнимать, умножать делить небольшие числа с небывалой точность!</p>';
+
 let operationMemory = 0;
 let isOperationStarted = false;
 let currentOperation = '';
@@ -67,7 +78,7 @@ function clickComma() {
         display.value = display.value + '.';
         commaClicked = true;
     } else if (resultPressed === true) {
-        display.value =  '0.';
+        display.value = '0.';
         commaClicked = true;
     }
     logAllVars();
@@ -97,7 +108,7 @@ function clickNumberButton(event) {
             break;
         case false:
             if (display.value === 0) {
-                if(resultPressed == true) {
+                if (resultPressed == true) {
                     display.value += event.target.textContent;
                     resultPressed = false;
                     commaClicked = false;
@@ -143,7 +154,7 @@ function clickResultButton() {
             result = 0;
             commaClicked = false;
     }
-    
+
     if (result.length > displayDigits) {
         result = result.slice(0, displayDigits);
     }
@@ -166,11 +177,15 @@ function switсhModal() {
 function clickHowToButton() {
     console.log('Howto button clicked');
     switсhModal();
+    myModalHeader.innerHTML = howToHeader;
+    myModalText.innerHTML = howToManual;
 }
 
 function clickAboutButton() {
     console.log('About button clicked');
     switсhModal();
+    myModalHeader.innerHTML = aboutHeader;
+    myModalText.innerHTML = aboutText;
 }
 
 function logAllVars() {

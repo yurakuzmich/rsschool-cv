@@ -11,7 +11,10 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Simple calculator</title>
   </head>
@@ -26,7 +29,13 @@
       <div class="main-wrapper">
         <div class="main-calculator">
           <div class="">
-            <input type="text" name="" disabled class="calculator__display" id="calculator__display" />
+            <input
+              type="text"
+              name=""
+              disabled
+              class="calculator__display"
+              id="calculator__display"
+            />
           </div>
           <div class="calculator__keyboard">
             <div class="calculator__keyboard-row">
@@ -54,27 +63,40 @@
               <button class="calculator__button math_action">+</button>
             </div>
             <div class="calculator__keyboard-row">
-              <button class="calculator__button"  id="switch-negative">+/-</button>
+              <button class="calculator__button" id="switch-negative">
+                +/-
+              </button>
               <button class="calculator__button number">0</button>
-              <button class="calculator__button comma_button" id = "comma">,</button>
-              <button class="calculator__button result_button" id="result_button">=</button>
+              <button class="calculator__button comma_button" id="comma">
+                ,
+              </button>
+              <button
+                class="calculator__button result_button"
+                id="result_button"
+              >
+                =
+              </button>
             </div>
           </div>
-          <div class="calculator__footer"><a href="mailto:yurakuzmich@gmail.com">yurakuzmich</a></div>
+          <div class="calculator__footer">
+            <a href="mailto:yurakuzmich@gmail.com">yurakuzmich</a>
+          </div>
         </div>
         <div class="main-info">
-          <button class="info-button" id="howitwork-button">How it works</button>
+          <button class="info-button" id="howitwork-button">
+            How it works
+          </button>
           <button class="info-button" id="about-button">About app</button>
         </div>
       </div>
     </div>
-    <div class="modal__wrapper modal_hidden" id="modal__wrapper"> 
-        <div class="modal">
-          <div class="modal__close" id="modal_close">X</div>
-          <h2 class="modal__header">Всплывающее окно</h2>
-          <p>Это - всплывающее окно с пояснениями 1</p>
-        </div>
+    <div class="modal__wrapper modal_hidden" id="modal__wrapper">
+      <div class="modal">
+        <div class="modal__close" id="modal_close">X</div>
+        <h2 class="modal__header" id="modal__header">Всплывающее окно</h2>
+        <div id="modal__text"></div>
       </div>
+    </div>
     <script defer src="code.js"></script>
   </body>
 </html>

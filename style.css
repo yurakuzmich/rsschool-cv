@@ -37,7 +37,7 @@ body {
     font-family: 'Oswald', sans-serif;
     color: #ffffff;
     background: #2F4F4F;
-    opacity: 1;
+    opacity: 1 !important;
     padding: 20px;
 }
 
