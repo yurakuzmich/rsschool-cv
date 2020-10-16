@@ -5,13 +5,11 @@ const CButton = document.getElementById('c');
 const actionButtons = document.querySelectorAll('.math_action');
 const numbersButtons = document.querySelectorAll('.number');
 const commaButton = document.getElementById('comma');
-// const switchNegativeButton = document.getElementById('switch-negative');
 const percentButton = document.getElementById('percent');
 const howToButton = document.getElementById('howitwork-button');
 const aboutButton = document.getElementById('about-button');
 const myModal = document.getElementById('modal__wrapper');
 const myModalClose = document.getElementById('modal_close');
-const displayDigits = 9;
 
 const myModalHeader = document.getElementById('modal__header');
 const myModalText = document.getElementById('modal__text');
@@ -32,15 +30,11 @@ let operationMemory = 0;
 let currentOperation = '';
 let newOperand = false;
 
-
-
-
 window.onload = function () {
     //LISTENERS
     CEButton.addEventListener('click', clickCE);
     CButton.addEventListener('click', clickC);
     commaButton.addEventListener('click', clickComma);
-    // switchNegativeButton.addEventListener('click', clickNegativeButton);
     for (let i = 0; i <= actionButtons.length - 1; i++) {
         let actionButton = actionButtons[i];
         actionButton.addEventListener('click', clickActionButton);
@@ -53,10 +47,7 @@ window.onload = function () {
     howToButton.addEventListener('click', clickHowToButton);
     aboutButton.addEventListener('click', clickAboutButton);
     myModalClose.addEventListener('click', switсhModal);
-
-    display.value = 0;
 }
-
 
 //FUNCTIONS
 function clickCE() {
@@ -84,9 +75,7 @@ function clickComma() {
 }
 
 function clickActionButton(event) {
-
     let localOperationMemory = display.value;
-
     if (newOperand === true && currentOperation !== '=') {
         display.value = operationMemory;
     } else {
@@ -104,9 +93,7 @@ function clickActionButton(event) {
         }
         display.value = operationMemory;
         currentOperation = event.target.textContent;
-
     }
-    logAllVars();
 }
 
 
@@ -123,13 +110,7 @@ function clickNumberButton(event) {
             display.value += pressedNumber;
         }
     }
-    logAllVars();
 }
-
-// function clickNegativeButton() {
-//     display.value = (-1) * display.value;
-//     logAllVars();
-// }
 
 function clickPercentButton() {
     switсhModal();
@@ -154,6 +135,8 @@ function clickAboutButton() {
     myModalText.innerHTML = aboutText;
 }
 
+
+// my debugging tool
 function logAllVars() {
     console.log(`Display shows ${display.value}`);
     console.log(`operationMemory is ${operationMemory}`);
