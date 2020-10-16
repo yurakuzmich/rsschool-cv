@@ -65,6 +65,8 @@ body {
 
     .modal__close:active {
         font-size: 15px;
+        top: -6px;
+        right: -6px;
     }
 
 @media screen and (min-width: 1024px) {
@@ -164,6 +166,11 @@ body {
                     .result_button {
                         background: #228B22;
                         color: #eeeeee;
+                    }
+
+                    .zero {
+                        width: 165px;
+                        border-radius: 35px;
                     }
 
         .main-info {
@@ -300,6 +307,12 @@ body {
                     color: #eeeeee;
                 }
 
+                .zero {
+                    width: 125px;
+                    border-radius: 25px;
+                }
+
+
         .main-info {
             display: flex;
             flex-direction: column;
@@ -433,6 +446,12 @@ body {
                 background: #228B22;
                 color: #eeeeee;
             }
+
+            .zero {
+                width: 115px;
+                border-radius: 35px;
+            }
+
 
         .main-info {
             display: flex;
