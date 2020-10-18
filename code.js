@@ -5,6 +5,7 @@ const time = document.getElementById('time'),
     amPm = document.getElementById('am-pm');
     delSettings = document.getElementById('clearstorage');
 
+
 let timeFormat = 24;
 
 //listeners
@@ -136,14 +137,5 @@ function clearSettings() {
     getName();
     getTask();
 }
-
-
-navigator.geolocation.getCurrentPosition(function(position) {
-    let myLat = position.coords.latitude;
-    let myLng = position.coords.longitude;
-    console.log(myLat + ' + ' + myLng);
-});
-
-
 
 
