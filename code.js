@@ -1,12 +1,18 @@
 const time = document.getElementById('time'),
     greeting = document.getElementById('greeting'),
     name = document.getElementById('name'),
-    focus = document.getElementById('focus');
+    focus = document.getElementById('focus'),
+    amPm = document.getElementById('am-pm');
 
 let timeFormat = 24;
 console.log(`time is ${time} \n greeting is ${greeting} \n name is ${name} \n focus is ${focus}`);
+
+//listeners
+amPm.addEventListener('click', switchTimeFormat);
 showTime();
 setInterval(showTime, 1000);
+
+
 function showTime() {
     let currTime = new Date();
     let userTime = '';
@@ -27,4 +33,16 @@ function showTime() {
     }
     userTime = `${hours}:${minutes}:${seconds}`;
     time.innerHTML = userTime;
+}
+
+function switchTimeFormat() {
+    switch (timeFormat) {
+        case 12:
+            timeFormat = 24;
+            amPm.innerHTML = '<p>24/<span>12</span></p>';
+            break;
+        case 24:
+            timeFormat = 12;
+            amPm.innerHTML =  '<p>12/<span>24</span></p>'
+    }
 }

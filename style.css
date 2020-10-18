@@ -19,6 +19,29 @@ body {
     font-size: 8rem;
 }
 
+#am-pm {
+    position: sticky;
+    top: calc(100vh - 70px);
+    left: calc(50vw - 20px);
+    width: 60px;
+    height: 60px;
+    background: #000000;
+    border-radius: 30px;
+    opacity: 0.6;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#am-pm span {
+    font-size: 0.5em;
+}
+
 h1 {
     margin-bottom: 3rem;
 }
