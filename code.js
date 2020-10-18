@@ -5,14 +5,12 @@ const time = document.getElementById('time'),
     amPm = document.getElementById('am-pm');
 
 let timeFormat = 24;
-console.log(`time is ${time} \n greeting is ${greeting} \n name is ${name} \n focus is ${focus}`);
 
 //listeners
 amPm.addEventListener('click', switchTimeFormat);
 showTime();
 setInterval(showTime, 1000);
 setBackgroundImage();
-
 
 function showTime() {
     let currTime = new Date();
@@ -78,33 +76,12 @@ function setBackgroundImage() {
     } else if (hours >= 18 && hours < 22) {
         document.body.style.backgroundImage = 'url("images/evening.jpg")';
         greeting.textContent = 'Good evening, ';
-        document.body.style.color = '#ffffff';
+        document.body.style.color = '#000000';
         
         console.log('its day');
     }
-
-
-    switch (hours) {
-        case hours < 24:
-            document.body.style.backgroundImage = 'url("images/night.jpg")';
-            
-            console.log('its night');
-            break;
-        case hours < 21:
-            document.body.style.backgroundImage = 'url("images/evening.jpg")';
-            console.log('its evening');
-            break;
-        case hours < 18:
-            document.body.style.backgroundImage = 'url("images/day.jpg")';
-            console.log('its day');
-            break;
-        case hours < 10:
-            document.body.style.backgroundImage = 'url("images/morning.jpg")';
-            console.log('its morning');
-            break;
-        case hours < 6:
-            document.body.style.backgroundImage = 'url("images/night.jpg")';
-            console.log('its night');
-            break;
-    }
 }
+
+
+
+
