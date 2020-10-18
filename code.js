@@ -1,9 +1,16 @@
 const time = document.getElementById('time'),
     greeting = document.getElementById('greeting'),
     name = document.getElementById('name'),
-    myFocus = document.getElementById('focus'),
-    amPm = document.getElementById('am-pm');
-    delSettings = document.getElementById('clearstorage');
+    taskInput = document.getElementById('addtask'),
+    tasklist = document.getElementById('tasklist'),
+    amPm = document.getElementById('am-pm'),
+    delSettings = document.getElementById('clearstorage'),
+    infoButton = document.getElementById('infotab'),
+    closeModal = document.getElementById('modal__close'),
+    modal = document.getElementById('modal__wrapper'),
+    outputFields = document.querySelectorAll('.output-field');
+
+let tasksArray = [];
 
 
 let timeFormat = 24;
@@ -11,36 +18,73 @@ let timeFormat = 24;
 //listeners
 name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
-myFocus.addEventListener('keypress', setTask);
-myFocus.addEventListener('blur', setTask);
+taskInput.addEventListener('focus', function (event) {
+    event.target.value = '';
+});
+taskInput.addEventListener('keypress', setTasks);
+taskInput.addEventListener('blur', setTasks);
 amPm.addEventListener('click', switchTimeFormat);
 delSettings.addEventListener('click', clearSettings);
+infoButton.addEventListener('click', function () {
+    modal.style.top = '0';
+});
+closeModal.addEventListener('click', function () {
+    modal.style.top = '-300px';
+});
+
+
+console.log(localStorage);
+
 showTime();
 setInterval(showTime, 1000);
 setBackgroundImage();
 getName();
-getTask();
+getTasks();
 
 
-function getTask() {
-    if (localStorage.getItem('task') === null) {
-        myFocus.textContent = '[Enter Task]';
+function getTasks() {
+    let output = '<ul>';
+    if (localStorage.getItem('tasks') === null) {
+        output = '<h2>You haven\'t got any tasks</h2>';
     } else {
-        myFocus.textContent = localStorage.getItem('task');
-    }
-}
-
-function setTask(event){
-    if (event.type === 'keypress') {
-        // Make sure enter is pressed
-        if (event.keyCode == 13) {
-            localStorage.setItem('task', event.target.innerText);
-            myFocus.blur();
+        let tasksArray = localStorage.getItem('tasks').split(',');
+        for (let i = 0; i < tasksArray.length; i++) {
+            output += `<li class="singletask">${tasksArray[i]}</li>`
         }
-    } else {
-        localStorage.setItem('task', event.target.innerText);
+        output += '</ul>';
+    }
+    tasklist.innerHTML = output;
+    let singletaskList = document.querySelectorAll('.singletask');
+    for (let i = 0; i < singletaskList.length; i++) {
+        singletaskList[i].addEventListener('click', function (event) {
+            console.log(event.target);
+            event.target.classList.toggle('done');
+        });
     }
 }
+
+function setTasks(event) {
+
+    if (event.keyCode == 13) {
+        console.log('Enter pressed - ' + event.target.value);
+        let newTask = event.target.value;
+        console.log(newTask);
+        let newTasksArray = [];
+        if (localStorage.getItem('tasks') === null) {
+            newTasksArray = [newTask];
+            localStorage.setItem('tasks', newTasksArray.toString());
+        } else {
+            newTasksArray = localStorage.getItem('tasks').split(',');
+            newTasksArray.unshift(newTask);
+            localStorage.setItem('tasks', newTasksArray.toString());
+        }
+        getTasks();
+        taskInput.blur();
+    } else {
+
+    }
+}
+
 
 function getName() {
     if (localStorage.getItem('name') === null) {
@@ -52,7 +96,6 @@ function getName() {
 
 function setName(event) {
     if (event.type === 'keypress') {
-        // Make sure enter is pressed
         if (event.keyCode == 13) {
             localStorage.setItem('name', event.target.innerText);
             name.blur();
@@ -112,6 +155,12 @@ function setBackgroundImage() {
         document.body.style.backgroundImage = 'url("images/night.jpg")';
         greeting.textContent = 'Good night, ';
         document.body.style.color = '#ffffff';
+        taskInput.style.color = '#ffffff';
+        taskInput.style.backgroundColor = '#000000';
+        for (let i = 0; i < outputFields.length; i++) {
+            console.log(outputFields[i]);
+            outputFields[i].style.backgroundColor = '#000000';
+        }
         console.log('its night');
     } else if (hours >= 6 && hours < 9) {
         document.body.style.backgroundImage = 'url("images/morning.jpg")';
@@ -133,9 +182,9 @@ function setBackgroundImage() {
 }
 
 function clearSettings() {
-    localStorage.clear();
+    localStorage.removeItem('tasks');
     getName();
-    getTask();
+    getTasks();
 }
 
 

@@ -63,6 +63,28 @@ body {
     font-size: 0.5rem;
 }
 
+#infotab {
+    width: 60px;
+    height: 60px;
+    background: #00ff00;
+    border-radius: 30px;
+    opacity: 0.6;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-right: 20px;
+}
+
+#infotab:hover {
+    opacity: 1;
+}
+
 #clearstorage {
     width: 60px;
     height: 60px;
@@ -85,32 +107,86 @@ body {
     opacity: 1;
 }
 
-/* #tasks {
+#modal__wrapper {
+    position: absolute ;
+    top: -300px; 
+    left: 0;
+    width: 100vw;
+    height: 300px;
+    padding: 30px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: flex-start;
+    background: #000000;
+    color: #ffffff;
+    opacity: 0.9;
+
+    transition: top 1s cubic-bezier(.5, -0.5, .5, 2);
+}
+
+#modal {
+    max-width: 1020px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
-#addtask {
-    display: block;
-    background: #ff0000;
-    color: #ffffff;
-    font-size: 1.2em;
-    font-weight: bold;
-    line-height: 27px;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    margin-left: 10px;
-    padding: 0;
-    border-radius: 50%;
-    cursor: pointer;
-} */
-
-#addtask:hover {
-    background: #dd0000;
+#modal h2 {
+    color: #000000;
 }
+
+#modal__close {
+    width: 60px;
+    height: 60px;
+    background: #00ff00;
+    border-radius: 30px;
+    opacity: 0.9;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 40px;
+}
+
+#modal__close:hover {
+    opacity: 1;
+}
+
+
+#addtask {
+    margin-bottom: 0.5rem;
+    background-color: #cccccc;
+    opacity: 0.9;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1.3rem;
+}
+
+#tasklist li {
+    list-style-type: none;
+    display: block;
+    margin-bottom: 0.5rem;
+    background-color: #FC5314;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+}
+
+    #tasklist li:hover {
+        background: #E99831;
+    }
+
+   .done {
+        background: #07AD34 !important;
+    }
 
 h1 {
     margin: 1rem;
@@ -128,7 +204,7 @@ h2 {
     border-radius: 10px;
 }
 
-
+.output-field {}
 
 @media (max-width: 768px) {
     #time {

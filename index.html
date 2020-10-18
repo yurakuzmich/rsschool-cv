@@ -8,22 +8,38 @@
     <title>Welcome!</title>
 </head>
 <body>
-    <time id="time">12:08:04 PM</time>
-    <h1>
+    <time id="time" class="output-field"></time>
+    <h1 class="output-field">
         <span id="greeting">Good day,</span>
         <span id="name" contenteditable="true">Enter you name here...</span>
     </h1>
-    <h2>Погода в Минске</h2>
-    <h2>
-        Task of the day
-    </h2>
-    <h2 id="focus" contenteditable="true">Add task for the day...</h2>
+    <h2 class="output-field">Погода в Минске</h2>
+
+    <!-- <h2 id="addtask" contenteditable="true">Enter new task</h2> -->
+    <input id="addtask" placeholder="Enter new task here and press Enter">
+    <div id="tasklist">
+        
+    </div>
     <div id="settings">
         <div id="am-pm">
             <p>24/<span>12</span></p>
         </div>
+        <div id="infotab">
+            <p>i</p>
+        </div>
         <div id="clearstorage">
             <p>X</p>
+        </div>
+    </div>
+    <div id="modal__wrapper">
+        <div id="modal">
+            <h2>Simple task manager</h2>
+            <p>
+                Simple task manager, made with using of localStorage. You can add you name, create and delete tasks.
+            </p>
+            <p>Click on task switches its status between done/not done (green and orange colors)</p>
+            <p>X - button will  delete all tasks. So be carefull with it!</p>
+            <div id="modal__close"><p>&#129137;</p></div>
         </div>
     </div>
     <script src="code.js"></script>
