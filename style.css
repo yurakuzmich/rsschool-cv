@@ -109,7 +109,7 @@ body {
 
 #modal__wrapper {
     position: absolute ;
-    top: -300px; 
+    top: -800px; 
     left: 0;
     width: 100vw;
     height: 300px;
@@ -122,7 +122,7 @@ body {
     color: #ffffff;
     opacity: 0.9;
 
-    transition: top 1s cubic-bezier(.5, -0.5, .5, 2);
+    transition: top 1s cubic-bezier(.5, -0.3, .3, 2);
 }
 
 #modal {

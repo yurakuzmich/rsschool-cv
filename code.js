@@ -45,7 +45,7 @@ getTasks();
 function getTasks() {
     let output = '<ul>';
     if (localStorage.getItem('tasks') === null) {
-        output = '<h2>You haven\'t got any tasks</h2>';
+        output = '<h2>You haven\'t got any tasks</h2><ul><li class="singletask"></li></ul>';
     } else {
         let tasksArray = localStorage.getItem('tasks').split(',');
         for (let i = 0; i < tasksArray.length; i++) {
@@ -54,13 +54,7 @@ function getTasks() {
         output += '</ul>';
     }
     tasklist.innerHTML = output;
-    let singletaskList = document.querySelectorAll('.singletask');
-    for (let i = 0; i < singletaskList.length; i++) {
-        singletaskList[i].addEventListener('click', function (event) {
-            console.log(event.target);
-            event.target.classList.toggle('done');
-        });
-    }
+   
 }
 
 function setTasks(event) {
@@ -73,16 +67,33 @@ function setTasks(event) {
         if (localStorage.getItem('tasks') === null) {
             newTasksArray = [newTask];
             localStorage.setItem('tasks', newTasksArray.toString());
+            getTasks();
+            addListenersToTasks();
         } else {
             newTasksArray = localStorage.getItem('tasks').split(',');
             newTasksArray.unshift(newTask);
             localStorage.setItem('tasks', newTasksArray.toString());
         }
-        getTasks();
+        let taskElements = document.querySelectorAll('.singletask');
+        taskElements[0].insertAdjacentHTML('beforebegin', `<li class="singletask">${newTask}</li>`);
+        addListenersToTasks();
         taskInput.blur();
     } else {
 
     }
+}
+
+function addListenersToTasks() {
+    let singletaskList = document.querySelectorAll('.singletask');
+    console.log(`Задачи - ${singletaskList}`);
+    for (let i = 0; i < singletaskList.length; i++) {
+        singletaskList[i].removeEventListener('click', markTaskAsDone);
+        singletaskList[i].addEventListener('click', markTaskAsDone);
+    }
+}
+
+function markTaskAsDone(event) {
+    event.target.classList.toggle('done');
 }
 
 
@@ -124,7 +135,9 @@ function showTime() {
         seconds = '0' + seconds;
     }
     if (timeFormat === 12) {
-        hours = hours - 12;
+        if (hours > 12) {
+            hours = hours - 12;
+        }
         if (hours === 0) {
             hours = 12;
         }
@@ -155,6 +168,7 @@ function setBackgroundImage() {
         document.body.style.backgroundImage = 'url("images/night.jpg")';
         greeting.textContent = 'Good night, ';
         document.body.style.color = '#ffffff';
+        document.body.style.backgroundColor = '#000000';
         taskInput.style.color = '#ffffff';
         taskInput.style.backgroundColor = '#000000';
         for (let i = 0; i < outputFields.length; i++) {
