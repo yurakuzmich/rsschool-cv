@@ -29,7 +29,7 @@ infoButton.addEventListener('click', function () {
     modal.style.top = '0';
 });
 closeModal.addEventListener('click', function () {
-    modal.style.top = '-300px';
+    modal.style.top = '-800px';
 });
 
 
