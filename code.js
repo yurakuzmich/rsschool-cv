@@ -48,8 +48,9 @@ function getTasks() {
         output = '<ul><li class="singletask" style="display:none"></li></ul>';
     } else {
         let tasksArray = localStorage.getItem('tasks').split(',');
+        let backRe = /~/gi;
         for (let i = 0; i < tasksArray.length; i++) {
-            output += `<li class="singletask">${tasksArray[i]}</li>`
+            output += `<li class="singletask">${tasksArray[i].replace(backRe, ',')}</li>`
         }
         output += '</ul>';
     }
@@ -61,6 +62,9 @@ function setTasks(event) {
 
     if (event.keyCode == 13) {
         let newTask = event.target.value;
+        let re = /,/gi;
+        newTask = newTask.replace(re, '~');
+        console.log(newTask);
         let newTasksArray = [];
         if (localStorage.getItem('tasks') === null) {
             newTasksArray = [newTask];
@@ -73,7 +77,8 @@ function setTasks(event) {
             localStorage.setItem('tasks', newTasksArray.toString());
         }
         let taskElements = document.querySelectorAll('.singletask');
-        taskElements[0].insertAdjacentHTML('beforebegin', `<li class="singletask">${newTask}</li>`);
+        let backRe = /~/gi;
+        taskElements[0].insertAdjacentHTML('beforebegin', `<li class="singletask">${newTask.replace(backRe, ',')}</li>`);
         addListenersToTasks();
         taskInput.blur();
     } else {
