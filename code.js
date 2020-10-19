@@ -45,7 +45,7 @@ getTasks();
 function getTasks() {
     let output = '<ul>';
     if (localStorage.getItem('tasks') === null) {
-        output = '<h2>You haven\'t got any tasks</h2><ul><li class="singletask"></li></ul>';
+        output = '<ul><li class="singletask" style="display:none"></li></ul>';
     } else {
         let tasksArray = localStorage.getItem('tasks').split(',');
         for (let i = 0; i < tasksArray.length; i++) {
@@ -54,20 +54,18 @@ function getTasks() {
         output += '</ul>';
     }
     tasklist.innerHTML = output;
-   
+    addListenersToTasks();
 }
 
 function setTasks(event) {
 
     if (event.keyCode == 13) {
-        console.log('Enter pressed - ' + event.target.value);
         let newTask = event.target.value;
-        console.log(newTask);
         let newTasksArray = [];
         if (localStorage.getItem('tasks') === null) {
             newTasksArray = [newTask];
             localStorage.setItem('tasks', newTasksArray.toString());
-            getTasks();
+            // getTasks();
             addListenersToTasks();
         } else {
             newTasksArray = localStorage.getItem('tasks').split(',');
@@ -85,7 +83,6 @@ function setTasks(event) {
 
 function addListenersToTasks() {
     let singletaskList = document.querySelectorAll('.singletask');
-    console.log(`Задачи - ${singletaskList}`);
     for (let i = 0; i < singletaskList.length; i++) {
         singletaskList[i].removeEventListener('click', markTaskAsDone);
         singletaskList[i].addEventListener('click', markTaskAsDone);
