@@ -33,12 +33,14 @@ calculator = {
     secondOperand: '',
     operationMemory: 0,
     displayValue: 0,
+    isSessionStarted: false,
     currentOperation: '',
-    // summ: summFunction,
-    // diff: summDifference,
-    // quot: funcQuotient,
-    // multiply: funcMultiplication,
-    // showResult: funcResult
+    newOperand: false,
+    summ: summ,
+    diff: diff,
+    quot: quot,
+    multiply: multi,
+    showResult: res
 }
 
 
@@ -66,17 +68,87 @@ window.onload = function () {
 //FUNCTIONS
 
 function mainApp(event) {
-    let targetButton = event.target.textContent;
-    console.log(targetButton);
-    if(targetButton == 'CE') {
+    let targetButton = event.target;
+    // console.log(targetButton);
+    // console.log(event);
+    if (targetButton.textContent === 'CE') {
         clickCE();
         return;
     }
-    if(targetButton == 'C') {
+    if (targetButton.textContent === 'C') {
         clickC();
         return;
     }
-    console.log(event);
+
+    if(targetButton.classList.contains('number')) {
+        // console.log(`Number ${targetButton.textContent} was pressed`);
+        if(calculator.isSessionStarted === false) {
+            if( calculator.displayValue === 0) {
+                calculator.displayValue = targetButton.textContent;
+            } else {
+                calculator.displayValue += targetButton.textContent;
+            }
+        } else if (calculator.isSessionStarted === true) {
+            if(calculator.newOperand === true) {
+                calculator.displayValue = targetButton.textContent;
+                calculator.newOperand = false
+            } else {
+                calculator.displayValue += targetButton.textContent;
+            }
+        }
+    } else if (targetButton.classList.contains('comma_button')) {
+        if(calculator.displayValue === 0) {
+            calculator.displayValue = '0.';
+        } else if (calculator.displayValue.indexOf('.') === -1) {
+            calculator.displayValue += '.';
+        } 
+        console.log(`Comma ${targetButton.textContent} was pressed`);
+    } else if(targetButton.classList.contains('math_action')) {
+        calculator.newOperand = true;
+        calculator.isSessionStarted = true;
+        if(calculator.currentOperation === '') {
+            calculator.currentOperation = targetButton.textContent;
+        }
+        if(calculator.firstOperand === '') {
+            calculator.firstOperand = calculator.displayValue;
+        } else {
+            calculator.secondOperand = calculator.displayValue;
+            switch (calculator.currentOperation) {
+                case '+':
+                    calculator.firstOperand = summ(+calculator.firstOperand, +calculator.secondOperand);
+                    calculator.displayValue = calculator.firstOperand;
+                    calculator.currentOperation = targetButton.textContent;
+                    break;
+                case '-': 
+                    calculator.firstOperand = diff(+calculator.firstOperand, +calculator.secondOperand);
+                    calculator.displayValue = calculator.firstOperand;
+                    calculator.currentOperation = targetButton.textContent;
+                    break;
+                case '*': 
+                    calculator.firstOperand = mult(+calculator.firstOperand, +calculator.secondOperand);
+                    calculator.displayValue = calculator.firstOperand;
+                    calculator.currentOperation = targetButton.textContent;
+                    break;
+                case '/': 
+                    calculator.firstOperand = quot(+calculator.firstOperand, +calculator.secondOperand);
+                    calculator.displayValue = calculator.firstOperand;
+                    calculator.currentOperation = targetButton.textContent;
+                    break;
+                case '=':
+                    calculator.displayValue = calculator.firstOperand;
+                    calculator.firstOperand = '';
+                    calculator.currentOperation = '';
+
+            }
+        }
+        console.log(`Operation button ${targetButton.textContent} was pressed. ${calculator.firstOperand} in memory`);
+    }
+
+
+    if(calculator.isSessionStarted === false) {
+
+    }
+    display.value = calculator.displayValue;
 }
 
 
@@ -88,62 +160,39 @@ function clickCE() {
 }
 
 function clickC() {
-    display.value = 0;
-    operationMemory = 0;
-    currentOperation = '';
-    newOperand = true;
+    calculator.displayValue = 0;
+    calculator.firstOperand = '';
+    calculator.secondOperand = '';
+    calculator.newOperand = false;
+    calculator.operationMemory = 0;
+    calculator.isSessionStarted = false;
+    calculator.currentOperation = '';
     console.log('CE clicked');
-}
-
-function clickComma() {
-
-    if (newOperand === true) {
-        display.value = '0.';
-        newOperand = false;
-    } else {
-        if (display.value.indexOf('.') === -1) {
-            display.value += '.';
-        }
-    }
-}
-
-function clickActionButton(event) {
-    let localOperationMemory = display.value;
-    if (newOperand === true && currentOperation !== '=') {
-        display.value = operationMemory;
-    } else {
-        newOperand = true;
-        if (currentOperation === '+') {
-            operationMemory += +localOperationMemory;
-        } else if (currentOperation === '-') {
-            operationMemory -= +localOperationMemory;
-        } else if (currentOperation === 'x') {
-            operationMemory *= +localOperationMemory;
-        } else if (currentOperation === '/') {
-            operationMemory /= +localOperationMemory;
-        } else {
-            operationMemory = +localOperationMemory;
-        }
-        display.value = operationMemory;
-        currentOperation = event.target.textContent;
-    }
+    display.value = calculator.displayValue;
 }
 
 
-
-function clickNumberButton(event) {
-    let pressedNumber = event.target.textContent;
-    if (newOperand === true) {
-        display.value = pressedNumber;
-        newOperand = false;
-    } else {
-        if (display.value === '0') {
-            display.value = pressedNumber;
-        } else {
-            display.value += pressedNumber;
-        }
-    }
+function summ(firstOperand, secondOperand) {
+    return firstOperand + secondOperand;
 }
+
+function diff(firstOperand, secondOperand) {
+    return firstOperand - secondOperand;
+}
+
+function quot(firstOperand, secondOperand) {
+    return firstOperand/secondOperand;
+}
+
+function multi(firstOperand, secondOperand) {
+    return firstOperand*secondOperand;
+}
+
+function res(firstOperand, secondOperand) {
+
+}
+
+
 
 function clickPercentButton() {
     switсhModal();
