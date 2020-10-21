@@ -3,6 +3,10 @@
     margin: 0;
     padding: 0;
 }
+body {
+    background: url('images/bg.jpg') no-repeat center center;
+    background-size: cover;
+}
 
 .wrapper {
 width: 100%;
@@ -15,28 +19,33 @@ align-items: flex-end;
 .keyboard {
     max-width: 800px;
     margin-bottom: 50px;
+    padding: 20px 50px 5px 50px; 
+    border-radius: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    background: url('images/keyboard_bg.png') no-repeat center center;
+    background-size: cover;
 }
 
 .key {
     max-width: 100px;
-    min-width: 30px;
+    min-width: 40px;
     min-height: 200px;
-    margin: 0 10px;
+    margin: 0 5px;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     border: 1px solid black;
+    background: linear-gradient(180deg, #ffffff, #999999);
     cursor: pointer;
     text-align: center;
     transition: transform, 0.5s, ease;
 }
 
 .pressed {
-    background: linear-gradient(180deg, #ffffff, #999999);
+    background: linear-gradient(180deg, #ffffff, #333333);
     transform: scale(.95);
     border-bottom: none;
 }
