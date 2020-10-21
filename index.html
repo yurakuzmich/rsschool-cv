@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="panels">
+      <div class="panel panel1">
+        <p></p>
+        <p>C</p>
+        <p></p>
+      </div>
+      <div class="panel panel2">
+        <p></p>
+        <p>H</p>
+        <p></p>
+      </div>
+      <div class="panel panel3">
+        <p></p>
+        <p>I</p>
+        <p></p>
+      </div>
+      <div class="panel panel4">
+        <p></p>
+        <p>N</p>
+        <p></p>
+      </div>
+      <div class="panel panel5">
+        <p></p>
+        <p>A</p>
+        <p></p>
+      </div>
+    </div>
+    <div class="player">
+      <div class="play"><i class="fa fa-play fa-2x"></i></div>
+      <div class="stop"><i class="fa fa-stop fa-2x"></i></div>
+      <div class="replay"><i class="fa fa-refresh fa-2x"></i></div>
+      <div class="progressbar">
+        <svg width="200" height="20" data-value="40">
+          <path class="bg" stroke="#ccc" d="M0 10, 200 10"></path>
+          <path
+            class="meter"
+            stroke="lightskyblue"
+            d="M0 10, 200 10"
+            style="stroke-dasharray: 200; stroke-dashoffset: 200"
+          ></path>
+        </svg>
+      </div>
+    </div>
+    <audio src="music/melody.mp3" class="chinasong"></audio>
+    <script src="code.js"></script>
+  </body>
+</html>

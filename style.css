@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+
+
+
+.panels {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.panel {
+  height: 100vh;
+  flex: 1;
+  display: flex;
+  box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 5rem;
+  color: white;
+  transition: all 0.4s cubic-bezier(0.61, -0.19, 0.7, -0.11);
+}
+
+.panel p {
+  pointer-events: none;
+}
+
+.panel1 {
+  background: url("images/1.jpg") no-repeat;
+}
+
+.panel2 {
+  background: url("images/2.jpg") no-repeat;
+}
+
+.panel3 {
+  background: url("images/3.jpg") no-repeat;
+}
+
+.panel4 {
+  background: url("images/4.jpg") no-repeat;
+}
+
+.panel5 {
+  background: url("images/5.jpg") no-repeat;
+}
+
+.active {
+  flex: 5;
+}
+
+.player {
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: lightskyblue;
+}
+
+.player > div {
+  margin-right: 30px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.play:hover,
+.stop:hover,
+.replay:hover {
+  color: lightcoral;
+}
+
+.control_active {
+  color: lightgreen;
+}
+/* Progress bar */
+svg {
+    border-radius: 3px;
+}
+
+svg path {
+  fill: none;
+  stroke-width: 20px;
+  stroke-miterlimit: round;
+  transition: stroke-dashoffset 850ms ease-in-out;
+}
+
+
+@media screen and (max-width: 768px) {
+    .player {
+        position: absolute;
+        right: 10px;
+        bottom: 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        color: lightskyblue;
+      }
+      
+      .player > div {
+        margin-right: 15px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      
+}
+
+@media screen and (max-width: 320px) {
+    .player {
+        position: absolute;
+        right: 3px;
+        bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        color: lightskyblue;
+      }
+      
+      .player > div {
+        margin-right: 3px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      
+}
