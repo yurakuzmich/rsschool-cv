@@ -2,16 +2,14 @@ const time = document.getElementById('time'),
     greeting = document.getElementById('greeting'),
     name = document.getElementById('name'),
     taskInput = document.getElementById('addtask'),
-    tasklist = document.getElementById('tasklist'),
+    taskList = document.getElementById('tasklist'),
     amPm = document.getElementById('am-pm'),
     delSettings = document.getElementById('clearstorage'),
     infoButton = document.getElementById('infotab'),
     closeModal = document.getElementById('modal__close'),
     modal = document.getElementById('modal__wrapper'),
-    outputFields = document.querySelectorAll('.output-field');
-
-let tasksArray = [];
-
+    outputFields = document.querySelectorAll('.output-field'),
+    listOfTasks = document.querySelector('.listoftasks');
 
 let timeFormat = 24;
 
@@ -32,57 +30,32 @@ closeModal.addEventListener('click', function () {
     modal.style.top = '-800px';
 });
 
-
-console.log(localStorage);
-
 showTime();
 setInterval(showTime, 1000);
 setBackgroundImage();
 getName();
 getTasks();
 
-
 function getTasks() {
-    let output = '<ul>';
+    let output = '';
     if (localStorage.getItem('tasks') === null) {
-        output = '<ul><li class="singletask" style="display:none"></li></ul>';
+        output = '';
     } else {
-        let tasksArray = localStorage.getItem('tasks').split(',');
-        let backRe = /~/gi;
-        for (let i = 0; i < tasksArray.length; i++) {
-            output += `<li class="singletask">${tasksArray[i].replace(backRe, ',')}</li>`
-        }
-        output += '</ul>';
+        output = localStorage.getItem('tasks');
     }
-    tasklist.innerHTML = output;
+    listOfTasks.innerHTML = output;
+    console.log(listOfTasks);
     addListenersToTasks();
 }
 
 function setTasks(event) {
-
     if (event.keyCode == 13) {
         let newTask = event.target.value;
-        let re = /,/gi;
-        newTask = newTask.replace(re, '~');
-        console.log(newTask);
-        let newTasksArray = [];
-        if (localStorage.getItem('tasks') === null) {
-            newTasksArray = [newTask];
-            localStorage.setItem('tasks', newTasksArray.toString());
-            // getTasks();
-            addListenersToTasks();
-        } else {
-            newTasksArray = localStorage.getItem('tasks').split(',');
-            newTasksArray.unshift(newTask);
-            localStorage.setItem('tasks', newTasksArray.toString());
-        }
-        let taskElements = document.querySelectorAll('.singletask');
-        let backRe = /~/gi;
-        taskElements[0].insertAdjacentHTML('beforebegin', `<li class="singletask">${newTask.replace(backRe, ',')}</li>`);
+        listOfTasks.insertAdjacentHTML('afterbegin', `<li class="singletask">${newTask}</li>`);
+        console.log(listOfTasks);
+        localStorage.setItem('tasks', listOfTasks.innerHTML);
         addListenersToTasks();
         taskInput.blur();
-    } else {
-
     }
 }
 
@@ -96,8 +69,9 @@ function addListenersToTasks() {
 
 function markTaskAsDone(event) {
     event.target.classList.toggle('done');
-}
+    localStorage.setItem('tasks', listOfTasks.innerHTML);
 
+}
 
 function getName() {
     if (localStorage.getItem('name') === null) {
@@ -192,8 +166,6 @@ function setBackgroundImage() {
         document.body.style.backgroundImage = 'url("images/evening.jpg")';
         greeting.textContent = 'Good evening, ';
         document.body.style.color = '#000000';
-
-        console.log('its day');
     }
 }
 
@@ -202,5 +174,3 @@ function clearSettings() {
     getName();
     getTasks();
 }
-
-

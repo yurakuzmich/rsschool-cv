@@ -1,48 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>Welcome!</title>
-</head>
-<body>
+  </head>
+  <body>
     <time id="time" class="output-field"></time>
     <h1 class="output-field">
-        <span id="greeting">Good day,</span>
-        <span id="name" contenteditable="true">Enter you name here...</span>
+      <span id="greeting">Good day,</span>
+      <span id="name" contenteditable="true">Enter you name here...</span>
     </h1>
     <!-- <h2 class="output-field">Погода в Минске</h2> -->
 
     <!-- <h2 id="addtask" contenteditable="true">Enter new task</h2> -->
-    <input id="addtask" placeholder="Enter new task here and press Enter">
+    <input id="addtask" placeholder="Enter new task here and press Enter" />
     <div id="tasklist">
-        
+      <ul class="listoftasks"></ul>
     </div>
     <div id="settings">
-        <div id="am-pm">
-            <p>24/<span>12</span></p>
-        </div>
-        <div id="infotab">
-            <p>?</p>
-        </div>
-        <div id="clearstorage">
-            <p>X</p>
-        </div>
+      <div id="am-pm">
+        <p>24/<span>12</span></p>
+      </div>
+      <div id="infotab">
+        <p>?</p>
+      </div>
+      <div id="clearstorage">
+        <p>X</p>
+      </div>
     </div>
     <div id="modal__wrapper">
-        <div id="modal">
-            <h2>Simple task manager</h2>
-            <p>
-                Simple task manager, made with using of localStorage. You can add you name, create tasks, mark them as done and delete all tasks.
-            </p>
-            <p>To add a new task, put cursor inside input, write you task and press Enter.</p>
-            <p>Click on task switches them between done/not done (green and orange colors)</p>
-            <p>X - button will  delete all tasks. So be carefull with it!</p>
-            <div id="modal__close"><p>&#129137;</p></div>
-        </div>
+      <div id="modal">
+        <h2>Simple task manager</h2>
+        <p>
+          Simple task manager, made with using of localStorage. You can add you
+          name, create tasks, mark them as done and delete all tasks.
+        </p>
+        <p>
+          To add a new task, put cursor inside input, write you task and press
+          Enter.
+        </p>
+        <p>
+          Click on task switches them between done/not done (green and orange
+          colors)
+        </p>
+        <p>X - button will delete all tasks. So be carefull with it!</p>
+        <div id="modal__close"><p>&#129137;</p></div>
+      </div>
     </div>
     <script src="code.js"></script>
-</body>
-</html> 
+  </body>
+</html>
