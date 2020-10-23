@@ -1,0 +1,72 @@
+/* Variables */
+:root {
+    --border: lightblue;
+    --borderw: 12px;
+    --spacing: 50%;
+    --blur: 0px;
+    --invert: 0%;
+    --sepia: 0%;
+    --saturate: 100%;
+    --hue-rotate: 0deg;
+}
+
+
+
+* {
+    
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: lightsteelblue;
+    font-family: 'Open Sans', sans-serif;
+}
+
+label {
+    display: block;
+
+    line-height: 40px;
+}
+
+input {
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1020px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header {
+    text-align: center;
+}
+
+.img-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 500px;
+    overflow: scroll;
+}
+
+.img {
+    width: var(--spacing, 50%);
+    filter: blur(var(--blur, 0px)) invert(var(--invert, 0%)) sepia(var(--sepia, 0%))  saturate(var(--saturate, 100%)) hue-rotate(var(--hue-rotate, 0deg));
+    border: var(--borderw, 12px) solid var(--border, black);
+
+}
+.controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
