@@ -6,4 +6,6 @@ inputs.forEach(input => input.addEventListener("mousemove", inputUpdate));
 function inputUpdate() {
     var suffix = this.dataset.sizing || "";
     document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    console.log(`--${this.name}`);
+    console.log(this.value + suffix);
 }
