@@ -45,7 +45,7 @@
   background: #4972a1;
 }
 .sound-picker button:nth-child(2) {
-  background: #a14f49;
+  background: #f0c505;
 }
 .sound-picker button img {
   height: 100%;
@@ -54,7 +54,12 @@
 .time-select button:hover {
   background: white;
   color: black;
+  outline: none;
 }
+
+.time-select button:active {
+    outline: none;
+  }
 
 .player-container {
   position: relative;
@@ -90,4 +95,18 @@ video {
   left: 0%;
   width: 100%;
   z-index: -10;
+}
+
+.play,
+.replay {
+    cursor: pointer;
+}
+
+.rangetime {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.3rem;
 }
