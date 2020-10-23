@@ -50,7 +50,8 @@ input {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    min-height: 500px;
+    max-height: 500px;
+    overflow: scroll;
 }
 
 .img {
