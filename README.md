@@ -1,1 +1,2 @@
-https://yurakuzmich.github.io/rsschool-cv/
+# meditation-app
+Meditation app tutorial
