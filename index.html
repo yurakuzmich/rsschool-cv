@@ -13,30 +13,45 @@
   <body>
     <div class="wrapper">
       <div class="userpanel">
-        <label for="">
-          Drawing mode
-          <select name="" id="modepicker">
-            <option value="random" >Random mode</option>
-            <option value="artist" selected>Artist mode</option>
-          </select>
-        </label>
-        <label for="">
-          Line thcknss
-          <select name="" id="linepicker">
-            <option value="10" selected>normal (10 px)</option>
-            <option value="20" class="line-type-1">20 px</option>
-            <option value="30" class="line-type-2">30 px</option>
-            <option value="40" class="line-type-3">40 px</option>
-            <option value="50" class="line-type-4">50 px</option>
-          </select>
-        </label>
-        <label for="">
-          Color
-          <input type="color" name="" id="colorpicker" value="#ff0000" />
-        </label>
-        <button class="button_save">Save</button>
-        <button class="button_clear">Clear</button>
-        <a id="link"></a>
+        <div class="tools">
+          <div class="tools__styles">
+            <label for="modepicker">
+              Drawing mode
+              <select name="modepckr" id="modepicker">
+                <option value="random">Random mode</option>
+                <option value="artist" selected>Artist mode</option>
+              </select>
+            </label>
+            <label for="linepicker">
+              Line thcknss
+              <select name="linepckr" id="linepicker">
+                <option value="10" selected>normal (10 px)</option>
+                <option value="20" class="line-type-1">20 px</option>
+                <option value="30" class="line-type-2">30 px</option>
+                <option value="40" class="line-type-3">40 px</option>
+                <option value="50" class="line-type-4">50 px</option>
+              </select>
+            </label>
+            <label for="colorpicker">
+              Color
+              <input
+                type="color"
+                name="colorpckr"
+                id="colorpicker"
+                value="#ff0000"
+              />
+            </label>
+          </div>
+          <div class="tools__tools">
+            <button class="button_drawshape" id="drawline">Line &mdash;</button>
+            <button class="button_drawshape" id="drawcircle">Circle O</button>
+          </div>
+        </div>
+        <div class="controls">
+          <button class="button_save">Save</button>
+          <button class="button_clear">Clear</button>
+          <a id="link"></a>
+        </div>
       </div>
       <div class="container">
         <canvas width="800" height="600" id="my-canvas">

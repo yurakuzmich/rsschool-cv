@@ -28,62 +28,108 @@ align-items: center;
     font-weight: bold;
 }
 
+.tools {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
 
-.button_save {
+.tools__styles,
+.tools__tools {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.tools__styles label {
+    margin-right: 10px;
+}
+
+.button_drawshape {
+    margin-right: 10px;
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    background: #dddddd;
+    border-radius: 3px;
+    border-bottom: 2px solid #5f5f5f;
+    border-right: 2px solid #5f5f5f;
+    border-left: 2px solid #8f8d8d;
+    border-top: 2px solid #8f8d8d;
+    
+}
+
+.button_drawshape:active {
+    background: #8f8d8d;
+    color: #ffffff;
+    border-top: 2px solid #5f5f5f;
+    border-left: 2px solid #5f5f5f;
+    border-right: 2px solid #8f8d8d;
+    border-bottom: 2px solid #8f8d8d;
+    outline: none;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.button_save,
+.button_clear {
+    margin: 5px;
     width: 70px;
     padding: 10px;
     border-radius: 5px;
     border: none;
     outline: none;
-    background: #2cbe0f;
     color: white;
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0px 0px 8px gray;
     font-size: 1rem;
-}
-
-.button_save:hover {
-    background: #36ce14;
-    box-shadow: 0px 0px 8px gray;
-}
-
-.button_save:active {
-    box-shadow: 0px 0px 5px gray;
-    font-size: 0.95rem;
 }
 
 .button_save:focus,
-.button_save:active {
+.button_save:active,
+.button_clear:focus,
+.button_clear:active  {
     outline: none;
 }
 
-.button_clear {
-    width: 70px;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    background: #ee6b14;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0px 0px 8px gray;
-    font-size: 1rem;
-}
-
+.button_save:hover,
 .button_clear:hover {
     box-shadow: 0px 0px 8px gray;
-    background: #ff6b14;
 }
 
+.button_save:active,
 .button_clear:active {
     box-shadow: 0px 0px 5px gray;
     font-size: 0.95rem;
 }
 
-.button_clear:focus,
-.button_clear:active {
-    outline: none;
+.button_save {
+      background: #2cbe0f;
 }
+
+.button_save:hover {
+    background: #36ce14;  
+}
+
+.button_clear {
+    background: #ee6b14;
+}
+
+.button_clear:hover {  
+    background: #ff6b14;
+}
+
+
 
