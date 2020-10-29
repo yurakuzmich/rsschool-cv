@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+.wrapper {
+width: 100vw;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+}
+
+.userpanel {
+    width: 100%;
+    margin: 0 20px;
+    padding: 10px;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #3a4b40;
+    font-weight: bold;
+}
+
+
+.button_save {
+    width: 70px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: #2cbe0f;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 0px 8px gray;
+    font-size: 1rem;
+}
+
+.button_save:hover {
+    background: #36ce14;
+    box-shadow: 0px 0px 8px gray;
+}
+
+.button_save:active {
+    box-shadow: 0px 0px 5px gray;
+    font-size: 0.95rem;
+}
+
+.button_save:focus,
+.button_save:active {
+    outline: none;
+}
+
+.button_clear {
+    width: 70px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: #ee6b14;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 0px 8px gray;
+    font-size: 1rem;
+}
+
+.button_clear:hover {
+    box-shadow: 0px 0px 8px gray;
+    background: #ff6b14;
+}
+
+.button_clear:active {
+    box-shadow: 0px 0px 5px gray;
+    font-size: 0.95rem;
+}
+
+.button_clear:focus,
+.button_clear:active {
+    outline: none;
+}
+

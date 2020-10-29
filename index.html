@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Fun with canvas adn Yury Kuzmich</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="userpanel">
+        <label for="">
+          Drawing mode
+          <select name="" id="modepicker">
+            <option value="random" >Random mode</option>
+            <option value="artist" selected>Artist mode</option>
+          </select>
+        </label>
+        <label for="">
+          Line thcknss
+          <select name="" id="linepicker">
+            <option value="10" selected>normal (10 px)</option>
+            <option value="20" class="line-type-1">20 px</option>
+            <option value="30" class="line-type-2">30 px</option>
+            <option value="40" class="line-type-3">40 px</option>
+            <option value="50" class="line-type-4">50 px</option>
+          </select>
+        </label>
+        <label for="">
+          Color
+          <input type="color" name="" id="colorpicker" value="#ff0000" />
+        </label>
+        <button class="button_save">Save</button>
+        <button class="button_clear">Clear</button>
+        <a id="link"></a>
+      </div>
+      <div class="container">
+        <canvas width="800" height="600" id="my-canvas">
+          It seems, You browser doesn't support canvas elements
+        </canvas>
+      </div>
+    </div>
+
+    <script src="code.js"></script>
+  </body>
+</html>
