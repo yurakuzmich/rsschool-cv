@@ -31,11 +31,19 @@ align-items: center;
 .userpanel label {
     display: block;
     margin-right: 20px;
+    padding-left: 10px;
     font-size: 1.1rem;
+    border-left: 1px solid #3a4b40;
 }
 
-.userpanel select {
-    
+.userpanel select,
+.userpanel input {
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 10px;
+    background: #a5fa83;
+    font-size: 1.1rem;
+    font-weight: bold;
 }
 
 .tools {
