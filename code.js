@@ -3,7 +3,6 @@ const canvas = document.getElementById('my-canvas');
 const modePicker = document.getElementById('modepicker');
 const linePicker = document.getElementById('linepicker');
 const colorPicker = document.getElementById('colorpicker');
-const buttonLine = document.getElementById('drawline');
 const buttonClear = document.querySelector('.button_clear');
 const buttonSave = document.querySelector('.button_save');
 const ctx = canvas.getContext('2d');
@@ -35,7 +34,6 @@ canvas.addEventListener('mousedown', (e) => {
 canvas.addEventListener('mouseup', () => isDrawing = false);
 canvas.addEventListener('mouseout', () => isDrawing = false);
 
-buttonLine.addEventListener('click', () => console.log('draw line'));
 buttonClear.addEventListener('click', clearCanvas);
 buttonSave.addEventListener('click', saveImage);
 

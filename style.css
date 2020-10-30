@@ -28,51 +28,24 @@ align-items: center;
     font-weight: bold;
 }
 
+.userpanel label {
+    display: block;
+    margin-right: 20px;
+    font-size: 1.1rem;
+}
+
+.userpanel select {
+    
+}
+
 .tools {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
 }
 
-.tools__styles,
-.tools__tools {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.tools__styles label {
-    margin-right: 10px;
-}
-
-.button_drawshape {
-    margin-right: 10px;
-    padding: 10px;
-    cursor: pointer;
-    outline: none;
-    background: #dddddd;
-    border-radius: 3px;
-    border-bottom: 2px solid #5f5f5f;
-    border-right: 2px solid #5f5f5f;
-    border-left: 2px solid #8f8d8d;
-    border-top: 2px solid #8f8d8d;
-    
-}
-
-.button_drawshape:active {
-    background: #8f8d8d;
-    color: #ffffff;
-    border-top: 2px solid #5f5f5f;
-    border-left: 2px solid #5f5f5f;
-    border-right: 2px solid #8f8d8d;
-    border-bottom: 2px solid #8f8d8d;
-    outline: none;
-}
 
 .controls {
     display: flex;
