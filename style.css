@@ -39,6 +39,7 @@ video {
   width: 1%;
   height: 100%;
   background: #ee2929;
+  pointer-events: none;
 }
 
 .bottom-panel {
