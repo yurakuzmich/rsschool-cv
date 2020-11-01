@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.newgame {
+    width: 200px;
+    height: 67px;
+    background: url('./images/newgame.png') no-repeat;
+    cursor: pointer;
+    outline: none;
+}
+
+.newgame:focus,
+.newgame:active {
+    outline: none;
+}
+
+.newgame:hover {
+    opacity: .9;
+}
+
+.scores p {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.game {
+    position: relative;
+    width: 900px;
+    height: 649px;
+    overflow: hidden;
+    background: url('./images/saloon.jpg') no-repeat;
+    cursor: url('./images/cross.png') 25 25, crosshair;
+}
+
+.window {
+    position: absolute;
+    width: 140px;
+    border: 3px solid white;
+    overflow: hidden;
+}
+
+.window1,
+.window2 {
+    height: 140px;
+}
+
+.window3,
+.window4 {
+    height: 170px;
+}
+
+.window1 {
+    top: 83px;
+    left: 125px;
+}
+
+.window2 {
+    top: 83px;
+    left: 637px;
+}
+
+.window3 {
+    top: 365px;
+    left: 95px;
+}
+
+.window4 {
+    top: 365px;
+    left: 665px;
+}
+
+.enemy {
+    background: url('./images/enemy.png') top center no-repeat;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  transition:all 0.4s;
+}
+
+.window.up .enemy {
+    top: 0;
+  }
+
+.blood {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: url('./images/blood.png') no-repeat;
+    top: -100px;
+    left: -100px;
+    z-index: 100;
+    pointer-events: none;
+}
