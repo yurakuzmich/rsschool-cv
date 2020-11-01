@@ -31,7 +31,8 @@ video {
 
 .progressbar {
   width: 100%;
-  height: 20px;
+  height: 15px;
+  cursor: pointer;
 }
 
 .progressbar_filled {
@@ -51,16 +52,17 @@ video {
   position: absolute;
   bottom: 0;
   left: 0;
-  transform: translateY(100%) translateY(-10px);
+  transform: translateY(100%) translateY(-5px);
   transition: all 0.3s;
 }
 
 .player:hover .bottom-panel {
-  transform: translateY(100%) translateY(-100px);
+  transform: translateY(100%) translateY(-65px);
   transition: all 0.3s;
 }
 
 .player-controls {
+  margin: 5px 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -69,13 +71,13 @@ video {
 
 .player-controls__button {
   width: 40px;
-  padding: 10px;
+  padding: 5px;
   cursor: pointer;
   display: block;
   border-radius: 5px;
   outline: none;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: center;
 }
 
