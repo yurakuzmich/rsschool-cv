@@ -3,6 +3,12 @@ const newGame = document.querySelector('.newgame');
 const highScoreBoard = document.querySelector('.highscore p');
 const scoreBoard = document.querySelector('.score p');
 const levelBoard = document.querySelector('.level p');
+const settingsBoard = document.querySelector('.settings-board');
+const settingsButton = document.querySelector('.settings img');
+const saveSettingsButton = document.getElementById('save-settings');
+const resetHighScoreButton = document.getElementById('reset-highscore');
+const setDuration = document.getElementById('game-duration');
+const setEnemy = document.getElementById('enemy_name');
 const game = document.querySelector('.game');
 const windows = document.querySelectorAll('.window');
 const enemyes = document.querySelectorAll('.enemy');
@@ -13,14 +19,21 @@ let gameDuration = 30000;
 let enemyKilled = false;
 let score = 0;
 let timeIsOwer = true;
+let gameIsStarted = false;
 let myTimeout;
 let level = 1;
+let enemyName;
 //Listeners
 newGame.addEventListener('click', startGame);
-game.addEventListener('click', (e) => {
-    // console.log(e.target);
+game.addEventListener('mousedown', (e) => {
     checkShoot(e);
 });
+settingsButton.addEventListener('click', (e) => {
+    settingsBoard.style.top = e.clientY + 'px';
+    settingsBoard.style.left = e.clientX - 200 + 'px';
+});
+saveSettingsButton.addEventListener('click', saveSettings);
+resetHighScoreButton.addEventListener('click', resetHighScore);
 
 //Functions
 function getRandomTime(min = 600, max = 1500) {
@@ -44,7 +57,7 @@ function showEnemy() {
     window.classList.add('up');
     setTimeout(() => {
         window.classList.remove('up');
-        if (timeIsOwer === false ) {
+        if (timeIsOwer === false) {
             showEnemy();
         }
     }, time);
@@ -63,15 +76,13 @@ function checkShoot(e) {
         scoreBoard.textContent = `Current score: ${score}`;
         showBlood(e);
         enemyKilled = true;
-        if(score % 5 === 0) {
+        if (score % 5 === 0) {
             levelUp();
-            console.log(level);
         }
     }
 }
 
 function showBlood(e) {
-    console.log('Nice shoot');
     blood.style.top = e.clientY - 35 + 'px';
     blood.style.left = e.clientX - 35 + 'px';
     setTimeout(() => {
@@ -81,17 +92,22 @@ function showBlood(e) {
 }
 
 function setHighScore() {
-    if(!localStorage.highscore) {
+    if (!localStorage.highscore) {
         localStorage.setItem('highscore', score);
-        console.log(highScore);
-    } else if(localStorage.highscore < score) {
+    } else if (localStorage.highscore < score) {
         localStorage.highscore = score;
-    } 
+    }
 }
 
 function showHighScore() {
     let msg = `Highscore: ${localStorage.highscore}`;
     highScoreBoard.textContent = msg;
+}
+
+function resetHighScore() {
+    localStorage.clear();
+    score = 0;
+    highScoreBoard.textContent = 'Highscore: 0';
 }
 
 function levelUp() {
@@ -100,23 +116,50 @@ function levelUp() {
     levelBoard.textContent = msg;
 }
 
+function saveSettings() {
+    gameDuration = setDuration.value * 1000;
+    enemyName = setEnemy.value;
+    saveEnemy(enemyName);
+    hideSettingsPanel();
+}
+
+function saveEnemy(name) {
+    enemyes.forEach((enemy) => {
+        enemy.style.background = `url('./images/${name}.png') top center no-repeat`;
+    });
+}
+
+function hideSettingsPanel() {
+    settingsBoard.style.top = '-300px';
+    settingsBoard.style.left = '-300px';
+}
+
 function startGame() {
-    clearTimeout(myTimeout);
-    hideAllEnemyes();
-    setHighScore();
-    showHighScore();
-    score = 0;
-    level = 1;
-    scoreBoard.textContent = `Current score: 0`;
-    levelBoard.textContent = `Level: 1`;
-    timeIsOwer = false;
-    showEnemy();
-    myTimeout = setTimeout(() => {
-        enemyKilled = true;
-        timeIsOwer = true;
-        scoreBoard.textContent = `Time is ower. You score is ${score}`;
+    if (gameIsStarted === false) {
+
+        gameIsStarted = true;
+        newGame.style.opacity = '0.1';
+        clearTimeout(myTimeout);
+        hideSettingsPanel();
+        hideAllEnemyes();
         setHighScore();
-    }, gameDuration)
+        showHighScore();
+        score = 0;
+        level = 1;
+        scoreBoard.textContent = `Current score: 0`;
+        levelBoard.textContent = `Level: 1`;
+        timeIsOwer = false;
+        showEnemy();
+        myTimeout = setTimeout(() => {
+            enemyKilled = true;
+            timeIsOwer = true;
+            scoreBoard.textContent = `Time is over. Your score is ${score}`;
+            setHighScore();
+            gameIsStarted = false;
+            newGame.style.opacity = '1';
+        }, gameDuration);
+    }
+
 }
 
 setHighScore();

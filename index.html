@@ -42,7 +42,25 @@
             </div>
             
         </div>
-        <footer></footer><div class="blood"></div>
+        <footer></footer>
+        <div class="blood"></div>
+        <div class="settings-board">
+            <h3>Settings</h3>
+            <label for="">
+                Game duration:
+                <input type="text" name="" id="game-duration" placeholder="enter seconds" value="10">
+            </label>
+            <label for="">
+                Enemy: <br>
+                <select name="" id="enemy_name">
+                    <option value="john" selected>John</option>
+                    <option value="phill">Phill</option>
+                    <option value="james">James</option>
+                </select>
+            </label>
+            <button class="save-settings save-settings_reset" id="reset-highscore">Reset Highscore</button>
+            <button class="save-settings" id="save-settings">Save</button>
+        </div>
     </div>
     <script src="code.js"></script>
 </body>
