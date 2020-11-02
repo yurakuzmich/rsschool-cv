@@ -2,17 +2,19 @@
 const newGame = document.querySelector('.newgame');
 const highScoreBoard = document.querySelector('.highscore p');
 const scoreBoard = document.querySelector('.score p');
+const levelBoard = document.querySelector('.level p');
 const game = document.querySelector('.game');
 const windows = document.querySelectorAll('.window');
 const enemyes = document.querySelectorAll('.enemy');
 const blood = document.querySelector('.blood');
 
 let lastWindow;
-let gameDuration = 10000;
+let gameDuration = 30000;
 let enemyKilled = false;
 let score = 0;
 let timeIsOwer = true;
 let myTimeout;
+let level = 1;
 //Listeners
 newGame.addEventListener('click', startGame);
 game.addEventListener('click', (e) => {
@@ -21,8 +23,8 @@ game.addEventListener('click', (e) => {
 });
 
 //Functions
-function getRandomTime(min = 300, max = 1000) {
-    return Math.round(Math.random() * (max - min) + min);
+function getRandomTime(min = 600, max = 1500) {
+    return Math.round(Math.random() * (max - min) + min) - 100 * level;
 }
 
 function getRandomWindow() {
@@ -61,6 +63,10 @@ function checkShoot(e) {
         scoreBoard.textContent = `Current score: ${score}`;
         showBlood(e);
         enemyKilled = true;
+        if(score % 5 === 0) {
+            levelUp();
+            console.log(level);
+        }
     }
 }
 
@@ -88,11 +94,21 @@ function showHighScore() {
     highScoreBoard.textContent = msg;
 }
 
+function levelUp() {
+    level++;
+    let msg = `Level: ${level}`;
+    levelBoard.textContent = msg;
+}
+
 function startGame() {
     clearTimeout(myTimeout);
     hideAllEnemyes();
+    setHighScore();
+    showHighScore();
     score = 0;
-    scoreBoard.textContent = `Current score: ${score}`;
+    level = 1;
+    scoreBoard.textContent = `Current score: 0`;
+    levelBoard.textContent = `Level: 1`;
     timeIsOwer = false;
     showEnemy();
     myTimeout = setTimeout(() => {
