@@ -117,7 +117,12 @@ function levelUp() {
 }
 
 function saveSettings() {
-    gameDuration = setDuration.value * 1000;
+    if(Number.isInteger(+setDuration.value) && setDuration.value <= 300) {
+      gameDuration = setDuration.value * 1000;  
+    } else {
+        alert(`Game duration value must be from 0 to 300`);
+    return;
+    }
     enemyName = setEnemy.value;
     saveEnemy(enemyName);
     hideSettingsPanel();
