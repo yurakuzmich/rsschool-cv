@@ -16,14 +16,14 @@ const Keyboard = {
         lang: 'en'
     },
 
-    init(additionalClass) {
+    init() {
        
         
         //Create main elements
         this.elements.main = document.createElement('div');
         this.elements.keysContainer = document.createElement('div');
         //Setup main elements
-        this.elements.main.classList.add('keyboard', additionalClass);
+        this.elements.main.classList.add('keyboard', 'keyboard_hidden');
         console.log(this.elements.main.classList);
         this.elements.keysContainer.classList.add('keyboard__keys');
         this.elements.keysContainer.appendChild(this._createKeys(this.properties.lang));
@@ -193,10 +193,5 @@ const Keyboard = {
 }
 
 window.addEventListener('DOMContentLoaded', function() {
-    Keyboard.init('keyboard_hidden');
-    Keyboard.open('dcode', function(currentValue){
-        console.log('Value changed! Here is: ' + currentValue);
-    }, function(currentValue) {
-        console.log('Keyboard closed! Finishing value is:' + currentValue);
-    });
+    Keyboard.init();
 });
