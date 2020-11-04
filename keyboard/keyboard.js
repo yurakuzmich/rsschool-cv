@@ -155,7 +155,8 @@ const Keyboard = {
         this.elements.keysContainer.classList.add('keyboard__keys');
         this.elements.keysContainer.appendChild(this._createKeys(this.properties.lang));
         this.elements.main.appendChild(this.elements.keysContainer);
-        this.elements.main.classList.remove("keyboard_hidden");
+        this.elements.keys = this.elements.keysContainer.querySelectorAll('.keyboard__key');
+        // this.elements.main.classList.remove("keyboard_hidden");
         // Keyboard.init();
         // console.log(this.elements.keysContainer);
     },
