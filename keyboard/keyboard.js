@@ -108,10 +108,7 @@ const Keyboard = {
                     keyElement.classList.add('keyboard__key_wide');
                     keyElement.innerHTML = createIconHTML("language");
                     keyElement.addEventListener('click', () => {
-
                         this._changeLang();
-
-                        // this.init();
                     });
                     break;
                 case "space":
