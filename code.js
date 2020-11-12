@@ -27,6 +27,7 @@ speedControll.addEventListener('mousemove', (e) => {
 function renderSpeedControl (e) {
     console.log(e);
     let percent = (e.offsetY / 700);
+    if(percent > 0.99) percent = 1;
     speedControllFilled.style.height = percent * 100 + '%';
     setVideoSpeed(minSpeed + (maxSpeed - minSpeed) * percent);
     showSpeedValue (percent);
