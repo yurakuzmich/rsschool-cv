@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style_game.css">
+    <title>raindrops by Yury Kuzmich</title>
+  </head>
+  <body>
+    <div class="my-container">
+      <div class="topmenu" id="topmenu">
+        <button class="topmenu__button" id="button_to-mainmenu">В меню</button>
+      </div>
+      <div class="wrapper mainmenu__wrapper">
+        <div class="mainmenu" id="view_mainmenu">
+          <button class="btn btn-success mainmenu__button" id="button_new-game" data-page="view_game">New Game</button>
+          <button class="btn btn-primary mainmenu__button" id="button_howtoplay" data-page="view_howtoplay">How To Play</button>
+          <button class="btn btn-warning mainmenu__button" id="button_highscore" data-page="view_highscore">Highscore</button>
+          <button class="btn btn-dark mainmenu__button" id="button_settings" data-page="view_settings">Settings</button>
+        </div>
+      </div>
+      <div class="wrapper" id="view_game">
+
+          <!-- Game start -->
+          <div class="container container_game" id="game-container">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-8 game-window">
+                <div class="game-window__raindrop"></div>
+                <div class="game-window__sea"></div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-4">
+                <div class="row">
+                  
+                </div>
+                <div class="row">
+                  <div class="col-12 scoreboard">
+                    <i class="material-icons md24 material-icons_gold">stars</i>
+                    Scores: 0
+                  </div>
+                </div>
+                <div class="row align-items-end keyboard__body">
+                  <div class="col-12">
+                    <div class="row">
+                      <input
+                        type="text"
+                        name=""
+                        id=""
+                        class="form-control form-control-lg keyboard__display"
+                        readonly
+                      />
+                    </div>
+                    <div class="row keyboard__row">
+                      <div class="col-9">
+                        <div class="row keyboard__row">
+                          <div class="col-4 keyboard__button keyboard__button-number">
+                            7
+                          </div>
+                          <div class="col-4 keyboard__button keyboard__button-number">
+                            8
+                          </div>
+                          <div class="col-4 keyboard__button keyboard__button-number">
+                            9
+                          </div>
+                        </div>
+                        <div class="row keyboard__row">
+                          <div class="col-4 keyboard__button keyboard__button-number">
+                            4
+                          </div>
+                          <div class="col-4 keyboard__button keyboard__button-number">
+                            5
+                          </div>
+                          <div class="col-4 keyboard__button keyboard__button-number">
+                            6
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-3 keyboard__button keyboard__button-clear">
+                        Clear
+                      </div>
+                    </div>
+                    <div class="row keyboard__row">
+                      <div class="col-9">
+                        <div class="row keyboard__row">
+                          <div class="col-4 keyboard__button keyboard__button-number">
+                            1
+                          </div>
+                          <div class="col-4 keyboard__button keyboard__button-number">
+                            2
+                          </div>
+                          <div class="col-4 keyboard__button keyboard__button-number">
+                            3
+                          </div>
+                        </div>
+                        <div class="row keyboard__row">
+                          <div class="col-8 keyboard__button keyboard__button-number">
+                            0
+                          </div>
+                          <div class="col-4 keyboard__button keyboard__button-delete">
+                            Delete
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-3 keyboard__button keyboard__button-enter">
+                        Enter
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="control-buttons">
+                        <a href="" class="control-buttons__item">
+                          <i class="material-icons md-48">play_circle_outline</i>
+                        </a>
+                        <a href="" class="control-buttons__item">
+                          <i class="material-icons md-24">replay</i>
+                        </a>
+                        <a href="" class="control-buttons__item">
+                          <i class="material-icons md-24">help_outline</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+          </div>
+      
+          <!-- Game End -->
+
+      </div>
+      <div class="wrapper" id="view_howtoplay">How To Play</div>
+      <div class="wrapper" id="view_highscore">Highscore</div>
+      <div class="wrapper" id="view_settings">Settings</div>
+    </div>
+
+    <script src="code.js"></script>
+  </body>
+</html>
