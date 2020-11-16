@@ -1,3 +1,23 @@
+.container {
+    height: 100vh;
+}
+
+.game {
+    height: 90vh;
+    position: relative;
+}
+
+
+.raindrop {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #1cb3ce;
+    opacity: 0.7;
+    border: 1px solid #1cb3ce;
+    position: absolute;
+}
+
 /* Keyboard */
 
 .keyboard__body {
@@ -15,7 +35,7 @@
 }
 
 .keyboard__button {
-    min-height: 50px;
+    min-height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,4 +50,29 @@
 
 .keyboard__button:hover {
     background: rgba(0,0,0,.6);
+}
+
+/* Keyboard */
+
+
+/* Main menu */
+
+.main-menu {
+    padding-top: 20px;
+}
+
+    .main-menu__item {
+        margin-top:10px;
+    }
+
+/* Main menu */
+
+@media screen and (max-width: 576px) {
+    .game {
+        height: 60vh;
+    }
+
+    .keyboard__row {
+        min-height: 40px;
+    }
 }

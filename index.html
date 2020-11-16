@@ -16,10 +16,10 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-12 col-sm-8">Игровое поле</div>
-        <div class="сol-12 col-sm-4">
+        <div class="col-12 col-sm-8 game">Игровое поле</div>
+        <div class="сol-12 col-sm-4 align-items-end">
           <div class="row align-items-end keyboard__body">
-            <div class="col-12">
+            <div class="col-12" id="keyboard">
               <div class="row">
                 <input
                   type="text"
@@ -32,65 +32,41 @@
               <div class="row keyboard__row">
                 <div class="col-9">
                   <div class="row keyboard__row">
-                    <div class="col-4 keyboard__button keyboard__button-number">
-                      7
-                    </div>
-                    <div class="col-4 keyboard__button keyboard__button-number">
-                      8
-                    </div>
-                    <div class="col-4 keyboard__button keyboard__button-number">
-                      9
-                    </div>
+                    <div class="col-4 keyboard__button keyboard__button-number">7</div>
+                    <div class="col-4 keyboard__button keyboard__button-number">8</div>
+                    <div class="col-4 keyboard__button keyboard__button-number">9</div>
                   </div>
                   <div class="row keyboard__row">
-                    <div class="col-4 keyboard__button keyboard__button-number">
-                      4
-                    </div>
-                    <div class="col-4 keyboard__button keyboard__button-number">
-                      5
-                    </div>
-                    <div class="col-4 keyboard__button keyboard__button-number">
-                      6
-                    </div>
+                    <div class="col-4 keyboard__button keyboard__button-number">4</div>
+                    <div class="col-4 keyboard__button keyboard__button-number">5</div>
+                    <div class="col-4 keyboard__button keyboard__button-number">6</div>
                   </div>
                 </div>
-                <div class="col-3 keyboard__button keyboard__button-clear">
-                  Clear
-                </div>
+                <div class="col-3 keyboard__button keyboard__button-clear">Clear</div>
               </div>
               <div class="row keyboard__row">
                 <div class="col-9">
                   <div class="row keyboard__row">
-                    <div class="col-4 keyboard__button keyboard__button-number">
-                      1
-                    </div>
-                    <div class="col-4 keyboard__button keyboard__button-number">
-                      2
-                    </div>
-                    <div class="col-4 keyboard__button keyboard__button-number">
-                      3
-                    </div>
+                    <div class="col-4 keyboard__button keyboard__button-number">1</div>
+                    <div class="col-4 keyboard__button keyboard__button-number">2</div>
+                    <div class="col-4 keyboard__button keyboard__button-number">3</div>
                   </div>
                   <div class="row keyboard__row">
-                    <div class="col-8 keyboard__button keyboard__button-number">
-                      0
-                    </div>
-                    <div class="col-4 keyboard__button keyboard__button-delete">
-                      Delete
-                    </div>
+                    <div class="col-8 keyboard__button keyboard__button-number">0</div>
+                    <div class="col-4 keyboard__button keyboard__button-delete">Del</div>
                   </div>
                 </div>
-                <div class="col-3 keyboard__button keyboard__button-enter">
-                  Enter
-                </div>
+                <div class="col-3 keyboard__button keyboard__button-enter">Enter</div>
               </div>
             </div>
           </div>
           <div class="row">
-            <button class="btn btn-success">Новая игра</button>
-            <button class="btn btn-success">Как играть</button>
-            <button class="btn btn-success">Настройки</button>
-            <button class="btn btn-success">Рекорды</button>
+            <div class="col-12 main-menu">
+              <button class="btn btn-success btn-block main-menu__item">Новая игра</button>
+              <button class="btn btn-primary btn-block main-menu__item">Как играть</button>
+              <button class="btn btn-secondary btn-block main-menu__item">Настройки</button>
+              <button class="btn btn-info btn-block main-menu__item">Рекорды</button>
+            </div>
           </div>
         </div>
       </div>
