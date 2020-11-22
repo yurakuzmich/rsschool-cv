@@ -1,13 +1,20 @@
 
-
+//Gameplay Elements
 const keyboard = document.getElementById('keyboard');
 const display = document.querySelector('.keyboard__display');
 const settingsPanel = document.querySelector('.settings-panel');
+//Counters
+const counterScores = document.getElementById('scores-counter');
+const counterMistakes = document.getElementById('mistakes-counter');
+const counterLevel = document.getElementById('level-counter');
+
+//Buttons
 const buttonNewGame = document.getElementById('new-game-button');
 const buttonSettings = document.getElementById('settings-button');
 const buttonSaveSettings = document.getElementById('save-settings-button');
 const buttonCloseSettings = document.querySelector('.settings-panel__close');
 const buttonTest = document.getElementById('test-button');
+
 
 
 let game;
@@ -65,6 +72,7 @@ function keyBoardKeyPress(e) {
         display.value = '0';
     } else if (e.keyCode === 13) {
         let answer = display.value;
+        console.log(game);
         rainDrops.forEach((raindrop, index) => {
             if (raindrop.checkAnswer(answer)) {
                 rainDrops.splice(index, 1);
@@ -81,6 +89,12 @@ function startNewGame() {
 
 }
 
+function updateScoreboard(scores, mistakes, level) {
+    counterScores.innerHTML = scores;
+    counterMistakes.innerHTML = mistakes;
+    counterLevel.innerHTML = level;
+}
+
 function toggleSettingsPanel() {
     console.log(settingsPanel);
     settingsPanel.style.display === 'flex' ? settingsPanel.style.display = 'none' : settingsPanel.style.display = 'flex';
@@ -89,7 +103,7 @@ function toggleSettingsPanel() {
 function newRaindrop() {
     let rainDrop = new Raindrop();
     rainDrop.addToScreen();
-    setInterval(() => { rainDrop.move(10) }, 100);
+    setInterval(() => { rainDrop.move(5) }, 100);
     rainDrops.push(rainDrop);
     console.log(rainDrops);
 }
@@ -122,14 +136,11 @@ class Raindrop {
         };
         this.raindropBody = document.createElement("div");
         this.parentNode = document.querySelector('.game');
-        // console.log(this.parentNode.offsetWidth);
-        // console.log(this.parentNode.offsetHeight);
         this._setProperties();
         this._generateTask();
     }
 
     _setProperties() {
-        // let gameWindow = document.querySelector('.game');
         this.properties.top = 50;
         this.properties.left = Math.ceil((this.parentNode.offsetWidth - 50) * Math.random());
     }
@@ -145,20 +156,15 @@ class Raindrop {
     toStartPosition() {
         this.properties.left = Math.ceil((this.parentNode.offsetWidth - 50) * Math.random());
         this.raindropBody.style.top = 0;
-        // this.raindropBody.style.left = this.properties.left + 'px';
     }
 
     move(speed) {
-        // console.log(this.raindropBody.style.top);
         let coord = +this.raindropBody.style.top.slice(0, -2);
-        // console.log(coord);
         if (coord < this.parentNode.offsetHeight - 100) {
             coord += speed;
         } else {
             coord = 0;
             this.toStartPosition();
-            // coord = 0;
-            // this.properties.left = Math.ceil((this.parentNode.offsetWidth - 50) * Math.random());
         };
 
         this.raindropBody.style.top = +coord + 'px';
@@ -221,13 +227,18 @@ class Raindrop {
     }
 
     checkAnswer(answer) {
-        if (+answer === +this.task.answer) {
+        if (answer === this.task.answer) {
             console.log('CORRECT ANSWER');
             display.value = '0';
             this.raindropBody.remove();
+            // game.currentScore++;
+            // updateScoreboard(game.currentScore, game.currentMistakes, 0);
             return true;
+        } else {
+            // game.currentMistakes++;
+            // updateScoreboard(game.currentScore, game.currentMistakes, 0);
+            return false;
         }
-        return false;
     }
 
     delete() {
