@@ -32,40 +32,100 @@
               <div class="row keyboard__row">
                 <div class="col-9">
                   <div class="row keyboard__row">
-                    <div class="col-4 keyboard__button keyboard__button-number">7</div>
-                    <div class="col-4 keyboard__button keyboard__button-number">8</div>
-                    <div class="col-4 keyboard__button keyboard__button-number">9</div>
+                    <div class="col-4 keyboard__button keyboard__button-number">
+                      7
+                    </div>
+                    <div class="col-4 keyboard__button keyboard__button-number">
+                      8
+                    </div>
+                    <div class="col-4 keyboard__button keyboard__button-number">
+                      9
+                    </div>
                   </div>
                   <div class="row keyboard__row">
-                    <div class="col-4 keyboard__button keyboard__button-number">4</div>
-                    <div class="col-4 keyboard__button keyboard__button-number">5</div>
-                    <div class="col-4 keyboard__button keyboard__button-number">6</div>
+                    <div class="col-4 keyboard__button keyboard__button-number">
+                      4
+                    </div>
+                    <div class="col-4 keyboard__button keyboard__button-number">
+                      5
+                    </div>
+                    <div class="col-4 keyboard__button keyboard__button-number">
+                      6
+                    </div>
                   </div>
                 </div>
-                <div class="col-3 keyboard__button keyboard__button-clear">Clear</div>
+                <div class="col-3 keyboard__button keyboard__button-clear">
+                  Clear
+                </div>
               </div>
               <div class="row keyboard__row">
                 <div class="col-9">
                   <div class="row keyboard__row">
-                    <div class="col-4 keyboard__button keyboard__button-number">1</div>
-                    <div class="col-4 keyboard__button keyboard__button-number">2</div>
-                    <div class="col-4 keyboard__button keyboard__button-number">3</div>
+                    <div class="col-4 keyboard__button keyboard__button-number">
+                      1
+                    </div>
+                    <div class="col-4 keyboard__button keyboard__button-number">
+                      2
+                    </div>
+                    <div class="col-4 keyboard__button keyboard__button-number">
+                      3
+                    </div>
                   </div>
                   <div class="row keyboard__row">
-                    <div class="col-8 keyboard__button keyboard__button-number">0</div>
-                    <div class="col-4 keyboard__button keyboard__button-delete">Del</div>
+                    <div class="col-8 keyboard__button keyboard__button-number">
+                      0
+                    </div>
+                    <div class="col-4 keyboard__button keyboard__button-delete">
+                      Del
+                    </div>
                   </div>
                 </div>
-                <div class="col-3 keyboard__button keyboard__button-enter">Enter</div>
+                <div class="col-3 keyboard__button keyboard__button-enter">
+                  Enter
+                </div>
               </div>
+            </div>
+          </div>
+          <div class="row" id="scoreboard">
+            <div class="col-12 scoreboard">
+              <p>Набрано очков: <span>0</span></p>
+              <p>Ошибок: 0</p>
             </div>
           </div>
           <div class="row">
             <div class="col-12 main-menu">
-              <button class="btn btn-success btn-block main-menu__item">Новая игра</button>
-              <button class="btn btn-primary btn-block main-menu__item">Как играть</button>
-              <button class="btn btn-secondary btn-block main-menu__item">Настройки</button>
-              <button class="btn btn-info btn-block main-menu__item">Рекорды</button>
+              <button
+                class="btn btn-success btn-block main-menu__item"
+                id="new-game-button"
+              >
+                Новая игра
+              </button>
+              <button class="btn btn-primary btn-block main-menu__item">
+                Как играть
+              </button>
+              <div class="settings-panel">
+                <div class="settings-panel__close">X</div>
+                <h2>Настройки</h2>
+                <div>Форма с настройками</div>
+                <div>
+                  <button
+                    class="btn btn-success btn-block main-menu__item"
+                    id="save-settings-button">Сохранить настройки
+                  </button>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-block main-menu__item" id="settings-button">
+                Настройки
+              </button>
+              <button class="btn btn-info btn-block main-menu__item">
+                Рекорды
+              </button>
+              <button
+                class="btn btn-danger btn-block main-menu__item"
+                id="test-button"
+              >
+                Тест-кнопка
+              </button>
             </div>
           </div>
         </div>

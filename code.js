@@ -1,24 +1,51 @@
 const keyboard = document.getElementById('keyboard');
+const settingsPanel = document.querySelector('.settings-panel');
+const buttonNewGame = document.getElementById('newGameButton');
+const buttonSettings = document.getElementById('settings-button');
+const buttonSaveSettings = document.getElementById('save-settings-button');
+const buttonCloseSettings = document.querySelector('.settings-panel__close');
+const buttonTest = document.getElementById('test-button');
 
 
+let game;
+let raindropMove = false;
+//Event Listeners
 keyboard.addEventListener('click', (e) => {
     keyboardClick(e);
 });
+
+buttonSettings.addEventListener('click', toggleSettingsPanel);
+buttonSaveSettings.addEventListener('click', toggleSettingsPanel);
+buttonCloseSettings.addEventListener('click', toggleSettingsPanel);
+buttonTest.addEventListener('click', () => {});
 
 //functions
 function keyboardClick(e) {
     console.log(e.target.textContent);
 }
 
+function startNewGame() {
+    game = new Game();
+}
+
+function toggleSettingsPanel() {
+    console.log(settingsPanel);
+    settingsPanel.style.display === 'flex' ? settingsPanel.style.display = 'none' : settingsPanel.style.display = 'flex';
+}
+
 
 //Classes
 class Game {
     constructor() {
-        this.isStarted = false;
         this.currentScore = 0;
+        this.currentMistakes = 0;
         this.level = 1;
         this.gameMode = 'all';
     }
+
+    endGame() {}
+
+    setHighScore() {}
 }
 
 class Raindrop {
@@ -63,8 +90,12 @@ class Raindrop {
     }
 }
 
-let raindrop = new Raindrop();
-raindrop.addToScreen();
-setInterval(() => {
-    raindrop.move(10);
-}, 100);
+// let raindrop = new Raindrop();
+// raindrop.addToScreen();
+
+
+// function raindropMove() {
+//     raindropMove = setInterval(() => {
+//     raindrop.move(10);
+// }, 100);
+// }
