@@ -43,6 +43,7 @@ buttonStop.addEventListener('click', endGame);
 //Mobile layout
 buttonNewGameMobile.addEventListener('click', startNewGame);
 buttonSettingsMobile.addEventListener('click', toggleSettingsPanel);
+buttonStopMobile.addEventListener('click', endGame);
 
 
 //functions
@@ -67,6 +68,7 @@ function keyboardClick(e) {
 }
 
 function keyBoardKeyPress(e) {
+    e.preventDefault();
     if (e.keyCode >= 96 && e.keyCode <= 105) {
         if (display.value === '0' || enteringNewAnswer === true) {
             display.value = e.key;
@@ -109,6 +111,9 @@ function checkAnswer() {
         if (+raindrop.dataset.answer === answer) {
             raindrop.remove();
             game.currentScore++;
+            if(game.currentScore % 21 === 0) {
+                game.level++;
+            }
             updateScoreboard(game.currentScore, game.level);
         }
         console.log(raindrop.dataset.answer);
@@ -127,7 +132,7 @@ function toggleSettingsPanel() {
 function newRaindrop() {
     let rainDrop = new Raindrop();
 
-    rainDrop.interval = setInterval(() => { rainDrop.move(game.level) }, 100);
+    rainDrop.interval = setInterval(() => { rainDrop.move(3 * game.level / 10) }, 10);
     rainDrop.addToScreen();
 
 }
@@ -141,7 +146,7 @@ class Game {
     constructor() {
         this.currentScore = 0;
         this.failed = 0;
-        this.level = 3;
+        this.level = 1;
         this.gameMode = 'all';
     }
 
