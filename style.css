@@ -23,6 +23,10 @@
     font-weight: bold;
 }
 
+.bonus {
+    background: #d7ee0bcb;
+}
+
 /* Keyboard */
 
 .keyboard__body {

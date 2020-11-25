@@ -114,7 +114,7 @@ export class Raindrop {
         } else {
             // game.currentMistakes++;
             // updateScoreboard(game.currentScore, game.currentMistakes, 0);
-            console.log('Something wrong');
+            console.log('WRONG ANSWER');
             return false;
         }
     }
