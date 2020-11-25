@@ -18,7 +18,6 @@ const buttonStop = document.getElementById('test-button');
 
 
 let game;
-let rainDrops = [];
 let raindropMove = false;
 let enteringNewAnswer = false;
 let intervalForRaindrops;
@@ -51,14 +50,7 @@ function keyboardClick(e) {
         let val = display.value.slice(0, -1);
         val === '' ? display.value = '0' : display.value = val;
     } else if (clicked.textContent === 'Enter') {
-        let answer = +display.value;
-        rainDrops.forEach((raindrop, index) => {
-            if (raindrop.checkAnswer(answer)) {
-                rainDrops.splice(index, 1);
-                game.currentScore++;
-                updateScoreboard(game.currentScore, game.level);
-            }
-        });
+        checkAnswer();
         enteringNewAnswer = true;
     }
 }
@@ -77,15 +69,7 @@ function keyBoardKeyPress(e) {
     } else if (e.keyCode === 46) {
         display.value = '0';
     } else if (e.keyCode === 13) {
-        let answer = +display.value;
-
-        rainDrops.forEach((raindrop, index) => {
-            if (raindrop.checkAnswer(answer)) {
-                rainDrops.splice(index, 1);
-                game.currentScore++;
-                updateScoreboard(game.currentScore,  game.level);
-            }
-        });
+        checkAnswer();
         enteringNewAnswer = true;
     }
 }
@@ -93,21 +77,31 @@ function keyBoardKeyPress(e) {
 function startNewGame() {
     endGame();
     game = new Game();
-    console.log(game.currentScore, game.level);
     updateScoreboard(game.currentScore, game.level);
     intervalForRaindrops = setInterval(() => {
         newRaindrop();
-    }, 4000);
+    }, 2000);
 
 }
 
 function endGame() {
-    rainDrops.forEach(raindrop => {
-        raindrop.raindropBody.remove();
-    });
-    rainDrops = [];
     clearInterval(intervalForRaindrops);
-    console.log(rainDrops);
+    let allRainDrops = document.querySelectorAll('.raindrop');
+    allRainDrops.forEach(raindrop => raindrop.remove());
+}
+
+function checkAnswer() {
+    let answer = +display.value;
+    let allRainDrops = document.querySelectorAll('.raindrop');
+
+    allRainDrops.forEach(raindrop => {
+        if (+raindrop.dataset.answer === answer) {
+            raindrop.remove();
+            game.currentScore++;
+            updateScoreboard(game.currentScore, game.level);
+        }
+        console.log(raindrop.dataset.answer);
+    });
 }
 
 function updateScoreboard(scores, level) {
@@ -121,23 +115,22 @@ function toggleSettingsPanel() {
 
 function newRaindrop() {
     let rainDrop = new Raindrop();
+
+    rainDrop.interval = setInterval(() => { rainDrop.move(game.level) }, 100);
     rainDrop.addToScreen();
-    setInterval(() => { rainDrop.move(game.level) }, 100);
-    rainDrops.push(rainDrop);
+
 }
 
 function applyBonus() {
-    rainDrops.forEach(raindrop => {
-        raindrop.raindropBody.remove();
-    });
-    rainDrops = [];
+
+    console.log("BONUS");
 }
 
 class Game {
     constructor() {
         this.currentScore = 0;
         this.failed = 0;
-        this.level = 1;
+        this.level = 3;
         this.gameMode = 'all';
     }
 
@@ -151,7 +144,8 @@ class Raindrop {
         this.properties = {
             top: 0,
             left: 0,
-            isBonus: false
+            isBonus: false,
+            index: 0
         };
         this.task = {
             firstOperand: 0,
@@ -173,12 +167,13 @@ class Raindrop {
 
     addToScreen() {
         this.raindropBody.classList.add('raindrop');
+        this.raindropBody.dataset.answer = this.task.answer;
         if (this.properties.isBonus === true) {
             this.raindropBody.classList.add('bonus');
         }
         this.raindropBody.style.top = this.properties.top + 'px';
         this.raindropBody.style.left = this.properties.left + 'px';
-        this.raindropBody.innerHTML = `${this.task.firstOperand} ${this.task.operation} ${this.task.secondOperand}`;
+        this.raindropBody.innerHTML = `${this.task.firstOperand} ${this.task.operation} ${this.task.secondOperand}<br>${this.task.answer}`;
         this.parentNode.appendChild(this.raindropBody);
     }
 
@@ -193,7 +188,9 @@ class Raindrop {
             coord += speed;
         } else {
             coord = 0;
-            this.toStartPosition();
+            // this.toStartPosition();
+            clearInterval(this.interval);
+            this.delete();
         };
 
         this.raindropBody.style.top = +coord + 'px';
@@ -259,14 +256,22 @@ class Raindrop {
         let randValue = Math.round(10 * Math.random());
         if (randValue > 3 && randValue < 6) {
             this.properties.isBonus = true;
+        } else {
+            this.properties.isBonus = false;
         }
     }
 
     checkAnswer(answer) {
-        if (answer === this.task.answer) {
-            console.log('CORRECT ANSWER');
+        if (answer === this.task.answer && this.properties.isBonus === true) {
+            console.log('CORRECT BONUS ANSWER');
             display.value = '0';
-            this.raindropBody.remove();
+            // this.raindropBody.remove();
+            applyBonus();
+            return true;
+        } else if (answer === this.task.answer) {
+            console.log('CORRECT  ANSWER');
+            display.value = '0';
+            // this.raindropBody.remove();
             return true;
         } else {
             console.log('Something wrong');
@@ -275,7 +280,8 @@ class Raindrop {
     }
 
     delete() {
-
+        console.log(`raindrop ${this.task.answer} deleted`);
+        this.raindropBody.remove()
     }
 }
 
