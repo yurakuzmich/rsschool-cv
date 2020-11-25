@@ -14,9 +14,49 @@
     <title>Document</title>
   </head>
   <body>
+
+    <div class="scoreboard">
+        <p>Набрано очков: <span id="scores-counter">0</span></p>
+        <p>Уровень: <span id="level-counter">0</span></p>
+    </div>
+
+    <div class="main-menu-mobile">
+      <button
+        class="btn btn-success" id="new-game-button-mobile"
+      >
+        Новая игра
+      </button>
+      <button class="btn btn-primary">
+        Как играть
+      </button>
+      <!-- <div class="settings-panel">
+        <div class="settings-panel__close">X</div>
+        <h2>Настройки</h2>
+        <div>Форма с настройками</div>
+        <div>
+          <button
+            class="btn btn-success"
+            id="save-settings-button-mobile">Сохранить настройки
+          </button>
+        </div>
+      </div> -->
+      <button class="btn btn-secondary" id="settings-button-mobile">
+        Настройки
+      </button>
+      <button class="btn btn-info">
+        Рекорды
+      </button>
+      <button
+        class="btn btn-danger"
+        id="stop-button-mobile"
+      >
+        Остановить игру
+      </button>
+    </div>
+
     <div class="container">
       <div class="row">
-        <div class="col-12 col-sm-8 game">Игровое поле</div>
+        <div class="col-12 col-sm-8 game"></div>
         <div class="сol-12 col-sm-4 align-items-end">
           <div class="row align-items-end keyboard__body">
             <div class="col-12" id="keyboard">
@@ -60,12 +100,7 @@
               </div>
             </div>
           </div>
-          <div class="row" id="scoreboard">
-            <div class="col-12 scoreboard">
-              <p>Набрано очков: <span id="scores-counter">0</span></p>
-              <p>Уровень: <span id="level-counter">0</span></p>
-            </div>
-          </div>
+          
           <div class="row">
             <div class="col-12 main-menu">
               <button
@@ -81,6 +116,11 @@
                 <div class="settings-panel__close">X</div>
                 <h2>Настройки</h2>
                 <div>Форма с настройками</div>
+                <div>Форма с настройками</div>
+                <div>Форма с настройками</div>
+                <div>Форма с настройками</div>
+                <div>Форма с настройками</div>
+
                 <div>
                   <button
                     class="btn btn-success btn-block main-menu__item"
@@ -96,7 +136,7 @@
               </button>
               <button
                 class="btn btn-danger btn-block main-menu__item"
-                id="test-button"
+                id="stop-button"
               >
                 Остановить игру
               </button>

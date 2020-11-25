@@ -13,7 +13,13 @@ const buttonNewGame = document.getElementById('new-game-button');
 const buttonSettings = document.getElementById('settings-button');
 const buttonSaveSettings = document.getElementById('save-settings-button');
 const buttonCloseSettings = document.querySelector('.settings-panel__close');
-const buttonStop = document.getElementById('test-button');
+const buttonStop = document.getElementById('stop-button');
+
+//Buttons for mobile layout
+const buttonNewGameMobile = document.getElementById('new-game-button-mobile');
+const buttonSettingsMobile = document.getElementById('settings-button-mobile');
+const buttonCloseSettingsMobile = document.querySelector('.settings-panel__close');
+const buttonStopMobile = document.getElementById('stop-button-mobile');
 
 
 
@@ -28,11 +34,16 @@ keyboard.addEventListener('click', (e) => {
     keyboardClick(e);
 });
 
+//Desctop layout
 buttonNewGame.addEventListener('click', startNewGame);
 buttonSettings.addEventListener('click', toggleSettingsPanel);
 buttonSaveSettings.addEventListener('click', toggleSettingsPanel);
 buttonCloseSettings.addEventListener('click', toggleSettingsPanel);
 buttonStop.addEventListener('click', endGame);
+//Mobile layout
+buttonNewGameMobile.addEventListener('click', startNewGame);
+buttonSettingsMobile.addEventListener('click', toggleSettingsPanel);
+
 
 //functions
 function keyboardClick(e) {
