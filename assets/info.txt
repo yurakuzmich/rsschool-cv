@@ -1,0 +1,7 @@
+Flickr
+MyWeatherApp
+Key:
+e0f71b89bff69f3b4461309237c6b535
+
+Secret:
+c80033b473500d6a
