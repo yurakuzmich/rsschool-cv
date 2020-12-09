@@ -1,6 +1,8 @@
 // import {Raindrop} from './raindrop.js';
 
 //Gameplay Elements
+const myCanvasParent = document.querySelector('.game');
+const myCanvas = document.getElementById('game-canvas');
 const keyboard = document.getElementById('keyboard');
 const display = document.querySelector('.keyboard__display');
 const settingsPanel = document.querySelector('.settings-panel');
@@ -22,11 +24,8 @@ const buttonCloseSettingsMobile = document.querySelector('.settings-panel__close
 const buttonStopMobile = document.getElementById('stop-button-mobile');
 
 
+let enteringNewAnswer = true;
 
-let game;
-let raindropMove = false;
-let enteringNewAnswer = false;
-let intervalForRaindrops;
 display.value = 0;
 //Event Listeners
 window.addEventListener('keydown', keyBoardKeyPress);
@@ -35,15 +34,15 @@ keyboard.addEventListener('click', (e) => {
 });
 
 //Desctop layout
-buttonNewGame.addEventListener('click', startNewGame);
+// buttonNewGame.addEventListener('click', startNewGame);
 buttonSettings.addEventListener('click', toggleSettingsPanel);
 buttonSaveSettings.addEventListener('click', toggleSettingsPanel);
 buttonCloseSettings.addEventListener('click', toggleSettingsPanel);
-buttonStop.addEventListener('click', endGame);
+// buttonStop.addEventListener('click', endGame);
 //Mobile layout
-buttonNewGameMobile.addEventListener('click', startNewGame);
+// buttonNewGameMobile.addEventListener('click', startNewGame);
 buttonSettingsMobile.addEventListener('click', toggleSettingsPanel);
-buttonStopMobile.addEventListener('click', endGame);
+// buttonStopMobile.addEventListener('click', endGame);
 
 
 //functions
@@ -62,7 +61,6 @@ function keyboardClick(e) {
         let val = display.value.slice(0, -1);
         val === '' ? display.value = '0' : display.value = val;
     } else if (clicked.textContent === 'Enter') {
-        checkAnswer();
         enteringNewAnswer = true;
     }
 }
@@ -82,225 +80,56 @@ function keyBoardKeyPress(e) {
     } else if (e.keyCode === 46) {
         display.value = '0';
     } else if (e.keyCode === 13) {
-        checkAnswer();
         enteringNewAnswer = true;
     }
-}
-
-function startNewGame() {
-    endGame();
-    game = new Game();
-    updateScoreboard(game.currentScore, game.level);
-    intervalForRaindrops = setInterval(() => {
-        newRaindrop();
-    }, 2000);
-
-}
-
-function endGame() {
-    clearInterval(intervalForRaindrops);
-    let allRainDrops = document.querySelectorAll('.raindrop');
-    allRainDrops.forEach(raindrop => raindrop.remove());
-}
-
-function checkAnswer() {
-    let answer = +display.value;
-    let allRainDrops = document.querySelectorAll('.raindrop');
-
-    allRainDrops.forEach(raindrop => {
-        if (+raindrop.dataset.answer === answer) {
-            raindrop.remove();
-            game.currentScore++;
-            if(game.currentScore % 21 === 0) {
-                game.level++;
-            }
-            updateScoreboard(game.currentScore, game.level);
-        }
-        console.log(raindrop.dataset.answer);
-    });
-}
-
-function updateScoreboard(scores, level) {
-    counterScores.innerHTML = scores;
-    counterLevel.innerHTML = level;
 }
 
 function toggleSettingsPanel() {
     settingsPanel.style.display === 'flex' ? settingsPanel.style.display = 'none' : settingsPanel.style.display = 'flex';
 }
 
-function newRaindrop() {
-    let rainDrop = new Raindrop();
-
-    rainDrop.interval = setInterval(() => { rainDrop.move(3 * game.level / 10) }, 10);
-    rainDrop.addToScreen();
-
-}
-
-function applyBonus() {
-
-    console.log("BONUS");
-}
-
-class Game {
-    constructor() {
-        this.currentScore = 0;
-        this.failed = 0;
-        this.level = 1;
-        this.gameMode = 'all';
+class GameWindow {
+    constructor(parentElement, canvas) {
+        this.parent = parentElement;
+        this.width = parentElement.offsetWidth - 25;
+        this.height = parentElement.offsetHeight - 25;
+        canvas.width = this.width;
+        canvas.height = this.height;
+        this.ctx = canvas.getContext('2d');
+        this.clearCanvas();
+        this.renderBackground();
+        this.renderWawe();
+        console.log(`Game created with width of ${this.width} and height of ${this.height}\n ctx is ${this.ctx}`);
     }
 
-    endGame() { }
-
-    setHighScore() { }
-}
-
-class Raindrop {
-    constructor() {
-        this.properties = {
-            top: 0,
-            left: 0,
-            isBonus: false,
-            index: 0
-        };
-        this.task = {
-            firstOperand: 0,
-            secondOperand: 0,
-            operation: '+',
-            answer: 0,
-        };
-        this.raindropBody = document.createElement("div");
-        this.parentNode = document.querySelector('.game');
-        this.generateBonus();
-        this._setProperties();
-        this._generateTask();
+    clearCanvas() {
+        this.ctx.clearRect(0, 0, this.width, this.height);
     }
 
-    _setProperties() {
-        this.properties.top = 50;
-        this.properties.left = Math.ceil((this.parentNode.offsetWidth - 50) * Math.random());
-    }
-
-    addToScreen() {
-        this.raindropBody.classList.add('raindrop');
-        this.raindropBody.dataset.answer = this.task.answer;
-        if (this.properties.isBonus === true) {
-            this.raindropBody.classList.add('bonus');
-        }
-        this.raindropBody.style.top = this.properties.top + 'px';
-        this.raindropBody.style.left = this.properties.left + 'px';
-        this.raindropBody.innerHTML = `${this.task.firstOperand} ${this.task.operation} ${this.task.secondOperand}<br>${this.task.answer}`;
-        this.parentNode.appendChild(this.raindropBody);
-    }
-
-    toStartPosition() {
-        this.properties.left = Math.ceil((this.parentNode.offsetWidth - 50) * Math.random());
-        this.raindropBody.style.top = 0;
-    }
-
-    move(speed) {
-        let coord = +this.raindropBody.style.top.slice(0, -2);
-        if (coord < this.parentNode.offsetHeight - 100) {
-            coord += speed;
-        } else {
-            coord = 0;
-            // this.toStartPosition();
-            clearInterval(this.interval);
-            this.delete();
-        };
-
-        this.raindropBody.style.top = +coord + 'px';
-        this.raindropBody.style.left = this.properties.left + 'px';
-    }
-
-    _generateTask() {
-        this.task.firstOperand = Math.round(Math.random() * 100);
-        this.task.secondOperand = Math.round(Math.random() * 100);
-
-        let opRandom = 20 * Math.random();
-        switch (true) {
-            case (opRandom <= 5):
-                this.task.operation = '+';
-                break;
-            case (opRandom > 5 && opRandom <= 10):
-                this.task.operation = '-';
-                break;
-            case (opRandom > 10 && opRandom <= 15):
-                this.task.operation = '*';
-                break;
-            case (opRandom > 15 && opRandom <= 20):
-                this.task.operation = '/';
-                break;
-        }
-
-        switch (this.task.operation) {
-            case ('+'):
-                this.task.firstOperand = Math.round(Math.random() * 100);
-                this.task.secondOperand = Math.round(Math.random() * 100);
-                this.task.answer = this.task.firstOperand + this.task.secondOperand;
-                break;
-            case ('-'):
-                this.task.firstOperand = Math.round(Math.random() * 100);
-                this.task.secondOperand = Math.round(Math.random() * 100);
-                if (this.task.firstOperand > this.task.secondOperand) {
-                    this.task.answer = this.task.firstOperand - this.task.secondOperand;
-                } else {
-                    let num = this.task.firstOperand;
-                    this.task.firstOperand = this.task.secondOperand;
-                    this.task.secondOperand = num;
-                    this.task.answer = this.task.firstOperand - this.task.secondOperand;
-                }
-                break;
-            case ('*'):
-                this.task.firstOperand = Math.round(Math.random() * 10);
-                this.task.secondOperand = Math.round(Math.random() * 10);
-                this.task.answer = this.task.firstOperand * this.task.secondOperand;
-                break;
-            case ('/'):
-                this.task.firstOperand = Math.round(Math.random() * 10);
-                this.task.secondOperand = Math.round(Math.random() * 10);
-                if (this.task.secondOperand === 0) {
-                    this.task.secondOperand = 1;
-                }
-                let preRes = this.task.firstOperand * this.task.secondOperand;
-                this.task.firstOperand = preRes;
-                this.task.answer = preRes / this.task.secondOperand;
+    renderBackground(img = 0) {
+        if (img === 0) {
+            let bgGradient = this.ctx.createLinearGradient(0, 0, 0, this.height);
+            bgGradient.addColorStop(0, "#88DDFF");
+            bgGradient.addColorStop(1, "white");
+            this.ctx.fillStyle = bgGradient;
+            this.ctx.fillRect(0, 0, this.width, this.height);
         }
     }
 
-    generateBonus() {
-        let randValue = Math.round(10 * Math.random());
-        if (randValue > 3 && randValue < 6) {
-            this.properties.isBonus = true;
-        } else {
-            this.properties.isBonus = false;
-        }
-    }
-
-    checkAnswer(answer) {
-        if (answer === this.task.answer && this.properties.isBonus === true) {
-            console.log('CORRECT BONUS ANSWER');
-            display.value = '0';
-            // this.raindropBody.remove();
-            applyBonus();
-            return true;
-        } else if (answer === this.task.answer) {
-            console.log('CORRECT  ANSWER');
-            display.value = '0';
-            // this.raindropBody.remove();
-            return true;
-        } else {
-            console.log('Something wrong');
-            return false;
-        }
-    }
-
-    delete() {
-        console.log(`raindrop ${this.task.answer} deleted`);
-        this.raindropBody.remove()
+    renderWawe() {
+        this.ctx.strokeStyle = "blue";
+        this.ctx.fillStyle = "blue";
+        this.ctx.beginPath();
+        this.ctx.moveTo(0, 0.9 * this.height);
+        this.ctx.bezierCurveTo(0.4 *this.width, 0.7 * this.height, 0.8 *this.width, this.height, this.width, 0.9 * this.height);
+        this.ctx.lineTo(this.width, this.height);
+        this.ctx.lineTo(0, this.height);
+        this.ctx.closePath();
+        this.ctx.stroke();
+        this.ctx.fill();
     }
 }
 
-
+let gameWindow = new GameWindow(myCanvasParent, myCanvas);
 
 
