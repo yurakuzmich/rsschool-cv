@@ -149,9 +149,6 @@ class GameWindow {
         canvas.height = this.height;
         this.ctx = canvas.getContext('2d');
 
-        //raindrops
-
-
         //wave animation properties
         this.waves = [
             { x1: 0.3, y1: 0.7, x2: 0.7, y2: 0.9, x3: 1.0, y3: 0.8, height: 0.8, maxHeight: 1, minHeight: 0.5, speed: 0.003, color: '#0D56A6' },
