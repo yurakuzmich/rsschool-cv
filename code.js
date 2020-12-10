@@ -14,11 +14,7 @@ for (let i = 0; i < panels.length; i++) {
 setInterval(renderProgressBar, 1000);
 
 function playMusic(event) {
-    if (song.currentTime === 0) {
-        song.play();
-        event.target.classList.remove('fa-play');
-        event.target.classList.add('fa-pause');
-    } else if (song.paused) {
+    if (song.currentTime === 0 || song.paused) {
         song.play();
         event.target.classList.remove('fa-play');
         event.target.classList.add('fa-pause');
