@@ -25,6 +25,7 @@ const buttonStopMobile = document.getElementById('stop-button-mobile');
 
 
 let enteringNewAnswer = true;
+let globalId;
 
 display.value = 0;
 //Event Listeners
@@ -96,10 +97,28 @@ class GameWindow {
         canvas.width = this.width;
         canvas.height = this.height;
         this.ctx = canvas.getContext('2d');
+
+        //wave animation properties
+        this.waves = [
+            { x1: 0.4, y1: 0.6, x2: 0.6, y2: 0.8, x3: 1.0, y3: 0.8, height: 0.8, speed: 0.03, color: '#4186D3' },
+            { x1: 0.1, y1: 0.7, x2: 0.8, y2: 1.1, x3: 1.0, y3: 0.8, height: 0.8, speed: 0.03, color: '#689AD3' },
+            { x1: 0.3, y1: 0.8, x2: 0.7, y2: 0.9, x3: 1.0, y3: 0.8, height: 0.8, speed: 0.03, color: '#0D56A6' },
+        ];
+        this.wavesSpeed = 0.02;
+
         this.clearCanvas();
         this.renderBackground();
-        this.renderWawe();
+        this.renderWaves();
         console.log(`Game created with width of ${this.width} and height of ${this.height}\n ctx is ${this.ctx}`);
+    }
+
+    renderFrame() {
+        console.log(this);
+        this.clearCanvas();
+        this.renderBackground();
+        this.renderWaves();
+
+        requestAnimationFrame(this.renderFrame);
     }
 
     clearCanvas() {
@@ -116,20 +135,33 @@ class GameWindow {
         }
     }
 
-    renderWawe() {
-        this.ctx.strokeStyle = "blue";
-        this.ctx.fillStyle = "blue";
-        this.ctx.beginPath();
-        this.ctx.moveTo(0, 0.9 * this.height);
-        this.ctx.bezierCurveTo(0.4 *this.width, 0.7 * this.height, 0.8 *this.width, this.height, this.width, 0.9 * this.height);
-        this.ctx.lineTo(this.width, this.height);
-        this.ctx.lineTo(0, this.height);
-        this.ctx.closePath();
-        this.ctx.stroke();
-        this.ctx.fill();
+    renderWaves() {
+        this.waves.forEach((wave) => {
+            this.ctx.fillStyle = wave.color;
+            this.ctx.beginPath();
+            this.ctx.moveTo(0, wave.height * this.height);
+            this.ctx.bezierCurveTo(wave.x1 * this.width, wave.y1 * this.height, wave.x2 * this.width, wave.y2 * this.height, wave.x3 * this.width, wave.y3 * this.height);
+            this.ctx.lineTo(this.width, this.height);
+            this.ctx.lineTo(0, this.height);
+            this.ctx.closePath();
+            this.ctx.fill();
+        });
+        this.animateWaves();
+    }
+
+    animateWaves() {
+        this.waves.forEach((wave) => {
+            wave.y1 += wave.speed;
+            wave.y2 -= wave.speed; 
+            if((wave.y1 > 0.9 || wave.y1 < 0.6) || (wave.y1 > 0.9 || wave.y1 < 0.6)) {
+                wave.speed *= -1;
+            }
+        });
     }
 }
 
-let gameWindow = new GameWindow(myCanvasParent, myCanvas);
+const gameWindow = new GameWindow(myCanvasParent, myCanvas);
+requestAnimationFrame(gameWindow.renderFrame);
+
 
 
