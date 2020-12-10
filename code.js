@@ -103,9 +103,9 @@ class GameWindow {
 
         //wave animation properties
         this.waves = [
-            { x1: 0.3, y1: 0.7, x2: 0.7, y2: 0.9, x3: 1.0, y3: 0.85, height: 0.85, speed: 0.001, color: '#4186D3' },
-            { x1: 0.4, y1: 0.9, x2: 0.6, y2: 0.7, x3: 1.0, y3: 0.85, height: 0.85, speed: 0.0015, color: '#0D56A6' }, 
-            { x1: 0.3, y1: 0.8, x2: 0.75, y2: 0.9, x3: 1.0, y3: 0.9, height: 0.9, speed: 0.001, color: '#689AD3' },
+            { x1: 0.3, y1: 0.7, x2: 0.7, y2: 0.9, x3: 1.0, y3: 0.8, height: 0.8, speed: 0.003, color: '#0D56A6' },
+            { x1: 0.4, y1: 0.9, x2: 0.6, y2: 0.7, x3: 1.0, y3: 0.85, height: 0.85, speed: 0.003, color: '#4186D3' }, 
+            { x1: 0.3, y1: 0.8, x2: 0.65, y2: 0.9, x3: 1.0, y3: 0.9, height: 0.9, speed: 0.002, color: '#689AD3' },
         ];
 
         this.clearCanvas();
@@ -154,7 +154,7 @@ class GameWindow {
             wave.y2 -= wave.speed;
             // wave.y3 += wave.speed;
             // wave.height -= wave.speed;
-            if ((wave.y1 > 0.9 || wave.y1 < 0.6) || (wave.y2 > 0.9 || wave.y2 < 0.6)) {
+            if ((wave.y1 > 1 || wave.y1 < 0.5) || (wave.y2 > 1 || wave.y2 < 0.5)) {
                 wave.speed *= -1;
             }
         });
