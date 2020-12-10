@@ -23,9 +23,12 @@ const buttonSettingsMobile = document.getElementById('settings-button-mobile');
 const buttonCloseSettingsMobile = document.querySelector('.settings-panel__close');
 const buttonStopMobile = document.getElementById('stop-button-mobile');
 
+let game = {};
+let gameWindow = {};
 
 let enteringNewAnswer = true;
 let globalId;
+let gameIsStarted = false;
 
 display.value = 0;
 //Event Listeners
@@ -35,13 +38,37 @@ keyboard.addEventListener('click', (e) => {
 });
 
 //Desctop layout
-// buttonNewGame.addEventListener('click', startNewGame);
+buttonNewGame.addEventListener('click', () => {
+    if (gameIsStarted === false) {
+        newGame();
+        buttonStop.textContent = 'Остановить игру';
+        gameIsStarted = true;
+    }
+});
 buttonSettings.addEventListener('click', toggleSettingsPanel);
 buttonSaveSettings.addEventListener('click', toggleSettingsPanel);
 buttonCloseSettings.addEventListener('click', toggleSettingsPanel);
-// buttonStop.addEventListener('click', endGame);
+buttonStop.addEventListener('click', () => {
+    if (gameIsStarted === true) {
+        cancelAnimationFrame(globalId);
+        buttonStop.textContent = "Продолжить игру";
+        gameIsStarted = false;
+    } else {
+        animate();
+        buttonStop.textContent = 'Остановить игру';
+        gameIsStarted = true;
+    }
+
+
+});
 //Mobile layout
-// buttonNewGameMobile.addEventListener('click', startNewGame);
+buttonNewGameMobile.addEventListener('click', () => {
+    if (gameIsStarted === false) {
+        newGame();
+        buttonStop.textContent = 'Остановить игру';
+        gameIsStarted = true;
+    }
+});
 buttonSettingsMobile.addEventListener('click', toggleSettingsPanel);
 // buttonStopMobile.addEventListener('click', endGame);
 
@@ -63,6 +90,7 @@ function keyboardClick(e) {
         val === '' ? display.value = '0' : display.value = val;
     } else if (clicked.textContent === 'Enter') {
         enteringNewAnswer = true;
+        gameWindow.checkAnswer(display.value);
     }
 }
 
@@ -82,6 +110,7 @@ function keyBoardKeyPress(e) {
         display.value = '0';
     } else if (e.keyCode === 13) {
         enteringNewAnswer = true;
+        gameWindow.checkAnswer(display.value);
     }
 }
 
@@ -89,7 +118,29 @@ function toggleSettingsPanel() {
     settingsPanel.style.display === 'flex' ? settingsPanel.style.display = 'none' : settingsPanel.style.display = 'flex';
 }
 
+function newGame() {
+    game = {};
+    gameWindow = {};
+
+    game = new Game();
+    gameWindow = new GameWindow(myCanvasParent, myCanvas);
+    animate();
+}
+
+function animate() {
+    gameWindow.renderFrame();
+    globalId = requestAnimationFrame(animate);
+}
+
+class Game {
+    constructor() {
+        this.score = 0;
+        this.level = 1;
+    }
+}
 class GameWindow {
+    rainDrops = [];
+
     constructor(parentElement, canvas) {
         this.parent = parentElement;
         this.width = parentElement.offsetWidth - 25;
@@ -99,18 +150,20 @@ class GameWindow {
         this.ctx = canvas.getContext('2d');
 
         //raindrops
-        this.rainDrops = [];
+
 
         //wave animation properties
         this.waves = [
-            { x1: 0.3, y1: 0.7, x2: 0.7, y2: 0.9, x3: 1.0, y3: 0.8, height: 0.8, speed: 0.003, color: '#0D56A6' },
-            { x1: 0.4, y1: 0.9, x2: 0.6, y2: 0.7, x3: 1.0, y3: 0.85, height: 0.85, speed: 0.003, color: '#4186D3' }, 
-            { x1: 0.3, y1: 0.8, x2: 0.65, y2: 0.9, x3: 1.0, y3: 0.9, height: 0.9, speed: 0.002, color: '#689AD3' },
+            { x1: 0.3, y1: 0.7, x2: 0.7, y2: 0.9, x3: 1.0, y3: 0.8, height: 0.8, maxHeight: 1, minHeight: 0.5, speed: 0.003, color: '#0D56A6' },
+            { x1: 0.4, y1: 0.9, x2: 0.6, y2: 0.7, x3: 1.0, y3: 0.85, height: 0.85, maxHeight: 1, minHeight: 0.5, speed: 0.003, color: '#4186D3' },
+            { x1: 0.3, y1: 0.8, x2: 0.65, y2: 0.9, x3: 1.0, y3: 0.9, height: 0.9, maxHeight: 1, minHeight: 0.5, speed: 0.002, color: '#689AD3' },
         ];
 
         this.clearCanvas();
         this.renderBackground();
         this.renderWaves();
+        this.renderRaindrops();
+        this.addRaindrop();
         console.log(`Game created with width of ${this.width} and height of ${this.height}\n ctx is ${this.ctx}`);
     }
 
@@ -118,6 +171,10 @@ class GameWindow {
         this.clearCanvas();
         this.renderBackground();
         this.renderWaves();
+        if (this.rainDrops.length === 0) {
+            this.addRaindrop();
+        }
+        this.renderRaindrops();
     }
 
     clearCanvas() {
@@ -154,28 +211,81 @@ class GameWindow {
             wave.y2 -= wave.speed;
             // wave.y3 += wave.speed;
             // wave.height -= wave.speed;
-            if ((wave.y1 > 1 || wave.y1 < 0.5) || (wave.y2 > 1 || wave.y2 < 0.5)) {
+            if ((wave.y1 > wave.maxHeight || wave.y1 < wave.minHeight) || (wave.y2 > wave.maxHeight || wave.y2 < wave.minHeight)) {
                 wave.speed *= -1;
             }
         });
     }
+
+    addRaindrop(x = Math.round(Math.random() * this.width), y = 0, radius = 30, color = '#0D56A6') {
+        let rainDrop = new Raindrop(x, y, radius, color);
+        // this.rainDrops = [...this.rainDrops, rainDrop];
+        this.rainDrops.push(rainDrop);
+    }
+
+    renderRaindrops() {
+        this.rainDrops.forEach((rainDrop) => {
+            this.ctx.fillStyle = rainDrop.color;
+            this.ctx.beginPath();
+            this.ctx.arc(rainDrop.x, rainDrop.y, rainDrop.radius, 0, 2 * Math.PI);
+            this.ctx.fill();
+        });
+        this.renderRaindropsText();
+        this.animateRainDrops(1);
+    }
+
+    renderRaindropsText() {
+        this.rainDrops.forEach((rainDrop) => {
+            this.ctx.fillStyle = '#000000';
+            this.ctx.font = rainDrop.font;
+            this.ctx.fillText(`${rainDrop.operandOne} + ${rainDrop.operandTwo}`, rainDrop.x - 0.8 * rainDrop.radius, rainDrop.y + 5);
+        });
+    }
+
+    animateRainDrops(speed) {
+        this.rainDrops.forEach((rainDrop, index) => {
+            rainDrop.y += speed;
+            if (rainDrop.y > this.waves[0].height * this.height) {
+                this.rainDrops.splice(index, 1);
+                this.addRaindrop();
+            }
+        });
+    }
+
+    checkAnswer(answer) {
+        this.rainDrops.forEach((rainDrop, index) => {
+            if (rainDrop.answer === +answer) {
+                this.rainDrops.splice(index, 1);
+            }
+        });
+    }
+
+
 }
 
 class Raindrop {
-    constructor(x, y, color, answer){
-        this.x = 0;
+    constructor(x, y, radius, color, font = '15px Verdana') {
+        this.x = x;
         this.y = y;
+        this.radius = radius
         this.color = color;
-        this.answer = answer;
+        this.font = font;
+        this.generateTask();
     }
+
+    generateTask() {
+        this.operandOne = Math.round(10 * Math.random());
+        this.operandTwo = Math.round(10 * Math.random());
+        this.answer = this.operandOne + this.operandTwo;
+    }
+
+    generateOperation() {
+
+    }
+
 }
 
-const gameWindow = new GameWindow(myCanvasParent, myCanvas);
-const animate = () => {
-    gameWindow.renderFrame();
-    requestAnimationFrame(animate);
-}
-animate();
+
 
 
 
