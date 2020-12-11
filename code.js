@@ -62,9 +62,7 @@ function drawAsArtist(e) {
 }
 
 function drawRandom(e) {
-    if (!isDrawing) {
-        return;
-    }
+    if (!isDrawing) return;
     ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
