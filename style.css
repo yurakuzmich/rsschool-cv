@@ -11,7 +11,7 @@
     align-items: center;
 }
 
-.speedcontrol {
+.speed-control {
     position: relative;
     margin-left: 30px;
     height: 700px;
@@ -21,7 +21,7 @@
     cursor: pointer;
 }
 
-.speedvalue {
+.speed-value {
     position: absolute;
     top: 0;
     left: 65px;
@@ -37,7 +37,7 @@
     font-weight: bold;
 }
 
-.speedcontrol_filled {
+.speed-control_filled {
     width: 100%;
     min-height: 60px;
     border-radius: 30px;

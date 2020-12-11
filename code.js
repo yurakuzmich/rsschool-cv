@@ -3,39 +3,39 @@ const minSpeed = 0.5;
 const maxSpeed = 3;
 let isDragStarted = false;
 
-const speedControll = document.querySelector('.speedcontrol');
-const speedControllFilled = document.querySelector('.speedcontrol_filled');
+const speedControl = document.querySelector('.speed-control');
+const speedControlFilled = document.querySelector('.speed-control_filled');
 const video = document.querySelector('video');
-const speedvalue = document.querySelector('.speedvalue');
-
+const speedValue = document.querySelector('.speed-value');
+console.log(speedControl.offsetWidth);
 //Listeners
-speedControll.addEventListener('mousedown', (e) => {
+speedControl.addEventListener('mousedown', (e) => {
     isDragStarted = true;
     renderSpeedControl(e);
 });
-speedControll.addEventListener('mouseup', () => {
+speedControl.addEventListener('mouseup', () => {
     isDragStarted = false;
 });
-speedControll.addEventListener('mouseout', () => {
+speedControl.addEventListener('mouseout', () => {
     isDragStarted = false;
 });
-speedControll.addEventListener('mousemove', (e) => {
+speedControl.addEventListener('mousemove', (e) => {
     if(isDragStarted) renderSpeedControl(e);
 })
 
 //Functions
 function renderSpeedControl (e) {
     console.log(e);
-    let percent = (e.offsetY / 700);
+    let percent = (e.offsetY / speedControl.offsetHeight);
     if(percent > 0.99) percent = 1;
-    speedControllFilled.style.height = percent * 100 + '%';
+    speedControlFilled.style.height = percent * 100 + '%';
     setVideoSpeed(minSpeed + (maxSpeed - minSpeed) * percent);
     showSpeedValue (percent);
 }
 
 function showSpeedValue (val) {
-    speedvalue.style.top = (val * 700) - 25 + 'px'; // For more responcive usage we can  use variables
-    speedvalue.textContent = (minSpeed + (maxSpeed - minSpeed) * val).toFixed(1);
+    speedValue.style.top = (val * 700) - 25 + 'px'; // For more responcive usage we can  use variables
+    speedValue.textContent = (minSpeed + (maxSpeed - minSpeed) * val).toFixed(1);
 
 }
 
