@@ -25,6 +25,7 @@ const buttonStopMobile = document.getElementById('stop-button-mobile');
 
 let game = {};
 let gameWindow = {};
+let timerForRaindrops;
 
 let enteringNewAnswer = true;
 let globalId;
@@ -51,10 +52,12 @@ buttonCloseSettings.addEventListener('click', toggleSettingsPanel);
 buttonStop.addEventListener('click', () => {
     if (gameIsStarted === true) {
         cancelAnimationFrame(globalId);
+        timerForRaindrops = null;
         buttonStop.textContent = "Продолжить игру";
         gameIsStarted = false;
     } else {
         animate();
+        setTimerForRaindrops();
         buttonStop.textContent = 'Остановить игру';
         gameIsStarted = true;
     }
@@ -125,6 +128,7 @@ function newGame() {
     game = new Game();
     gameWindow = new GameWindow(myCanvasParent, myCanvas);
     animate();
+    setTimerForRaindrops();
 }
 
 function animate() {
@@ -132,10 +136,18 @@ function animate() {
     globalId = requestAnimationFrame(animate);
 }
 
+function setTimerForRaindrops() {
+    timerForRaindrops = setTimeout(() => {
+        gameWindow.addRaindrop();
+        if (gameIsStarted) setTimerForRaindrops();
+    }, 3000);
+}
+
 class Game {
     constructor() {
         this.score = 0;
         this.level = 1;
+        this.mistakes = 0;
     }
 }
 class GameWindow {
@@ -233,9 +245,9 @@ class GameWindow {
 
     renderRaindropsText() {
         this.rainDrops.forEach((rainDrop) => {
-            this.ctx.fillStyle = '#000000';
+            this.ctx.fillStyle = '#ffffff';
             this.ctx.font = rainDrop.font;
-            this.ctx.fillText(`${rainDrop.operandOne} + ${rainDrop.operandTwo}`, rainDrop.x - 0.8 * rainDrop.radius, rainDrop.y + 5);
+            this.ctx.fillText(`${rainDrop.operandOne} ${rainDrop.operation} ${rainDrop.operandTwo}`, rainDrop.x - 0.8 * rainDrop.radius, rainDrop.y + 5);
         });
     }
 
@@ -267,17 +279,46 @@ class Raindrop {
         this.radius = radius
         this.color = color;
         this.font = font;
+        this.operation
+        this.operations = ['+', '-', '*', '/'];
         this.generateTask();
     }
 
     generateTask() {
-        this.operandOne = Math.round(10 * Math.random());
-        this.operandTwo = Math.round(10 * Math.random());
-        this.answer = this.operandOne + this.operandTwo;
+        this.operandOne = Math.round(100 * Math.random());
+        this.operandTwo = Math.round(100 * Math.random());
+        this.generateOperation();
+        switch (this.operation) {
+            case '+':
+                this.answer = this.operandOne + this.operandTwo;
+                break;
+            case '-':
+                if (this.operandOne >= this.operandTwo) {
+                    this.answer = this.operandOne - this.operandTwo;
+                } else {
+                    this.answer = this.operandTwo - this.operandOne;
+                };
+                break;
+            case '*':
+                this.operandOne = Math.round(10 * Math.random());
+                this.operandTwo = Math.round(10 * Math.random());
+                this.answer = this.operandOne * this.operandTwo;
+                break;
+            case '/':
+                this.operandOne = Math.round(10 * Math.random());
+                this.operandTwo = Math.round(10 * Math.random());
+                if (this.operandTwo === 0) {
+                    this.operandTwo = 1;
+                }
+                let tempRes = this.operandOne * this.operandTwo;
+                this.answer = this.operandOne;
+                this.operandOne = tempRes;
+        }
     }
 
     generateOperation() {
-
+        let opNum = Math.round(this.operations.length * Math.random());
+        this.operation = this.operations[opNum];
     }
 
 }
