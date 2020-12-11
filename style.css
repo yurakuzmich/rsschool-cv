@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+.wrapper {
+width: 100vw;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+}
+
+.userpanel {
+    width: 100%;
+    margin: 0 20px;
+    padding: 10px;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #3a4b40;
+    font-weight: bold;
+}
+
+.userpanel label {
+    display: block;
+    margin-right: 20px;
+    padding-left: 10px;
+    font-size: 1.1rem;
+    border-left: 1px solid #3a4b40;
+}
+
+.userpanel select,
+.userpanel input {
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 10px;
+    background: #a5fa83;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.tools {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.button_save,
+.button_clear {
+    margin: 5px;
+    width: 70px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 0px 8px gray;
+    font-size: 1rem;
+}
+
+.button_save:focus,
+.button_save:active,
+.button_clear:focus,
+.button_clear:active  {
+    outline: none;
+}
+
+.button_save:hover,
+.button_clear:hover {
+    box-shadow: 0px 0px 8px gray;
+}
+
+.button_save:active,
+.button_clear:active {
+    box-shadow: 0px 0px 5px gray;
+    font-size: 0.95rem;
+}
+
+.button_save {
+      background: #2cbe0f;
+}
+
+.button_save:hover {
+    background: #36ce14;  
+}
+
+.button_clear {
+    background: #ee6b14;
+}
+
+.button_clear:hover {  
+    background: #ff6b14;
+}
+
+
+
