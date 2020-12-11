@@ -63,7 +63,7 @@ body {
     font-size: 0.5rem;
 }
 
-#infotab {
+#info-tab {
     width: 60px;
     height: 60px;
     background: #00ff00;
@@ -81,11 +81,11 @@ body {
     margin-right: 20px;
 }
 
-#infotab:hover {
+#info-tab:hover {
     opacity: 1;
 }
 
-#clearstorage {
+#clear-storage {
     width: 60px;
     height: 60px;
     background: #ff0000;
@@ -103,7 +103,7 @@ body {
     margin-right: 20px;
 }
 
-#clearstorage:hover {
+#clear-storage:hover {
     opacity: 1;
 }
 
@@ -160,7 +160,7 @@ body {
 }
 
 
-#addtask {
+#add-task {
     margin-bottom: 0.5rem;
     background-color: #cccccc;
     opacity: 0.9;
@@ -169,7 +169,7 @@ body {
     font-size: 1.3rem;
 }
 
-#tasklist li {
+#task-list li {
     list-style-type: none;
     display: block;
     margin-bottom: 0.5rem;
@@ -181,7 +181,7 @@ body {
     text-align: left;
 }
 
-    #tasklist li:hover {
+    #task-list li:hover {
         background: #E99831;
     }
 
@@ -204,7 +204,7 @@ h2 {
     padding: 10px;
     border-radius: 10px;
 }
-.listoftasks {}
+.tasks {}
 
 .output-field {}
 

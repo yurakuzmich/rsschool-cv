@@ -1,15 +1,15 @@
 const time = document.getElementById('time'),
     greeting = document.getElementById('greeting'),
     name = document.getElementById('name'),
-    taskInput = document.getElementById('addtask'),
-    taskList = document.getElementById('tasklist'),
+    taskInput = document.getElementById('add-task'),
+    taskList = document.getElementById('task-list'),
     amPm = document.getElementById('am-pm'),
-    delSettings = document.getElementById('clearstorage'),
-    infoButton = document.getElementById('infotab'),
+    delSettings = document.getElementById('clear-storage'),
+    infoButton = document.getElementById('info-tab'),
     closeModal = document.getElementById('modal__close'),
     modal = document.getElementById('modal__wrapper'),
     outputFields = document.querySelectorAll('.output-field'),
-    listOfTasks = document.querySelector('.listoftasks');
+    listOfTasks = document.querySelector('.tasks');
 
 let timeFormat = 24;
 
