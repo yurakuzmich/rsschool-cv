@@ -6,6 +6,8 @@ const myCanvas = document.getElementById('game-canvas');
 const keyboard = document.getElementById('keyboard');
 const display = document.querySelector('.keyboard__display');
 const settingsPanel = document.querySelector('.settings-panel');
+const music = document.getElementById('music');
+const soundSuccess = document.getElementById('sound__success');
 //Counters
 const counterScores = document.getElementById('scores-counter');
 const counterMistakes = document.getElementById('mistakes-counter');
@@ -40,29 +42,11 @@ keyboard.addEventListener('click', (e) => {
 });
 
 //Desctop layout
-buttonNewGame.addEventListener('click', () => {
-    if (gameIsStarted === false) {
-        newGame();
-        buttonStop.textContent = 'Остановить игру';
-        gameIsStarted = true;
-    }
-});
+buttonNewGame.addEventListener('click', newGame);
 buttonSettings.addEventListener('click', toggleSettingsPanel);
 buttonSaveSettings.addEventListener('click', toggleSettingsPanel);
 buttonCloseSettings.addEventListener('click', toggleSettingsPanel);
-buttonStop.addEventListener('click', () => {
-    if (gameIsStarted === true) {
-        cancelAnimationFrame(globalId);
-        timerForRaindrops = null;
-        buttonStop.textContent = "Продолжить игру";
-        gameIsStarted = false;
-    } else {
-        animate();
-        setTimerForRaindrops();
-        buttonStop.textContent = 'Остановить игру';
-        gameIsStarted = true;
-    }
-});
+buttonStop.addEventListener('click', pauseGame);
 buttonStopAll.addEventListener('click', endGame);
 
 //Mobile layout
@@ -74,19 +58,7 @@ buttonNewGameMobile.addEventListener('click', () => {
     }
 });
 buttonSettingsMobile.addEventListener('click', toggleSettingsPanel);
-buttonStopMobile.addEventListener('click', () => {
-    if (gameIsStarted === true) {
-        cancelAnimationFrame(globalId);
-        timerForRaindrops = null;
-        buttonStopMobile.textContent = "Продолжить игру";
-        gameIsStarted = false;
-    } else {
-        animate();
-        setTimerForRaindrops();
-        buttonStopMobile.textContent = 'Остановить игру';
-        gameIsStarted = true;
-    }
-});
+buttonStopMobile.addEventListener('click', pauseGame);
 
 
 //functions
@@ -139,12 +111,31 @@ function newGame() {
         gameWindow = new GameWindow(myCanvasParent, myCanvas);
     }
     endGame();
+    buttonStop.textContent = 'Остановить игру';
+    gameIsStarted = true;
+    display.value = 0;
     animate();
     setTimerForRaindrops();
+    music.play();
+}
+
+function pauseGame() {
+    if (gameIsStarted === true) {
+        buttonStop.textContent = "Продолжить игру";
+        buttonStopMobile.textContent = "Продолжить игру";
+        music.pause();
+        gameIsStarted = false;
+    } else {
+        buttonStop.textContent = 'Остановить игру';
+        buttonStopMobile.textContent = "Остановить игру";
+        music.play();
+        gameIsStarted = true;
+    }
 }
 
 function endGame() {
     gameWindow.endGame();
+    // gameWindow = {};
 }
 
 function animate() {
@@ -173,13 +164,14 @@ class GameWindow {
         this.ctx = canvas.getContext('2d');
 
         //
-        this.tempScore = 0;
+        this.tempScore = 10;
         this.score = 0;
+        this.incorrects = 0;
         this.mistakes = 0;
         this.level = 1;
-        this.maxRainDropsAmount = 2;
-        this.newRainDropDelay = 3000;
-        this.rainDropSpeed = 0.8;
+        this.maxRainDropsAmount = 5;
+        this.newRainDropDelay = 2000;
+        this.rainDropSpeed = 0.5;
 
 
         //wave animation properties
@@ -198,13 +190,16 @@ class GameWindow {
     }
 
     renderFrame() {
-        this.clearCanvas();
-        this.renderBackground();
-        this.renderWaves();
-        if (this.rainDrops.length === 0) {
-            this.addRaindrop();
+        if (gameIsStarted) {
+            this.clearCanvas();
+            this.renderBackground();
+            this.renderWaves();
+            if (this.rainDrops.length === 0) {
+                this.addRaindrop();
+            }
+            this.renderRaindrops();
         }
-        this.renderRaindrops();
+
     }
 
     clearCanvas() {
@@ -288,6 +283,9 @@ class GameWindow {
     checkAnswer(answer) {
         this.rainDrops.forEach((rainDrop, index) => {
             if (rainDrop.answer === +answer) {
+                soundSuccess.pause();
+                soundSuccess.currentTime = 0;
+                soundSuccess.play();
                 this.rainDrops.splice(index, 1);
                 this.scoreUp();
                 this.renderScoreBoard();
@@ -295,23 +293,20 @@ class GameWindow {
                     this.level++;
                     this.rainDropSpeed += 0.3 * this.rainDropSpeed;
                 }
+            } else {
+                this.incorrects++;
             }
         });
     }
 
     scoreUp() {
-        if (this.score === 0) {
-            this.score += 10;
-            this.tempScore++;
-        } else {
-            this.score = 10 + this.tempScore;
-            this.tempScore++;
-        }
+        this.score += this.tempScore;
+        this.tempScore++;
     }
 
     mistakesUp() {
-        if(this.mistakes >= 3) {
-            this.endGame();
+        if (this.mistakes >= 3) {
+            endGame();
         }
         this.mistakes++;
         this.renderScoreBoard();
@@ -333,12 +328,18 @@ class GameWindow {
         this.ctx.font = '20px Verdana';
         this.ctx.fillText(`Игра окончена.`, 20, this.height / 2 - 40);
         this.ctx.fillText(`Набрано очков: ${this.score}`, 20, this.height / 2);
-        this.ctx.fillText(`Рекорд: 0`, 20, this.height / 2 + 40);
+        this.ctx.fillText(`Допущено ошибок: ${this.incorrects}`, 20, this.height / 2 + 40);
     }
 
     endGame() {
+        gameIsStarted = false;
+        timerForRaindrops = null;
+        music.pause();
+        music.currentTime = 0;
+        this.renderFinalScore();
         this.rainDrops = [];
         this.score = 0;
+        this.incorrects = 0
         this.level = 0;
         this.mistakes = 0;
         this.renderScoreBoard();
@@ -348,10 +349,7 @@ class GameWindow {
             { x1: 0.3, y1: 0.8, x2: 0.65, y2: 0.9, x3: 1.0, y3: 0.9, height: 0.9, maxHeight: 1, minHeight: 0.5, speed: 0.002, color: '#689AD3' },
         ];
 
-        gameIsStarted = false;
-        timerForRaindrops = null;
         cancelAnimationFrame(globalId);
-        this.renderFinalScore();
     }
 }
 
