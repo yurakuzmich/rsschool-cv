@@ -8,6 +8,7 @@ const display = document.querySelector('.keyboard__display');
 const settingsPanel = document.querySelector('.settings-panel');
 //Counters
 const counterScores = document.getElementById('scores-counter');
+const counterMistakes = document.getElementById('mistakes-counter');
 const counterLevel = document.getElementById('level-counter');
 
 //Buttons
@@ -173,8 +174,8 @@ class GameWindow {
 
         //
         this.score = 0;
-        this.level = 1;
         this.mistakes = 0;
+        this.level = 1;
         this.maxRainDropsAmount = 2;
         this.newRainDropDelay = 1000;
         this.rainDropSpeed = 2;
@@ -278,6 +279,7 @@ class GameWindow {
             rainDrop.y += speed;
             if (rainDrop.y > this.waves[0].height * this.height) {
                 this.rainDrops.splice(index, 1);
+                this.mistakesUp();
             }
         });
     }
@@ -287,21 +289,28 @@ class GameWindow {
             if (rainDrop.answer === +answer) {
                 this.rainDrops.splice(index, 1);
                 this.score++;
+                this.renderScoreBoard();
                 if (this.score % 10 === 0) {
                     this.level++;
+                    this.rainDropSpeed += 0.3 * this.rainDropSpeed;
                 }
             }
         });
     }
 
-    scoreUp() {}
+    mistakesUp() {
+        this.mistakes++;
+        this.renderScoreBoard();
+        this.waves.forEach((wave) => {
+            wave.y3 -= 0.1;
+            wave.height -= 0.1;
+        });
+    }
 
-    mistakesUp() {}
-
-    levelUp() {}
-
-    renderScore(score) {
-
+    renderScoreBoard() {
+        counterScores.textContent = this.score;
+        counterMistakes.textContent = this.mistakes
+        counterLevel.textContent = this.level;
     }
 
     // endGame() {
