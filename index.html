@@ -121,11 +121,18 @@
               <div class="settings-panel">
                 <div class="settings-panel__close">X</div>
                 <h2>Настройки</h2>
-                <div>Форма с настройками</div>
-                <div>Форма с настройками</div>
-                <div>Форма с настройками</div>
-                <div>Форма с настройками</div>
-                <div>Форма с настройками</div>
+                <label>
+                  Капель на экране
+                  <input type="text">
+                </label>
+                <label>
+                  Скорость капель
+                  <select name="" id="">
+                    <option value="1">1x</option>
+                    <option value="1">2x</option>
+                    <option value="1">3x</option>
+                  </select>
+                </label>
 
                 <div>
                   <button
@@ -152,11 +159,20 @@
               >
                 Закончить игру
               </button>
-              <audio controls id="music">
+              <audio  id="music">
                 <source src="./sound/beach.mp3" />
               </audio>
-              <audio controls id="sound__success">
+              <audio  id="sound__success">
                 <source src="./sound/success.mp3" />
+              </audio>
+              <audio  id="sound__game_end">
+                <source src="./sound/game_end.mp3" />
+              </audio>
+              <audio  id="sound__incorrect">
+                <source src="./sound/incorrect.mp3" />
+              </audio>
+              <audio  id="sound__mistake">
+                <source src="./sound/mistake.mp3" />
               </audio>
             </div>
           </div>

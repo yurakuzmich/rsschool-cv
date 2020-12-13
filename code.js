@@ -6,8 +6,12 @@ const myCanvas = document.getElementById('game-canvas');
 const keyboard = document.getElementById('keyboard');
 const display = document.querySelector('.keyboard__display');
 const settingsPanel = document.querySelector('.settings-panel');
+//Sounds
 const music = document.getElementById('music');
 const soundSuccess = document.getElementById('sound__success');
+const soundIncorrect = document.getElementById('sound__incorrect');
+const soundMistake = document.getElementById('sound__mistake');
+const soundGameEnd = document.getElementById('sound__game_end');
 //Counters
 const counterScores = document.getElementById('scores-counter');
 const counterMistakes = document.getElementById('mistakes-counter');
@@ -33,6 +37,10 @@ let timerForRaindrops;
 let enteringNewAnswer = true;
 let globalId;
 let gameIsStarted = false;
+
+
+//settings
+let operations = ['+', '-', '*', '/'];
 
 display.value = 0;
 //Event Listeners
@@ -241,7 +249,7 @@ class GameWindow {
     }
 
     addRaindrop(x = Math.round(Math.random() * 0.8 * this.width), y = 0, radius = 35, color = 'rgba(13, 86, 166, 0.9)') {
-        let rainDrop = new Raindrop(2 * radius + x, y, radius, color);
+        let rainDrop = new Raindrop(2 * radius + x, y, radius, color, operations);
         this.rainDrops = [...this.rainDrops, rainDrop];
         // this.rainDrops.push(rainDrop);
     }
@@ -292,11 +300,15 @@ class GameWindow {
                 if (this.score % 10 === 0) {
                     this.level++;
                     this.rainDropSpeed += 0.3 * this.rainDropSpeed;
+                    this.renderScoreBoard();
                 }
-            } else {
-                this.incorrects++;
+                return;
             }
         });
+        soundIncorrect.pause();
+        soundIncorrect.currentTime = 0;
+        soundIncorrect.play();
+        this.incorrects++;
     }
 
     scoreUp() {
@@ -340,7 +352,7 @@ class GameWindow {
         this.rainDrops = [];
         this.score = 0;
         this.incorrects = 0
-        this.level = 0;
+        this.level = 1;
         this.mistakes = 0;
         this.renderScoreBoard();
         this.waves = [
@@ -354,14 +366,14 @@ class GameWindow {
 }
 
 class Raindrop {
-    constructor(x, y, radius, color, font = '15px Verdana') {
+    constructor(x, y, radius, color, font = '15px Verdana', operations = ['+', '-', '*', '/']) {
         this.x = x;
         this.y = y;
         this.radius = radius
         this.color = color;
         this.font = font;
         this.operation
-        this.operations = ['+', '-', '*', '/'];
+        this.operations = operations;
         this.generateTask();
     }
 
