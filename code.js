@@ -17,6 +17,7 @@ const buttonSettings = document.getElementById('settings-button');
 const buttonSaveSettings = document.getElementById('save-settings-button');
 const buttonCloseSettings = document.querySelector('.settings-panel__close');
 const buttonStop = document.getElementById('stop-button');
+const buttonStopAll = document.getElementById('stop-all-button');
 
 //Buttons for mobile layout
 const buttonNewGameMobile = document.getElementById('new-game-button-mobile');
@@ -62,6 +63,8 @@ buttonStop.addEventListener('click', () => {
         gameIsStarted = true;
     }
 });
+buttonStopAll.addEventListener('click', endGame);
+
 //Mobile layout
 buttonNewGameMobile.addEventListener('click', () => {
     if (gameIsStarted === false) {
@@ -141,10 +144,7 @@ function newGame() {
 }
 
 function endGame() {
-    cancelAnimationFrame(globalId);
-    timerForRaindrops = null;
-    gameWindow.clearCanvas();
-    cancelAnimationFrame(globalId);
+    gameWindow.endGame();
 }
 
 function animate() {
@@ -173,12 +173,13 @@ class GameWindow {
         this.ctx = canvas.getContext('2d');
 
         //
+        this.tempScore = 0;
         this.score = 0;
         this.mistakes = 0;
         this.level = 1;
         this.maxRainDropsAmount = 2;
-        this.newRainDropDelay = 1000;
-        this.rainDropSpeed = 2;
+        this.newRainDropDelay = 3000;
+        this.rainDropSpeed = 0.8;
 
 
         //wave animation properties
@@ -288,7 +289,7 @@ class GameWindow {
         this.rainDrops.forEach((rainDrop, index) => {
             if (rainDrop.answer === +answer) {
                 this.rainDrops.splice(index, 1);
-                this.score++;
+                this.scoreUp();
                 this.renderScoreBoard();
                 if (this.score % 10 === 0) {
                     this.level++;
@@ -298,7 +299,20 @@ class GameWindow {
         });
     }
 
+    scoreUp() {
+        if (this.score === 0) {
+            this.score += 10;
+            this.tempScore++;
+        } else {
+            this.score = 10 + this.tempScore;
+            this.tempScore++;
+        }
+    }
+
     mistakesUp() {
+        if(this.mistakes >= 3) {
+            this.endGame();
+        }
         this.mistakes++;
         this.renderScoreBoard();
         this.waves.forEach((wave) => {
@@ -313,13 +327,32 @@ class GameWindow {
         counterLevel.textContent = this.level;
     }
 
-    // endGame() {
-    //     this.clearCanvas();
-    //     this.score = 0;
-    //     this.level = 1;
-    //     this.mistakes = 0;
-    // }
+    renderFinalScore() {
+        this.clearCanvas();
+        this.ctx.fillStyle = '#000000';
+        this.ctx.font = '20px Verdana';
+        this.ctx.fillText(`Игра окончена.`, 20, this.height / 2 - 40);
+        this.ctx.fillText(`Набрано очков: ${this.score}`, 20, this.height / 2);
+        this.ctx.fillText(`Рекорд: 0`, 20, this.height / 2 + 40);
+    }
 
+    endGame() {
+        this.rainDrops = [];
+        this.score = 0;
+        this.level = 0;
+        this.mistakes = 0;
+        this.renderScoreBoard();
+        this.waves = [
+            { x1: 0.3, y1: 0.7, x2: 0.7, y2: 0.9, x3: 1.0, y3: 0.8, height: 0.8, maxHeight: 1, minHeight: 0.5, speed: 0.003, color: '#0D56A6' },
+            { x1: 0.4, y1: 0.9, x2: 0.6, y2: 0.7, x3: 1.0, y3: 0.85, height: 0.85, maxHeight: 1, minHeight: 0.5, speed: 0.003, color: '#4186D3' },
+            { x1: 0.3, y1: 0.8, x2: 0.65, y2: 0.9, x3: 1.0, y3: 0.9, height: 0.9, maxHeight: 1, minHeight: 0.5, speed: 0.002, color: '#689AD3' },
+        ];
+
+        gameIsStarted = false;
+        timerForRaindrops = null;
+        cancelAnimationFrame(globalId);
+        this.renderFinalScore();
+    }
 }
 
 class Raindrop {
