@@ -23,7 +23,6 @@ const buttonSettingsMobile = document.getElementById('settings-button-mobile');
 const buttonCloseSettingsMobile = document.querySelector('.settings-panel__close');
 const buttonStopMobile = document.getElementById('stop-button-mobile');
 
-let game = {};
 let gameWindow = {};
 let timerForRaindrops;
 
@@ -122,10 +121,8 @@ function toggleSettingsPanel() {
 }
 
 function newGame() {
-    game = {};
     gameWindow = {};
 
-    game = new Game();
     gameWindow = new GameWindow(myCanvasParent, myCanvas);
     animate();
     setTimerForRaindrops();
@@ -143,13 +140,6 @@ function setTimerForRaindrops() {
     }, 3000);
 }
 
-class Game {
-    constructor() {
-        this.score = 0;
-        this.level = 1;
-        this.mistakes = 0;
-    }
-}
 class GameWindow {
     rainDrops = [];
 
@@ -160,6 +150,12 @@ class GameWindow {
         canvas.width = this.width;
         canvas.height = this.height;
         this.ctx = canvas.getContext('2d');
+
+        //
+        this.score = 0;
+        this.level = 1;
+        this.mistakes = 0;
+
 
         //wave animation properties
         this.waves = [
@@ -228,8 +224,8 @@ class GameWindow {
 
     addRaindrop(x = Math.round(Math.random() * this.width), y = 0, radius = 30, color = '#0D56A6') {
         let rainDrop = new Raindrop(x, y, radius, color);
-        // this.rainDrops = [...this.rainDrops, rainDrop];
-        this.rainDrops.push(rainDrop);
+        this.rainDrops = [...this.rainDrops, rainDrop];
+        // this.rainDrops.push(rainDrop);
     }
 
     renderRaindrops() {
@@ -265,8 +261,16 @@ class GameWindow {
         this.rainDrops.forEach((rainDrop, index) => {
             if (rainDrop.answer === +answer) {
                 this.rainDrops.splice(index, 1);
+                this.score++;
+                if(this.score % 10 === 0) {
+                    this.level++;
+                }
             }
         });
+    }
+
+    renderScore(score) {
+        
     }
 
 
@@ -317,7 +321,7 @@ class Raindrop {
     }
 
     generateOperation() {
-        let opNum = Math.round(this.operations.length * Math.random());
+        let opNum = Math.floor(this.operations.length * Math.random());
         this.operation = this.operations[opNum];
     }
 
