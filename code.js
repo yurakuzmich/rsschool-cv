@@ -23,7 +23,7 @@ const buttonSettingsMobile = document.getElementById('settings-button-mobile');
 const buttonCloseSettingsMobile = document.querySelector('.settings-panel__close');
 const buttonStopMobile = document.getElementById('stop-button-mobile');
 
-let gameWindow = {};
+let gameWindow;
 let timerForRaindrops;
 
 let enteringNewAnswer = true;
@@ -60,8 +60,6 @@ buttonStop.addEventListener('click', () => {
         buttonStop.textContent = 'Остановить игру';
         gameIsStarted = true;
     }
-
-
 });
 //Mobile layout
 buttonNewGameMobile.addEventListener('click', () => {
@@ -72,7 +70,19 @@ buttonNewGameMobile.addEventListener('click', () => {
     }
 });
 buttonSettingsMobile.addEventListener('click', toggleSettingsPanel);
-// buttonStopMobile.addEventListener('click', endGame);
+buttonStopMobile.addEventListener('click', () => {
+    if (gameIsStarted === true) {
+        cancelAnimationFrame(globalId);
+        timerForRaindrops = null;
+        buttonStopMobile.textContent = "Продолжить игру";
+        gameIsStarted = false;
+    } else {
+        animate();
+        setTimerForRaindrops();
+        buttonStopMobile.textContent = 'Остановить игру';
+        gameIsStarted = true;
+    }
+});
 
 
 //functions
@@ -121,11 +131,19 @@ function toggleSettingsPanel() {
 }
 
 function newGame() {
-    gameWindow = {};
-
-    gameWindow = new GameWindow(myCanvasParent, myCanvas);
+    if (!gameWindow) {
+        gameWindow = new GameWindow(myCanvasParent, myCanvas);
+    }
+    endGame();
     animate();
     setTimerForRaindrops();
+}
+
+function endGame() {
+    cancelAnimationFrame(globalId);
+    timerForRaindrops = null;
+    gameWindow.clearCanvas();
+    cancelAnimationFrame(globalId);
 }
 
 function animate() {
@@ -135,9 +153,11 @@ function animate() {
 
 function setTimerForRaindrops() {
     timerForRaindrops = setTimeout(() => {
-        gameWindow.addRaindrop();
+        if (gameWindow.rainDrops.length < gameWindow.maxRainDropsAmount) {
+            gameWindow.addRaindrop();
+        }
         if (gameIsStarted) setTimerForRaindrops();
-    }, 3000);
+    }, gameWindow.newRainDropDelay);
 }
 
 class GameWindow {
@@ -155,6 +175,9 @@ class GameWindow {
         this.score = 0;
         this.level = 1;
         this.mistakes = 0;
+        this.maxRainDropsAmount = 2;
+        this.newRainDropDelay = 1000;
+        this.rainDropSpeed = 2;
 
 
         //wave animation properties
@@ -214,16 +237,14 @@ class GameWindow {
         this.waves.forEach((wave) => {
             wave.y1 += wave.speed;
             wave.y2 -= wave.speed;
-            // wave.y3 += wave.speed;
-            // wave.height -= wave.speed;
             if ((wave.y1 > wave.maxHeight || wave.y1 < wave.minHeight) || (wave.y2 > wave.maxHeight || wave.y2 < wave.minHeight)) {
                 wave.speed *= -1;
             }
         });
     }
 
-    addRaindrop(x = Math.round(Math.random() * this.width), y = 0, radius = 30, color = '#0D56A6') {
-        let rainDrop = new Raindrop(x, y, radius, color);
+    addRaindrop(x = Math.round(Math.random() * 0.8 * this.width), y = 0, radius = 35, color = 'rgba(13, 86, 166, 0.9)') {
+        let rainDrop = new Raindrop(2 * radius + x, y, radius, color);
         this.rainDrops = [...this.rainDrops, rainDrop];
         // this.rainDrops.push(rainDrop);
     }
@@ -236,14 +257,19 @@ class GameWindow {
             this.ctx.fill();
         });
         this.renderRaindropsText();
-        this.animateRainDrops(1);
+        this.animateRainDrops(this.rainDropSpeed);
     }
 
     renderRaindropsText() {
         this.rainDrops.forEach((rainDrop) => {
             this.ctx.fillStyle = '#ffffff';
             this.ctx.font = rainDrop.font;
-            this.ctx.fillText(`${rainDrop.operandOne} ${rainDrop.operation} ${rainDrop.operandTwo}`, rainDrop.x - 0.8 * rainDrop.radius, rainDrop.y + 5);
+            if (rainDrop.operandOne >= rainDrop.operandTwo) {
+                this.ctx.fillText(`${rainDrop.operandOne} ${rainDrop.operation} ${rainDrop.operandTwo}`, rainDrop.x - 0.9 * rainDrop.radius, rainDrop.y + 5);
+            } else {
+                this.ctx.fillText(`${rainDrop.operandTwo} ${rainDrop.operation} ${rainDrop.operandOne}`, rainDrop.x - 0.9 * rainDrop.radius, rainDrop.y + 5);
+            }
+
         });
     }
 
@@ -252,7 +278,6 @@ class GameWindow {
             rainDrop.y += speed;
             if (rainDrop.y > this.waves[0].height * this.height) {
                 this.rainDrops.splice(index, 1);
-                this.addRaindrop();
             }
         });
     }
@@ -262,17 +287,29 @@ class GameWindow {
             if (rainDrop.answer === +answer) {
                 this.rainDrops.splice(index, 1);
                 this.score++;
-                if(this.score % 10 === 0) {
+                if (this.score % 10 === 0) {
                     this.level++;
                 }
             }
         });
     }
 
+    scoreUp() {}
+
+    mistakesUp() {}
+
+    levelUp() {}
+
     renderScore(score) {
-        
+
     }
 
+    // endGame() {
+    //     this.clearCanvas();
+    //     this.score = 0;
+    //     this.level = 1;
+    //     this.mistakes = 0;
+    // }
 
 }
 
