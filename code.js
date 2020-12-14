@@ -17,6 +17,8 @@ const counterScores = document.getElementById('scores-counter');
 const counterMistakes = document.getElementById('mistakes-counter');
 const counterLevel = document.getElementById('level-counter');
 
+//Settings
+const x=9 ;
 //Buttons
 const buttonNewGame = document.getElementById('new-game-button');
 const buttonSettings = document.getElementById('settings-button');
@@ -177,6 +179,9 @@ class GameWindow {
         this.incorrects = 0;
         this.mistakes = 0;
         this.level = 1;
+        this.maxForPlus = 20;
+        this.maxForMultiply = 10;
+        this.operations = operations;
         this.maxRainDropsAmount = 5;
         this.newRainDropDelay = 2000;
         this.rainDropSpeed = 0.5;
@@ -249,7 +254,8 @@ class GameWindow {
     }
 
     addRaindrop(x = Math.round(Math.random() * 0.8 * this.width), y = 0, radius = 35, color = 'rgba(13, 86, 166, 0.9)') {
-        let rainDrop = new Raindrop(2 * radius + x, y, radius, color, operations);
+        let rainDrop = new Raindrop(2 * radius + x, y, radius, color, '15px Verdana', this.operations, this.maxForPlus, this.maxForMultiply);
+        console.log(rainDrop);
         this.rainDrops = [...this.rainDrops, rainDrop];
         // this.rainDrops.push(rainDrop);
     }
@@ -289,6 +295,7 @@ class GameWindow {
     }
 
     checkAnswer(answer) {
+        let trueAnswer = 0;
         this.rainDrops.forEach((rainDrop, index) => {
             if (rainDrop.answer === +answer) {
                 soundSuccess.pause();
@@ -302,13 +309,18 @@ class GameWindow {
                     this.rainDropSpeed += 0.3 * this.rainDropSpeed;
                     this.renderScoreBoard();
                 }
+                trueAnswer++;
                 return;
             }
         });
-        soundIncorrect.pause();
-        soundIncorrect.currentTime = 0;
-        soundIncorrect.play();
-        this.incorrects++;
+        if (!(trueAnswer > 0)) {
+            soundIncorrect.pause();
+            soundIncorrect.currentTime = 0;
+            soundIncorrect.play();
+            this.incorrects++;
+            console.log(`incorrects: `, this.incorrects);
+            trueAnswer = false;
+        }
     }
 
     scoreUp() {
@@ -343,6 +355,16 @@ class GameWindow {
         this.ctx.fillText(`Допущено ошибок: ${this.incorrects}`, 20, this.height / 2 + 40);
     }
 
+    applySettings(maxRaindrops, maxSum, maxMult, speed, operations) {
+        this.maxRainDropsAmount = maxRaindrops;
+        this.maxForPlus = maxSum;
+        this.maxForMultiply = maxMult;
+        this.operations = operations;
+        this.rainDropSpeed = speed;
+        this.newRainDropDelay = 2000;
+        
+    }
+
     endGame() {
         gameIsStarted = false;
         timerForRaindrops = null;
@@ -366,7 +388,7 @@ class GameWindow {
 }
 
 class Raindrop {
-    constructor(x, y, radius, color, font = '15px Verdana', operations = ['+', '-', '*', '/']) {
+    constructor(x, y, radius, color, font = '15px Verdana', operations = ['+', '-', '*', '/'], maxPlus = 100, maxMult = 10) {
         this.x = x;
         this.y = y;
         this.radius = radius
@@ -374,12 +396,12 @@ class Raindrop {
         this.font = font;
         this.operation
         this.operations = operations;
-        this.generateTask();
+        this.generateTask(maxPlus, maxMult);
     }
 
-    generateTask() {
-        this.operandOne = Math.round(100 * Math.random());
-        this.operandTwo = Math.round(100 * Math.random());
+    generateTask(maxPlus, maxMult) {
+        this.operandOne = Math.round(maxPlus * Math.random());
+        this.operandTwo = Math.round(maxPlus * Math.random());
         this.generateOperation();
         switch (this.operation) {
             case '+':
@@ -393,13 +415,13 @@ class Raindrop {
                 };
                 break;
             case '*':
-                this.operandOne = Math.round(10 * Math.random());
-                this.operandTwo = Math.round(10 * Math.random());
+                this.operandOne = Math.round(maxMult * Math.random());
+                this.operandTwo = Math.round(maxMult * Math.random());
                 this.answer = this.operandOne * this.operandTwo;
                 break;
             case '/':
-                this.operandOne = Math.round(10 * Math.random());
-                this.operandTwo = Math.round(10 * Math.random());
+                this.operandOne = Math.round(maxMult * Math.random());
+                this.operandTwo = Math.round(maxMult * Math.random());
                 if (this.operandTwo === 0) {
                     this.operandTwo = 1;
                 }

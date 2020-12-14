@@ -14,66 +14,70 @@
     <title>Raindrops by Yury Kuzmich</title>
   </head>
   <body>
-
     <div class="scoreboard">
-        <p>Набрано очков: <span id="scores-counter">0</span></p>
-        <p>Пропущено: <span id="mistakes-counter">0</span></p>
-        <p>Уровень: <span id="level-counter">1</span></p>
+      <p>Набрано очков: <span id="scores-counter">0</span></p>
+      <p>Пропущено: <span id="mistakes-counter">0</span></p>
+      <p>Уровень: <span id="level-counter">1</span></p>
     </div>
 
     <div class="main-menu-mobile">
-      <button
-        class="btn btn-success btn-sm" id="new-game-button-mobile"
-      >
-        Новая игра
-      </button>
-      <button class="btn btn-primary btn-sm">
-        Как играть
-      </button>
-      <!-- <div class="settings-panel">
-        <div class="settings-panel__close">X</div>
-        <h2>Настройки</h2>
-        <div>Форма с настройками</div>
-        <div>
-          <button
-            class="btn btn-success"
-            id="save-settings-button-mobile">Сохранить настройки
-          </button>
-        </div>
-      </div> -->
-      <button class="btn btn-secondary btn-sm" id="settings-button-mobile">
-        Настройки
-      </button>
-      <button class="btn btn-info btn-sm">
-        Рекорды
-      </button>
-      <button
-        class="btn btn-danger btn-sm"
-        id="stop-button-mobile"
-      >
-        Остановить игру
-      </button>
-      
+      <button class="btn btn-success btn-sm" id="new-game-button-mobile">Новая игра</button>
+      <button class="btn btn-primary btn-sm">Как играть</button>
+      <button class="btn btn-secondary btn-sm" id="settings-button-mobile">Настройки</button>
+      <button class="btn btn-info btn-sm">Рекорды</button>
+      <button class="btn btn-danger btn-sm" id="stop-button-mobile">Остановить игру</button>
     </div>
 
     <div class="container">
       <div class="row">
         <div class="col-12 col-sm-8 game">
-          <canvas id="game-canvas">
-            sorry, you browser doesn't support canvas element. 
-          </canvas>
+          <canvas id="game-canvas"> sorry, you browser doesn't support canvas element. </canvas>
         </div>
         <div class="сol-12 col-sm-4 align-items-end">
+          <div class="row">
+            <div class="col12">
+              <div class="settings-panel">
+                <div class="settings-panel__close">X</div>
+                <h2>Настройки</h2>
+                <label>
+                  Капель на экране
+                  <input class="form-control form-control-sm" type="text" id="settings__amount"/>
+                </label>
+                <label>
+                  Максимум для сложения и вычитания
+                  <input class="form-control form-control-sm"  type="text" id="settings__amount"/>
+                </label>
+                <label>
+                  Максимум для умножения и деления
+                  <input class="form-control form-control-sm"  type="text" id="settings__amount"/>
+                </label>
+                <label>
+                  Скорость капель
+                  <select class="form-control form-control-sm" name="" id="settings__speed">
+                    <option value="1">1x</option>
+                    <option value="2">2x</option>
+                    <option value="3">3x</option>
+                  </select>
+                </label>
+                <div class="form-check form-check-inline" for="">Операции
+                  <input type="checkbox" name="" id="" checked>+ |
+                  <input type="checkbox" name="" id="" checked>- |
+                  <input type="checkbox" name="" id="" checked>* |
+                  <input type="checkbox" name="" id="" checked>/ 
+                </div>
+
+                <div>
+                  <button class="btn btn-success btn-block main-menu__item" id="save-settings-button">
+                    Сохранить настройки
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row align-items-end keyboard__body">
             <div class="col-12" id="keyboard">
               <div class="row">
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  class="form-control form-control-lg keyboard__display"
-                  readonly
-                />
+                <input type="text" name="" id="" class="form-control form-control-lg keyboard__display" readonly />
               </div>
               <div class="row keyboard__row">
                 <div class="col-9">
@@ -106,80 +110,72 @@
               </div>
             </div>
           </div>
-          
+
           <div class="row">
             <div class="col-12 main-menu">
-              <button
-                class="btn btn-success btn-block main-menu__item"
-                id="new-game-button"
-              >
-                Новая игра
-              </button>
-              <button class="btn btn-primary btn-block main-menu__item">
-                Как играть
-              </button>
-              <div class="settings-panel">
+              <button class="btn btn-success btn-block main-menu__item" id="new-game-button">Новая игра</button>
+              <button class="btn btn-primary btn-block main-menu__item">Как играть</button>
+              <!-- <div class="settings-panel">
                 <div class="settings-panel__close">X</div>
                 <h2>Настройки</h2>
                 <label>
                   Капель на экране
-                  <input type="text">
+                  <input class="form-control form-control-sm" type="text" id="settings__amount"/>
+                </label>
+                <label>
+                  Максимум для сложения и вычитания
+                  <input class="form-control form-control-sm"  type="text" id="settings__amount"/>
+                </label>
+                <label>
+                  Максимум для умножения и деления
+                  <input class="form-control form-control-sm"  type="text" id="settings__amount"/>
                 </label>
                 <label>
                   Скорость капель
-                  <select name="" id="">
+                  <select class="form-control form-control-sm" name="" id="settings__speed">
                     <option value="1">1x</option>
-                    <option value="1">2x</option>
-                    <option value="1">3x</option>
+                    <option value="2">2x</option>
+                    <option value="3">3x</option>
                   </select>
                 </label>
+                <div class="form-check form-check-inline" for="">Операции
+                  <input type="checkbox" name="" id="" checked>+ |
+                  <input type="checkbox" name="" id="" checked>- |
+                  <input type="checkbox" name="" id="" checked>* |
+                  <input type="checkbox" name="" id="" checked>/ 
+                </div>
 
                 <div>
-                  <button
-                    class="btn btn-success btn-block main-menu__item"
-                    id="save-settings-button">Сохранить настройки
+                  <button class="btn btn-success btn-block main-menu__item" id="save-settings-button">
+                    Сохранить настройки
                   </button>
                 </div>
-              </div>
-              <button class="btn btn-secondary btn-block main-menu__item" id="settings-button">
-                Настройки
-              </button>
-              <button class="btn btn-info btn-block main-menu__item">
-                Рекорды
-              </button>
-              <button
-                class="btn btn-danger btn-block main-menu__item"
-                id="stop-button"
-              >
-                Остановить игру
-              </button>
-              <button
-                class="btn btn-danger btn-block main-menu__item"
-                id="stop-all-button"
-              >
-                Закончить игру
-              </button>
-              <audio  id="music">
+              </div> -->
+              <button class="btn btn-secondary btn-block main-menu__item" id="settings-button">Настройки</button>
+              <button class="btn btn-info btn-block main-menu__item">Рекорды</button>
+              <button class="btn btn-danger btn-block main-menu__item" id="stop-button">Остановить игру</button>
+              <button class="btn btn-danger btn-block main-menu__item" id="stop-all-button">Закончить игру</button>
+              <audio id="music">
                 <source src="./sound/beach.mp3" />
               </audio>
-              <audio  id="sound__success">
+              <audio id="sound__success">
                 <source src="./sound/success.mp3" />
               </audio>
-              <audio  id="sound__game_end">
+              <audio id="sound__game_end">
                 <source src="./sound/game_end.mp3" />
               </audio>
-              <audio  id="sound__incorrect">
+              <audio id="sound__incorrect">
                 <source src="./sound/incorrect.mp3" />
               </audio>
-              <audio  id="sound__mistake">
+              <audio id="sound__mistake">
                 <source src="./sound/mistake.mp3" />
               </audio>
+              
             </div>
           </div>
         </div>
       </div>
     </div>
-    
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
