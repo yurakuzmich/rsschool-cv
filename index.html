@@ -24,7 +24,6 @@
       <button class="btn btn-success btn-sm" id="new-game-button-mobile">Новая игра</button>
       <button class="btn btn-primary btn-sm">Как играть</button>
       <button class="btn btn-secondary btn-sm" id="settings-button-mobile">Настройки</button>
-      <button class="btn btn-info btn-sm">Рекорды</button>
       <button class="btn btn-danger btn-sm" id="stop-button-mobile">Остановить игру</button>
     </div>
 
@@ -45,11 +44,11 @@
                 </label>
                 <label>
                   Максимум для сложения и вычитания
-                  <input class="form-control form-control-sm"  type="text" id="settings__amount"/>
+                  <input class="form-control form-control-sm"  type="text" id="settings__max-sum"/>
                 </label>
                 <label>
                   Максимум для умножения и деления
-                  <input class="form-control form-control-sm"  type="text" id="settings__amount"/>
+                  <input class="form-control form-control-sm"  type="text" id="settings__max-mult"/>
                 </label>
                 <label>
                   Скорость капель
@@ -60,10 +59,10 @@
                   </select>
                 </label>
                 <div class="form-check form-check-inline" for="">Операции
-                  <input type="checkbox" name="" id="" checked>+ |
-                  <input type="checkbox" name="" id="" checked>- |
-                  <input type="checkbox" name="" id="" checked>* |
-                  <input type="checkbox" name="" id="" checked>/ 
+                  <input type="checkbox" class="settings__checkbox" name="" id="" value="+" checked>+ |
+                  <input type="checkbox" class="settings__checkbox" name="" id="" value="-" checked>- |
+                  <input type="checkbox" class="settings__checkbox" name="" id="" value="*" checked>* |
+                  <input type="checkbox" class="settings__checkbox" name="" id="" value="/" checked>/ 
                 </div>
 
                 <div>
@@ -115,44 +114,7 @@
             <div class="col-12 main-menu">
               <button class="btn btn-success btn-block main-menu__item" id="new-game-button">Новая игра</button>
               <button class="btn btn-primary btn-block main-menu__item">Как играть</button>
-              <!-- <div class="settings-panel">
-                <div class="settings-panel__close">X</div>
-                <h2>Настройки</h2>
-                <label>
-                  Капель на экране
-                  <input class="form-control form-control-sm" type="text" id="settings__amount"/>
-                </label>
-                <label>
-                  Максимум для сложения и вычитания
-                  <input class="form-control form-control-sm"  type="text" id="settings__amount"/>
-                </label>
-                <label>
-                  Максимум для умножения и деления
-                  <input class="form-control form-control-sm"  type="text" id="settings__amount"/>
-                </label>
-                <label>
-                  Скорость капель
-                  <select class="form-control form-control-sm" name="" id="settings__speed">
-                    <option value="1">1x</option>
-                    <option value="2">2x</option>
-                    <option value="3">3x</option>
-                  </select>
-                </label>
-                <div class="form-check form-check-inline" for="">Операции
-                  <input type="checkbox" name="" id="" checked>+ |
-                  <input type="checkbox" name="" id="" checked>- |
-                  <input type="checkbox" name="" id="" checked>* |
-                  <input type="checkbox" name="" id="" checked>/ 
-                </div>
-
-                <div>
-                  <button class="btn btn-success btn-block main-menu__item" id="save-settings-button">
-                    Сохранить настройки
-                  </button>
-                </div>
-              </div> -->
               <button class="btn btn-secondary btn-block main-menu__item" id="settings-button">Настройки</button>
-              <button class="btn btn-info btn-block main-menu__item">Рекорды</button>
               <button class="btn btn-danger btn-block main-menu__item" id="stop-button">Остановить игру</button>
               <button class="btn btn-danger btn-block main-menu__item" id="stop-all-button">Закончить игру</button>
               <audio id="music">

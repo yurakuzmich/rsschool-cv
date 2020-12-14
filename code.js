@@ -18,7 +18,12 @@ const counterMistakes = document.getElementById('mistakes-counter');
 const counterLevel = document.getElementById('level-counter');
 
 //Settings
-const x=9 ;
+const settingsRaindrops = document.getElementById('settings__amount');
+const settingsMaxSum = document.getElementById('settings__max-sum');
+const settingsMaxMult = document.getElementById('settings__max-mult');
+const settingsSpeed = document.getElementById('settings__speed');
+const settingsOperations = document.querySelectorAll('.settings__checkbox');
+console.log(settingsOperations);
 //Buttons
 const buttonNewGame = document.getElementById('new-game-button');
 const buttonSettings = document.getElementById('settings-button');
@@ -41,10 +46,15 @@ let globalId;
 let gameIsStarted = false;
 
 
+
 //settings
 let operations = ['+', '-', '*', '/'];
 
 display.value = 0;
+settingsRaindrops.value = 3;
+settingsMaxSum.value = 20;
+settingsMaxMult.value = 10;
+
 //Event Listeners
 window.addEventListener('keydown', keyBoardKeyPress);
 keyboard.addEventListener('click', (e) => {
@@ -113,6 +123,7 @@ function keyBoardKeyPress(e) {
 }
 
 function toggleSettingsPanel() {
+    pauseGame();
     settingsPanel.style.display === 'flex' ? settingsPanel.style.display = 'none' : settingsPanel.style.display = 'flex';
 }
 
@@ -142,6 +153,39 @@ function pauseGame() {
         gameIsStarted = true;
     }
 }
+
+function applySettings() {
+    let speed = createSpeed();
+    createOperations();
+    gameWindow.applySettings(settingsRaindrops.value, settingsMaxSum.value, settingsMaxMult.value, speed, operations);
+    toggleSettingsPanel();
+}
+
+function createOperations() {
+    operations = [];
+    settingsOperations.forEach((el) => {
+        if (el.checked) {
+            operations.push(el.value);
+        }
+    });
+}
+
+function createSpeed() {
+    let speed = 0;
+    switch (settingsSpeed.value) {
+        case (1):
+            speed = 0.5;
+            break;
+        case (2):
+            speed = 0.7;
+            break;
+        case (3):
+            speed = 1.2;
+            break;
+    }
+    return speed;
+}
+
 
 function endGame() {
     gameWindow.endGame();
@@ -182,8 +226,8 @@ class GameWindow {
         this.maxForPlus = 20;
         this.maxForMultiply = 10;
         this.operations = operations;
-        this.maxRainDropsAmount = 5;
-        this.newRainDropDelay = 2000;
+        this.maxRainDropsAmount = 3;
+        this.newRainDropDelay = 4000;
         this.rainDropSpeed = 0.5;
 
 
@@ -304,11 +348,7 @@ class GameWindow {
                 this.rainDrops.splice(index, 1);
                 this.scoreUp();
                 this.renderScoreBoard();
-                if (this.score % 10 === 0) {
-                    this.level++;
-                    this.rainDropSpeed += 0.3 * this.rainDropSpeed;
-                    this.renderScoreBoard();
-                }
+
                 trueAnswer++;
                 return;
             }
@@ -326,6 +366,13 @@ class GameWindow {
     scoreUp() {
         this.score += this.tempScore;
         this.tempScore++;
+        if (this.score % 10 === 0) {
+            this.level++;
+            this.rainDropSpeed += 0.2 * this.rainDropSpeed;
+            this.maxForPlus += 10;
+            this.maxForMultiply += 2;
+        }
+        this.renderScoreBoard();
     }
 
     mistakesUp() {
@@ -355,14 +402,14 @@ class GameWindow {
         this.ctx.fillText(`Допущено ошибок: ${this.incorrects}`, 20, this.height / 2 + 40);
     }
 
-    applySettings(maxRaindrops, maxSum, maxMult, speed, operations) {
+    applySettings(maxRaindrops = 3, maxSum = 20, maxMult = 10, speed = 0.5, operations = ['+', '-', '*', '/']) {
         this.maxRainDropsAmount = maxRaindrops;
         this.maxForPlus = maxSum;
         this.maxForMultiply = maxMult;
         this.operations = operations;
         this.rainDropSpeed = speed;
         this.newRainDropDelay = 2000;
-        
+
     }
 
     endGame() {
