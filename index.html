@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Whack a mole by Yury Kuzmich</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">Saloon hunter</div>
+        <div class="menu">
+            <button class="newgame"></button>
+        </div>
+        <div class="scores">
+            <div class="highscore">
+                <p>HighScore: 0</p>
+            </div>
+            <div class="score">
+                <p>Current score: 0</p>
+            </div>
+            <div class="level">
+                <p>Level: 1</p>
+            </div>
+            <div class="settings">
+                <img src="./images/settings.png" alt="">
+            </div>
+        </div>
+        <div class="game">
+            <div class="window window1">
+                <div class="enemy"></div>
+            </div>
+            <div class="window window2">
+                <div class="enemy"></div>
+            </div>
+            <div class="window window3">
+                <div class="enemy"></div>
+            </div>
+            <div class="window window4">
+                <div class="enemy"></div>
+            </div>
+            
+        </div>
+        <footer></footer>
+        <div class="blood"></div>
+        <div class="settings-board">
+            <h3>Settings</h3>
+            <label for="">
+                Game duration:
+                <input type="text" name="" id="game-duration" placeholder="enter seconds" value="10">
+            </label>
+            <label for="">
+                Enemy: <br>
+                <select name="" id="enemy_name">
+                    <option value="john" selected>John</option>
+                    <option value="phill">Phill</option>
+                    <option value="james">James</option>
+                </select>
+            </label>
+            <button class="save-settings save-settings_reset" id="reset-highscore">Reset Highscore</button>
+            <button class="save-settings" id="save-settings">Save</button>
+        </div>
+    </div>
+    <script src="code.js"></script>
+</body>
+</html>
