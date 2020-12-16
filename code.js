@@ -117,12 +117,22 @@ function levelUp() {
 }
 
 function saveSettings() {
-    if(Number.isInteger(+setDuration.value) && setDuration.value <= 300) {
-      gameDuration = setDuration.value * 1000;  
-    } else {
+    // if (Number.isInteger(+setDuration.value) && setDuration.value <= 300) {
+    //     gameDuration = setDuration.value * 1000;
+    // } else {
+    //     alert(`Game duration value must be from 0 to 300`);
+    //     return;
+    // }
+
+    if (isNaN(setDuration.value) || setDuration.value >= 300) {
         alert(`Game duration value must be from 0 to 300`);
-    return;
+    } else {
+        gameDuration = setDuration.value * 1000;
+        enemyName = setEnemy.value;
+        saveEnemy(enemyName);
+        hideSettingsPanel();
     }
+
     enemyName = setEnemy.value;
     saveEnemy(enemyName);
     hideSettingsPanel();
