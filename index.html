@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Simple calculator</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header-wrapper">
+        <header>
+          <h1>Simple calculator</h1>
+        </header>
+      </div>
+
+      <div class="main-wrapper">
+        <div class="main-calculator">
+          <div class="">
+            <input
+              type="text"
+              name=""
+              disabled
+              class="calculator__display"
+              id="calculator__display"
+              value="0"
+            />
+          </div>
+          <div class="calculator__keyboard">
+            <div class="calculator__keyboard-row">
+              <button class="calculator__button" id="c">C</button>
+              <button class="calculator__button" id="ce">CE</button>
+              <button class="calculator__button" id="percent">%</button>
+              <button class="calculator__button math_action">/</button>
+            </div>
+            <div class="calculator__keyboard-row">
+              <button class="calculator__button number">7</button>
+              <button class="calculator__button number">8</button>
+              <button class="calculator__button number">9</button>
+              <button class="calculator__button math_action">x</button>
+            </div>
+            <div class="calculator__keyboard-row">
+              <button class="calculator__button number">4</button>
+              <button class="calculator__button number">5</button>
+              <button class="calculator__button number">6</button>
+              <button class="calculator__button math_action">-</button>
+            </div>
+            <div class="calculator__keyboard-row">
+              <button class="calculator__button number">1</button>
+              <button class="calculator__button number">2</button>
+              <button class="calculator__button number">3</button>
+              <button class="calculator__button math_action">+</button>
+            </div>
+            <div class="calculator__keyboard-row">
+              <button class="calculator__button number zero">0</button>
+              <button class="calculator__button comma_button" id="comma">,</button>
+              <button class="calculator__button result_button math_action">=</button>
+            </div>
+          </div>
+          <div class="calculator__footer">
+            <a href="mailto:yurakuzmich@gmail.com">yurakuzmich</a>
+          </div>
+        </div>
+        <div class="main-info">
+          <button class="info-button" id="howitwork-button">
+            How it works
+          </button>
+          <button class="info-button" id="about-button">About app</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal__wrapper modal_hidden" id="modal__wrapper">
+      <div class="modal">
+        <div class="modal__close" id="modal_close">X</div>
+        <h2 class="modal__header" id="modal__header">Всплывающее окно</h2>
+        <div id="modal__text"></div>
+      </div>
+    </div>
+    <script defer src="code1.js"></script>
+  </body>
+</html>
