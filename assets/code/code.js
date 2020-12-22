@@ -1,8 +1,10 @@
+import { langRu } from '../locale/ru.js';
+import { langEn } from '../locale/en.js';
+
 //Position
 const positionPanel = document.querySelector(".position__city");
 const datePanel = document.querySelector(".position__date-time_date");
 const timePanel = document.querySelector(".position__date-time_time");
-console.log(datePanel, timePanel)
 
 //Weather
 const weatherTempPanel = document.querySelector(".current-weather__temp");
@@ -11,8 +13,27 @@ const weatherFeelsPanel = document.querySelector(".current-weather__desc_feels-l
 const weatherWindPanel = document.querySelector(".current-weather__desc_wind");
 const weatherHumPanel = document.querySelector(".current-weather__desc_humidity");
 const forecastPanels = document.querySelectorAll(".forecast__day");
+
+//map
+const latLngPanel = document.querySelector(".map__lat-lng");
+
+//Settings and search
+const buttonSearch = document.querySelector(".search__button");
+const buttonLang = document.querySelector(".settings-panel__lang-button");
+
+//Current language
+let vocabular = langRu;
+
+//Event listeners
+buttonLang.addEventListener('click', changeLanguage);
+
+function changeLanguage() {
+    weather.langObj.language === 'ru' ?  vocabular = langEn : vocabular = langRu;
+    weather.langObj = vocabular;
+    weather.init();
+}
 class WeatherApp {
-    constructor(posPanel, datePanel, timePanel, tempPanel, iconPanel, feelsPanel, windPanel, humPanel, frcPanels) {
+    constructor(posPanel, datePanel, timePanel, tempPanel, iconPanel, feelsPanel, windPanel, humPanel, frcPanels, latLngPanel, langObj, buttonSearch) {
         this.currentTempPanel = tempPanel;
         this.positionPanel = posPanel;
         this.datePanel = datePanel;
@@ -22,6 +43,9 @@ class WeatherApp {
         this.windPanel = windPanel;
         this.humPanel = humPanel;
         this.frcPanels = frcPanels;
+        this.latLngPanel = latLngPanel;
+        this.langObj = langObj;
+        this.buttonSearch = buttonSearch;
         this.init();
 
     }
@@ -30,6 +54,7 @@ class WeatherApp {
         this.renderDate();
         const renderTime = this.renderTime.bind(this);
         setInterval(renderTime, 1000);
+        this.buttonSearch.textContent = this.langObj.settings.find_city;
         this.getCoordsByIP()
             .then(() => {
                 this.coords = this.loc.loc.split(',').reverse();
@@ -37,21 +62,20 @@ class WeatherApp {
                 this.createMap(mapCenter);
             }).then(() => {
                 this.getWeather(this.coords[1], this.coords[0]).then(() => {
-                    console.log(this.loc);
                     this.renderApp();
                 });
             });
     }
 
     renderApp() {
-        this.currentTempPanel.innerHTML = `<p>${this.weather.current.temp}</p>`;
+        this.currentTempPanel.innerHTML = `<p>${Math.round(this.weather.current.temp)}&deg;</p>`;
         this.positionPanel.textContent = this.loc.city + this.loc.country;
         this.iconPanel.innerHTML = `<img src="http://openweathermap.org/img/wn/${this.weather.current.weather[0].icon}@2x.png"><p>${this.weather.current.weather[0].description}</p>`;
-        this.feelsPanel.textContent = `Feels like ${Math.round(this.weather.current.feels_like)}`;
-        this.windPanel.textContent = `${this.weather.current.wind_speed}, ${this.weather.current.wind_deg} deg`;
-        this.humPanel.textContent = `${this.weather.current.humidity} %`;
+        this.feelsPanel.innerHTML = `${this.langObj.today.feels_like} ${Math.round(this.weather.current.feels_like)}&deg;`;
+        this.windPanel.textContent = `${this.weather.current.wind_speed} ${this.langObj.windspeed}, ${this.generateWindDirection()}`;
+        this.humPanel.textContent = `${this.langObj.humidity} ${this.weather.current.humidity} %`;
         this.renderForecast(this.frcPanels);
-        
+
     }
 
     renderForecast(listOfElements) {
@@ -59,10 +83,13 @@ class WeatherApp {
         listOfElements.forEach((panel) => {
             let day = new Date(this.weather.daily[dayCounter].dt * 1000);
             let forecast = `
-            <h3>${this.generateDay(day.getDay())}</h2>
-            <div>
-            <div>${Math.round(this.weather.daily[dayCounter].temp.day)}</div>
-            <div><img src="http://openweathermap.org/img/wn/${this.weather.daily[dayCounter].weather[0].icon}@2x.png"></div>
+            <h3>${this.generateDay(day.getDay())}</h3>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p class="forecast__day_temp">${Math.round(this.weather.daily[dayCounter].temp.day)}&deg;</p>
+                    <p>${this.langObj.today.feels_like} ${Math.round(this.weather.daily[dayCounter].feels_like.day)}&deg;</p>
+                </div>
+                <div class="col-sm-8"><img src="http://openweathermap.org/img/wn/${this.weather.daily[dayCounter].weather[0].icon}@2x.png"></div>
             </div>
             `;
             panel.innerHTML = forecast;
@@ -91,10 +118,40 @@ class WeatherApp {
         this.timePanel.innerHTML = `${hours}:${minutes}:${seconds}`;
     };
 
+    renderLatLng() {
+        this.latLngPanel.innerHTML = `
+        <p>${this.coords[1]}</p>
+        <p>${this.coords[0]}</p>
+        `;
+    }
 
     generateDay(day) {
-        let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',];
+        let days = this.langObj.forecast.weekdays;
         return days[day];
+    }
+
+    generateWindDirection() {
+        let windDirection;
+        if (this.weather.current.wind_deg >= 0 && this.weather.current.wind_deg <= 23) {
+            windDirection = this.langObj.winddirection.north;
+        } else if (this.weather.current.wind_deg > 23 && this.weather.current.wind_deg <= 67) {
+            windDirection = this.langObj.winddirection.northeast;
+        } else if (this.weather.current.wind_deg > 67 && this.weather.current.wind_deg <= 112) {
+            windDirection = this.langObj.winddirection.east;
+        } else if (this.weather.current.wind_deg > 112 && this.weather.current.wind_deg <= 157) {
+            windDirection = this.langObj.winddirection.southeast;
+        } else if (this.weather.current.wind_deg > 157 && this.weather.current.wind_deg <= 202) {
+            windDirection = this.langObj.winddirection.south;
+        } else if (this.weather.current.wind_deg > 202 && this.weather.current.wind_deg <= 247) {
+            windDirection = this.langObj.winddirection.southwest;
+        } else if (this.weather.current.wind_deg > 247 && this.weather.current.wind_deg <= 292) {
+            windDirection = this.langObj.winddirection.west;
+        } else if (this.weather.current.wind_deg > 292 && this.weather.current.wind_deg <= 337) {
+            windDirection = this.langObj.winddirection.northwest;
+        } else if (this.weather.current.wind_deg > 337 && this.weather.current.wind_deg <= 360) {
+            windDirection = this.langObj.winddirection.north;
+        }
+        return windDirection;
     }
 
     async getCoordsByIP() {
@@ -107,12 +164,11 @@ class WeatherApp {
         }
     }
 
-    async getWeather(lat, lng, lang = 'RU', units = 'metric') {
+    async getWeather(lat, lng, lang = `${this.langObj.language}`, units = 'metric') {
         try {
             let response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&units=${units}&lang=${lang}&exclude=minutely,hourly&appid=88e88696d2cb8276e58d14f4ac3a0362`);
             let weather = await response.json();
             this.weather = weather;
-            console.log(this.weather);
         } catch (err) {
             console.log('weather err: ', err)
         }
@@ -128,6 +184,7 @@ class WeatherApp {
             center: mapCenter, // starting position [lng, lat]
             zoom: 9 // starting zoom
         });
+        this.renderLatLng();
     }
 
     // getCoords() {
@@ -148,5 +205,17 @@ class WeatherApp {
 
 
 
-const weather = new WeatherApp(positionPanel, datePanel, timePanel, weatherTempPanel, weatherIconPanel, weatherFeelsPanel, weatherWindPanel, weatherHumPanel, forecastPanels);
+const weather = new WeatherApp(
+    positionPanel,
+    datePanel,
+    timePanel,
+    weatherTempPanel,
+    weatherIconPanel,
+    weatherFeelsPanel,
+    weatherWindPanel,
+    weatherHumPanel,
+    forecastPanels,
+    latLngPanel,
+    vocabular,
+    buttonSearch);
 

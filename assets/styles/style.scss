@@ -15,23 +15,27 @@ $app-font: "Montserrat", sans-serif;
 }
 
 body {
+  padding: 20px 0 0 0;
   font-family: $app-font;
   font-size: 13px;
-  background: url('./../images/bg1.jpg') no-repeat;
-//   background: #ffffff;
+  //   color: #ffffff;
+  background: url("./../images/bg1.jpg") no-repeat;
+  //   background: #ffffff;
   background-size: cover;
 }
 
 #map-box {
   min-width: 280px;
   min-height: 300px;
+  border: 5px solid rgba(197, 192, 192, 0.5);
+  border-radius: 20px;
 }
 
 .settings-panel {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .position {
@@ -66,15 +70,29 @@ body {
 }
 
 .forecast {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 
   &__day {
     @extend %tab;
     font-size: 1.1rem;
     font-weight: bold;
     flex-basis: 400px;
+
+    &_temp {
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
   }
+}
+
+.map__lat-lng {
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: right;
+  color: #ffffff;
 }

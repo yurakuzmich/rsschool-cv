@@ -26,15 +26,12 @@
       <div class="row">
         <div class="col-sm-8 settings-panel">
           <button type="button" class="btn btn-secondary"><i class="fa fa-refresh fa-fw"></i></button>&nbsp;
-          <button type="button" class="btn btn-secondary">RU/EN</button>
+          <button type="button" class="btn btn-secondary settings-panel__lang-button">RU/EN</button>
         </div>
-        <div class="col-sm-4">
-          <br />
+        <div class="col-sm-4 search">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="City..." aria-label="Recipient's username" />
-            <div class="input-group-append">
-              <button class="btn btn-light" type="button" id="button-addon2">Find City</button>
-            </div>
+            <input type="text" class="form-control search__input" placeholder="City..." aria-label="Recipient's username" />
+            <button class="btn btn-success search__button" type="button">Find City</button>
           </div>
         </div>
       </div>
@@ -66,6 +63,7 @@
         </div>
         <div class="col-sm-4">
           <div id="map-box"></div>
+          <div class="map__lat-lng"></div>
         </div>
       </div>
     </div>
