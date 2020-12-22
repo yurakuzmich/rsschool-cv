@@ -14,22 +14,19 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet"/>
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
     <link rel="stylesheet" href="./assets/styles/style.css" />
   </head>
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-sm-8">
-          <div>refresh image</div>
-          <div>
-            <select name="" id="">
-              <option value="">RU</option>
-              <option value="">EN</option>
-              <option value="">BY</option>
-            </select>
-          </div>
-          <div>Farengheit/Celsius</div>
+        <div class="col-sm-8 settings-panel">
+          <button type="button" class="btn btn-secondary"><i class="fa fa-refresh fa-fw"></i></button>&nbsp;
+          <button type="button" class="btn btn-secondary">RU/EN</button>
         </div>
         <div class="col-sm-4">
           <br />
@@ -45,7 +42,10 @@
         <div class="col-sm-8">
           <div class="row position">
             <p class="position__city">Loading...</p>
-            <p class="position__date-time">Date and time</p>
+            <p class="position__date-time">
+              <span class="position__date-time_date"></span>
+              <span class="position__date-time_time"></span>
+            </p>
           </div>
           <div class="row current-weather">
             <div class="col-6 current-weather__temp"></div>
@@ -57,9 +57,11 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-4">5</div>
-            <div class="col-sm-4">6</div>
-            <div class="col-sm-4">7</div>
+            <div class="col-12 forecast">
+              <div class="forecast__day">Loading...</div>
+              <div class="forecast__day">Loading...</div>
+              <div class="forecast__day">Loading...</div>
+            </div>
           </div>
         </div>
         <div class="col-sm-4">

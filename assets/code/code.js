@@ -1,6 +1,8 @@
 //Position
 const positionPanel = document.querySelector(".position__city");
-const dateTimePanel = document.querySelector(".position__date-time");
+const datePanel = document.querySelector(".position__date-time_date");
+const timePanel = document.querySelector(".position__date-time_time");
+console.log(datePanel, timePanel)
 
 //Weather
 const weatherTempPanel = document.querySelector(".current-weather__temp");
@@ -8,20 +10,26 @@ const weatherIconPanel = document.querySelector(".current-weather__desc_icon");
 const weatherFeelsPanel = document.querySelector(".current-weather__desc_feels-like");
 const weatherWindPanel = document.querySelector(".current-weather__desc_wind");
 const weatherHumPanel = document.querySelector(".current-weather__desc_humidity");
-
+const forecastPanels = document.querySelectorAll(".forecast__day");
 class WeatherApp {
-    constructor(posPanel, tempPanel, iconPanel, feelsPanel, windPanel, humPanel) {
+    constructor(posPanel, datePanel, timePanel, tempPanel, iconPanel, feelsPanel, windPanel, humPanel, frcPanels) {
         this.currentTempPanel = tempPanel;
         this.positionPanel = posPanel;
+        this.datePanel = datePanel;
+        this.timePanel = timePanel;
         this.iconPanel = iconPanel;
         this.feelsPanel = feelsPanel;
         this.windPanel = windPanel;
         this.humPanel = humPanel;
+        this.frcPanels = frcPanels;
         this.init();
-        
-}
+
+    }
 
     init() {
+        this.renderDate();
+        const renderTime = this.renderTime.bind(this);
+        setInterval(renderTime, 1000);
         this.getCoordsByIP()
             .then(() => {
                 this.coords = this.loc.loc.split(',').reverse();
@@ -42,6 +50,51 @@ class WeatherApp {
         this.feelsPanel.textContent = `Feels like ${Math.round(this.weather.current.feels_like)}`;
         this.windPanel.textContent = `${this.weather.current.wind_speed}, ${this.weather.current.wind_deg} deg`;
         this.humPanel.textContent = `${this.weather.current.humidity} %`;
+        this.renderForecast(this.frcPanels);
+        
+    }
+
+    renderForecast(listOfElements) {
+        let dayCounter = 1;
+        listOfElements.forEach((panel) => {
+            let day = new Date(this.weather.daily[dayCounter].dt * 1000);
+            let forecast = `
+            <h3>${this.generateDay(day.getDay())}</h2>
+            <div>
+            <div>${Math.round(this.weather.daily[dayCounter].temp.day)}</div>
+            <div><img src="http://openweathermap.org/img/wn/${this.weather.daily[dayCounter].weather[0].icon}@2x.png"></div>
+            </div>
+            `;
+            panel.innerHTML = forecast;
+            ++dayCounter;
+        });
+    }
+
+    renderDate() {
+        let now = new Date();
+        let days = now.getDate();
+        let month = now.getMonth();
+        let year = now.getFullYear();
+        days < 10 ? days = '0' + days : days;
+        month < 10 ? month = '0' + month : month;
+        this.datePanel.innerHTML = `${days}:${month}:${year}`;
+    }
+
+    renderTime() {
+        let now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
+        hours < 10 ? hours = '0' + hours : hours;
+        minutes < 10 ? minutes = '0' + minutes : minutes;
+        seconds < 10 ? seconds = '0' + seconds : seconds;
+        this.timePanel.innerHTML = `${hours}:${minutes}:${seconds}`;
+    };
+
+
+    generateDay(day) {
+        let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',];
+        return days[day];
     }
 
     async getCoordsByIP() {
@@ -54,9 +107,8 @@ class WeatherApp {
         }
     }
 
-    async getWeather(lat, lng, lang='RU', units = 'metric') {
+    async getWeather(lat, lng, lang = 'RU', units = 'metric') {
         try {
-            // let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=${units}&lang=${lang}&appid=88e88696d2cb8276e58d14f4ac3a0362`);
             let response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&units=${units}&lang=${lang}&exclude=minutely,hourly&appid=88e88696d2cb8276e58d14f4ac3a0362`);
             let weather = await response.json();
             this.weather = weather;
@@ -66,7 +118,7 @@ class WeatherApp {
         }
     }
 
-    async getWeatherByCity() {}
+    async getWeatherByCity() { }
 
     createMap(mapCenter) {
         new mapboxgl.Map({
@@ -96,5 +148,5 @@ class WeatherApp {
 
 
 
-const weather = new WeatherApp(positionPanel, weatherTempPanel, weatherIconPanel, weatherFeelsPanel, weatherWindPanel, weatherHumPanel);
+const weather = new WeatherApp(positionPanel, datePanel, timePanel, weatherTempPanel, weatherIconPanel, weatherFeelsPanel, weatherWindPanel, weatherHumPanel, forecastPanels);
 

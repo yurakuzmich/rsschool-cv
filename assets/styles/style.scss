@@ -17,14 +17,21 @@ $app-font: "Montserrat", sans-serif;
 body {
   font-family: $app-font;
   font-size: 13px;
-  // background: url('./../images/bg1.jpg') no-repeat;
-  background: #ffffff;
+  background: url('./../images/bg1.jpg') no-repeat;
+//   background: #ffffff;
   background-size: cover;
 }
 
 #map-box {
   min-width: 280px;
   min-height: 300px;
+}
+
+.settings-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .position {
@@ -53,7 +60,21 @@ body {
   &__desc {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    font-size: 1.3rem;
+  }
+}
 
-    font-size: 1.2rem;
+.forecast {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+  &__day {
+    @extend %tab;
+    font-size: 1.1rem;
+    font-weight: bold;
+    flex-basis: 400px;
   }
 }
