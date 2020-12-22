@@ -1,3 +1,5 @@
+$app-font: 'Montserrat', sans-serif;
+
 * {
     margin: 0;
     padding: 0;
@@ -5,8 +7,10 @@
 }
 
 body {
+    font-family: $app-font;
     font-size: 13px;
-    background: url('./../images/bg1.jpg') no-repeat;
+    // background: url('./../images/bg1.jpg') no-repeat;
+    background: #ffffff;
     background-size: cover;
 }
 
@@ -19,8 +23,19 @@ body {
 
 .current-weather {
     &__temp {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
         font-size: 5rem;
         font-weight: bold;
-        color: #ffffff;
+        color: #3d3a3a;
+    }
+
+    &__desc {
+        display: flex;
+        flex-direction: column;
+
+        font-size: 1.2rem;
     }
 }

@@ -1,9 +1,23 @@
+//Position
+const positionPanel = document.getElementById("position");
+
+//Weather
 const weatherTempPanel = document.querySelector(".current-weather__temp");
+const weatherIconPanel = document.querySelector(".current-weather__desc_icon");
+const weatherFeelsPanel = document.querySelector(".current-weather__desc_feels-like");
+const weatherWindPanel = document.querySelector(".current-weather__desc_wind");
+const weatherHumPanel = document.querySelector(".current-weather__desc_humidity");
 
 class WeatherApp {
-    constructor(tempPanel) {
+    constructor(posPanel, tempPanel, iconPanel, feelsPanel, windPanel, humPanel) {
         this.currentTempPanel = tempPanel;
+        this.positionPanel = posPanel;
+        this.iconPanel = iconPanel;
+        this.feelsPanel = feelsPanel;
+        this.windPanel = windPanel;
+        this.humPanel = humPanel;
         this.init();
+        
 }
 
     init() {
@@ -14,14 +28,20 @@ class WeatherApp {
                 this.createMap(mapCenter);
             }).then(() => {
                 this.getWeather(this.coords[1], this.coords[0]).then(() => {
-                    console.log(this.weather.weather[0].description);
-                    this.currentTempPanel.textContent = this.weather.main.temp;
+                    console.log(this.weather);
+                    console.log(this.loc);
+                    this.renderApp();
                 });
             });
     }
 
     renderApp() {
-
+        this.currentTempPanel.innerHTML = `<p>${this.weather.main.temp}</p>`;
+        this.positionPanel.textContent = this.loc.city + this.loc.country;
+        this.iconPanel.innerHTML = `<img src="http://openweathermap.org/img/wn/${this.weather.weather[0].icon}@2x.png">`;
+        this.feelsPanel.textContent = `Feels like ${Math.round(this.weather.main.feels_like)}`;
+        this.windPanel.textContent = `${this.weather.wind.speed}, ${this.weather.wind.deg} deg`;
+        this.humPanel.textContent = `${this.weather.main.humidity} %`;
     }
 
     async getCoordsByIP() {
@@ -36,7 +56,6 @@ class WeatherApp {
 
     async getWeather(lat, lng) {
         try {
-            // let response = await fetch(`api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=88e88696d2cb8276e58d14f4ac3a0362`);
             let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=metric&lang=RU&appid=88e88696d2cb8276e58d14f4ac3a0362`);
             let weather = await response.json();
             this.weather = weather;
@@ -73,5 +92,5 @@ class WeatherApp {
 
 
 
-const weather = new WeatherApp(weatherTempPanel);
+const weather = new WeatherApp(positionPanel, weatherTempPanel, weatherIconPanel, weatherFeelsPanel, weatherWindPanel, weatherHumPanel);
 
