@@ -5,6 +5,7 @@
 }
 
 body {
+    font-size: 13px;
     background: url('./../images/bg1.jpg') no-repeat;
     background-size: cover;
 }
@@ -14,4 +15,12 @@ body {
     border-radius: 20px;
     min-width: 280px; 
     min-height: 300px;
+}
+
+.current-weather {
+    &__temp {
+        font-size: 5rem;
+        font-weight: bold;
+        color: #ffffff;
+    }
 }
