@@ -1,5 +1,6 @@
 //Position
-const positionPanel = document.getElementById("position");
+const positionPanel = document.querySelector(".position__city");
+const dateTimePanel = document.querySelector(".position__date-time");
 
 //Weather
 const weatherTempPanel = document.querySelector(".current-weather__temp");
@@ -28,7 +29,6 @@ class WeatherApp {
                 this.createMap(mapCenter);
             }).then(() => {
                 this.getWeather(this.coords[1], this.coords[0]).then(() => {
-                    console.log(this.weather);
                     console.log(this.loc);
                     this.renderApp();
                 });
@@ -36,12 +36,12 @@ class WeatherApp {
     }
 
     renderApp() {
-        this.currentTempPanel.innerHTML = `<p>${this.weather.main.temp}</p>`;
+        this.currentTempPanel.innerHTML = `<p>${this.weather.current.temp}</p>`;
         this.positionPanel.textContent = this.loc.city + this.loc.country;
-        this.iconPanel.innerHTML = `<img src="http://openweathermap.org/img/wn/${this.weather.weather[0].icon}@2x.png">`;
-        this.feelsPanel.textContent = `Feels like ${Math.round(this.weather.main.feels_like)}`;
-        this.windPanel.textContent = `${this.weather.wind.speed}, ${this.weather.wind.deg} deg`;
-        this.humPanel.textContent = `${this.weather.main.humidity} %`;
+        this.iconPanel.innerHTML = `<img src="http://openweathermap.org/img/wn/${this.weather.current.weather[0].icon}@2x.png"><p>${this.weather.current.weather[0].description}</p>`;
+        this.feelsPanel.textContent = `Feels like ${Math.round(this.weather.current.feels_like)}`;
+        this.windPanel.textContent = `${this.weather.current.wind_speed}, ${this.weather.current.wind_deg} deg`;
+        this.humPanel.textContent = `${this.weather.current.humidity} %`;
     }
 
     async getCoordsByIP() {
@@ -54,18 +54,22 @@ class WeatherApp {
         }
     }
 
-    async getWeather(lat, lng) {
+    async getWeather(lat, lng, lang='RU', units = 'metric') {
         try {
-            let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=metric&lang=RU&appid=88e88696d2cb8276e58d14f4ac3a0362`);
+            // let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=${units}&lang=${lang}&appid=88e88696d2cb8276e58d14f4ac3a0362`);
+            let response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&units=${units}&lang=${lang}&exclude=minutely,hourly&appid=88e88696d2cb8276e58d14f4ac3a0362`);
             let weather = await response.json();
             this.weather = weather;
+            console.log(this.weather);
         } catch (err) {
             console.log('weather err: ', err)
         }
     }
 
+    async getWeatherByCity() {}
+
     createMap(mapCenter) {
-        var map = new mapboxgl.Map({
+        new mapboxgl.Map({
             accessToken: 'pk.eyJ1IjoieXVyYWt1em1pY2giLCJhIjoiY2pzMGxmcWk0MWt5dDN5bzMxY2V1MDA3aCJ9.uWl284AonDQe4NK9ISlOjQ',
             container: 'map-box',
             style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location

@@ -1,3 +1,10 @@
+.current-weather, .position {
+  margin: 5px;
+  padding: 5px;
+  background: rgba(197, 192, 192, 0.5);
+  border-radius: 15px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,10 +19,14 @@ body {
 }
 
 #map-box {
-  border: 5px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
   min-width: 280px;
   min-height: 300px;
+}
+
+.position p {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .current-weather__temp {
