@@ -11,13 +11,19 @@
     />
     <title>Weather by Yury Kuzmich</title>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
 
     <link rel="stylesheet" href="./assets/styles/style.css" />
   </head>
@@ -25,13 +31,27 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-8 settings-panel">
-          <button type="button" class="btn btn-secondary"><i class="fa fa-refresh fa-fw"></i></button>&nbsp;
-          <button type="button" class="btn btn-secondary settings-panel__lang-button">RU/EN</button>
+          <button type="button" class="btn btn-secondary">
+            <i class="fa fa-refresh fa-fw"></i></button
+          >&nbsp;
+          <button
+            type="button"
+            class="btn btn-secondary settings-panel__lang-button"
+          >
+            RU/EN
+          </button>
         </div>
         <div class="col-sm-4 search">
           <div class="input-group mb-3">
-            <input type="text" class="form-control search__input" placeholder="City..." aria-label="Recipient's username" />
-            <button class="btn btn-success search__button" type="button">Find City</button>
+            <input
+              type="text"
+              class="form-control search__input"
+              placeholder="City..."
+              aria-label="Recipient's username"
+            />
+            <button class="btn btn-success search__button" type="button">
+              Find City
+            </button>
           </div>
         </div>
       </div>
@@ -55,9 +75,11 @@
           </div>
           <div class="row">
             <div class="col-12 forecast">
-              <div class="forecast__day">Loading...</div>
-              <div class="forecast__day">Loading...</div>
-              <div class="forecast__day">Loading...</div>
+              <div class="row">
+                <div class="col-sm-4 forecast__day">Loading...</div>
+                <div class="col-sm-4 forecast__day">Loading...</div>
+                <div class="col-sm-4 forecast__day">Loading...</div>
+              </div>
             </div>
           </div>
         </div>

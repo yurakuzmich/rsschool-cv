@@ -1,4 +1,4 @@
-.forecast__day, .current-weather, .position {
+.forecast, .current-weather, .position {
   margin: 5px;
   padding: 5px;
   background: rgba(197, 192, 192, 0.5);
@@ -54,16 +54,10 @@ body {
   font-size: 1.3rem;
 }
 
-.forecast {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-}
 .forecast__day {
   font-size: 1.1rem;
   font-weight: bold;
-  flex-basis: 400px;
+  word-wrap: break-word;
 }
 .forecast__day_temp {
   font-size: 1.8rem;

@@ -8,7 +8,7 @@ export const langEn = {
         humidity: "Humidity",
     },
     forecast: {
-        weekdays: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "saturday"],
+        weekdays: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     },
     winddirection: {
         north: "North",

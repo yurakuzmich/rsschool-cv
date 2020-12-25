@@ -70,16 +70,13 @@ body {
 }
 
 .forecast {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+  @extend %tab;
 
   &__day {
-    @extend %tab;
+    
     font-size: 1.1rem;
     font-weight: bold;
-    flex-basis: 400px;
+    word-wrap: break-word;
 
     &_temp {
         font-size: 1.8rem;

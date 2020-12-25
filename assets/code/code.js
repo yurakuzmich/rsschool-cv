@@ -18,6 +18,7 @@ const forecastPanels = document.querySelectorAll(".forecast__day");
 const latLngPanel = document.querySelector(".map__lat-lng");
 
 //Settings and search
+const inputSearch = document.querySelector(".search__input");
 const buttonSearch = document.querySelector(".search__button");
 const buttonLang = document.querySelector(".settings-panel__lang-button");
 
@@ -26,6 +27,9 @@ let vocabular = langRu;
 
 //Event listeners
 buttonLang.addEventListener('click', changeLanguage);
+buttonSearch.addEventListener('click', () => {
+    console.log(weather.loc);
+});
 
 function changeLanguage() {
     weather.langObj.language === 'ru' ?  vocabular = langEn : vocabular = langRu;
@@ -67,6 +71,8 @@ class WeatherApp {
             });
     }
 
+
+
     renderApp() {
         this.currentTempPanel.innerHTML = `<p>${Math.round(this.weather.current.temp)}&deg;</p>`;
         this.positionPanel.textContent = this.loc.city + this.loc.country;
@@ -85,11 +91,11 @@ class WeatherApp {
             let forecast = `
             <h3>${this.generateDay(day.getDay())}</h3>
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <p class="forecast__day_temp">${Math.round(this.weather.daily[dayCounter].temp.day)}&deg;</p>
                     <p>${this.langObj.today.feels_like} ${Math.round(this.weather.daily[dayCounter].feels_like.day)}&deg;</p>
                 </div>
-                <div class="col-sm-8"><img src="http://openweathermap.org/img/wn/${this.weather.daily[dayCounter].weather[0].icon}@2x.png"></div>
+                <div class="col-sm-6"><img src="http://openweathermap.org/img/wn/${this.weather.daily[dayCounter].weather[0].icon}@2x.png"></div>
             </div>
             `;
             panel.innerHTML = forecast;
@@ -172,6 +178,10 @@ class WeatherApp {
         } catch (err) {
             console.log('weather err: ', err)
         }
+    }
+
+    getWeatherByCity(){
+        
     }
 
     async getWeatherByCity() { }
